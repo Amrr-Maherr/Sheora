@@ -1,0 +1,877 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Ahmed Hassan",
+      "email": "ahmed@example.com",
+      "phone": "+201012345678",
+      "role": "customer",
+      "avatar": "https://i.pravatar.cc/150?u=ahmed",
+      "createdAt": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Sara Mohamed",
+      "email": "sara@example.com",
+      "phone": "+201098765432",
+      "role": "customer",
+      "avatar": "https://i.pravatar.cc/150?u=sara",
+      "createdAt": "2024-02-20T14:30:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Omar Ali",
+      "email": "omar@example.com",
+      "phone": "+201055512345",
+      "role": "admin",
+      "avatar": "https://i.pravatar.cc/150?u=omar",
+      "createdAt": "2024-01-01T08:00:00Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Electronics",
+      "slug": "electronics",
+      "image": "https://placehold.co/400x300?text=Electronics",
+      "description": "Smartphones, laptops, tablets, and accessories"
+    },
+    {
+      "id": "2",
+      "name": "Clothing",
+      "slug": "clothing",
+      "image": "https://placehold.co/400x300?text=Clothing",
+      "description": "Men's and women's fashion"
+    },
+    {
+      "id": "3",
+      "name": "Home & Kitchen",
+      "slug": "home-kitchen",
+      "image": "https://placehold.co/400x300?text=Home+%26+Kitchen",
+      "description": "Furniture, appliances, and kitchen essentials"
+    },
+    {
+      "id": "4",
+      "name": "Sports",
+      "slug": "sports",
+      "image": "https://placehold.co/400x300?text=Sports",
+      "description": "Sports equipment and fitness gear"
+    },
+    {
+      "id": "5",
+      "name": "Books",
+      "slug": "books",
+      "image": "https://placehold.co/400x300?text=Books",
+      "description": "Fiction, non-fiction, and educational"
+    },
+    {
+      "id": "6",
+      "name": "Beauty",
+      "slug": "beauty",
+      "image": "https://placehold.co/400x300?text=Beauty",
+      "description": "Skincare, makeup, and personal care"
+    },
+    {
+      "id": "7",
+      "name": "Toys",
+      "slug": "toys",
+      "image": "https://placehold.co/400x300?text=Toys",
+      "description": "Toys and games for all ages"
+    },
+    {
+      "id": "8",
+      "name": "Groceries",
+      "slug": "groceries",
+      "image": "https://placehold.co/400x300?text=Groceries",
+      "description": "Fresh food, snacks, and beverages"
+    }
+  ],
+  "brands": [
+    {
+      "id": "1",
+      "name": "Apple",
+      "slug": "apple",
+      "logo": "https://placehold.co/200x100?text=Apple",
+      "description": "Premium technology products"
+    },
+    {
+      "id": "2",
+      "name": "Samsung",
+      "slug": "samsung",
+      "logo": "https://placehold.co/200x100?text=Samsung",
+      "description": "Innovation for everyone"
+    },
+    {
+      "id": "3",
+      "name": "Nike",
+      "slug": "nike",
+      "logo": "https://placehold.co/200x100?text=Nike",
+      "description": "Just Do It"
+    },
+    {
+      "id": "4",
+      "name": "Adidas",
+      "slug": "adidas",
+      "logo": "https://placehold.co/200x100?text=Adidas",
+      "description": "Impossible is Nothing"
+    },
+    {
+      "id": "5",
+      "name": "IKEA",
+      "slug": "ikea",
+      "logo": "https://placehold.co/200x100?text=IKEA",
+      "description": "Affordable home furnishing"
+    },
+    {
+      "id": "6",
+      "name": "Sony",
+      "slug": "sony",
+      "logo": "https://placehold.co/200x100?text=Sony",
+      "description": "Make.Believe"
+    },
+    {
+      "id": "7",
+      "name": "Zara",
+      "slug": "zara",
+      "logo": "https://placehold.co/200x100?text=Zara",
+      "description": "Fashion forward clothing"
+    },
+    {
+      "id": "8",
+      "name": "Dyson",
+      "slug": "dyson",
+      "logo": "https://placehold.co/200x100?text=Dyson",
+      "description": "Innovative home technology"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "title": "iPhone 15 Pro",
+      "slug": "iphone-15-pro",
+      "description": "The most powerful iPhone ever with A17 Pro chip, titanium design, and advanced camera system.",
+      "price": 1199,
+      "compareAtPrice": 1299,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=iPhone+15+Pro"],
+      "categoryId": "1",
+      "brandId": "1",
+      "rating": 4.8,
+      "reviewCount": 245,
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true
+    },
+    {
+      "id": "2",
+      "title": "Samsung Galaxy S24 Ultra",
+      "slug": "samsung-galaxy-s24-ultra",
+      "description": "AI-powered smartphone with S Pen, titanium frame, and 200MP camera.",
+      "price": 1099,
+      "compareAtPrice": 1199,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=Galaxy+S24"],
+      "categoryId": "1",
+      "brandId": "2",
+      "rating": 4.7,
+      "reviewCount": 189,
+      "stock": 35,
+      "isFeatured": true,
+      "isActive": true
+    },
+    {
+      "id": "3",
+      "title": "MacBook Air M3",
+      "slug": "macbook-air-m3",
+      "description": "Impossibly thin with the M3 chip. Up to 18 hours of battery life.",
+      "price": 1099,
+      "compareAtPrice": 1199,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=MacBook+Air"],
+      "categoryId": "1",
+      "brandId": "1",
+      "rating": 4.9,
+      "reviewCount": 312,
+      "stock": 25,
+      "isFeatured": true,
+      "isActive": true
+    },
+    {
+      "id": "4",
+      "title": "Nike Air Max 270",
+      "slug": "nike-air-max-270",
+      "description": "The biggest Max Air unit yet for unmatched comfort.",
+      "price": 150,
+      "compareAtPrice": 180,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=Air+Max+270"],
+      "categoryId": "4",
+      "brandId": "3",
+      "rating": 4.5,
+      "reviewCount": 567,
+      "stock": 100,
+      "isFeatured": false,
+      "isActive": true
+    },
+    {
+      "id": "5",
+      "title": "Adidas Ultraboost 23",
+      "slug": "adidas-ultraboost-23",
+      "description": "Responsive running shoes with Boost cushioning.",
+      "price": 190,
+      "compareAtPrice": 190,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=Ultraboost+23"],
+      "categoryId": "4",
+      "brandId": "4",
+      "rating": 4.6,
+      "reviewCount": 423,
+      "stock": 75,
+      "isFeatured": false,
+      "isActive": true
+    },
+    {
+      "id": "6",
+      "title": "Sony WH-1000XM5",
+      "slug": "sony-wh-1000xm5",
+      "description": "Industry-leading noise cancelling headphones with 30-hour battery.",
+      "price": 348,
+      "compareAtPrice": 399,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=Sony+XM5"],
+      "categoryId": "1",
+      "brandId": "6",
+      "rating": 4.7,
+      "reviewCount": 891,
+      "stock": 40,
+      "isFeatured": true,
+      "isActive": true
+    },
+    {
+      "id": "7",
+      "title": "IKEA KALLAX Shelf",
+      "slug": "ikea-kallax-shelf",
+      "description": "Versatile storage that works as a room divider or TV bench.",
+      "price": 89,
+      "compareAtPrice": 109,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=KALLAX"],
+      "categoryId": "3",
+      "brandId": "5",
+      "rating": 4.3,
+      "reviewCount": 1234,
+      "stock": 200,
+      "isFeatured": false,
+      "isActive": true
+    },
+    {
+      "id": "8",
+      "title": "Dyson V15 Detect",
+      "slug": "dyson-v15-detect",
+      "description": "Cordless vacuum with laser dust detection and LCD screen.",
+      "price": 649,
+      "compareAtPrice": 749,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=Dyson+V15"],
+      "categoryId": "3",
+      "brandId": "8",
+      "rating": 4.8,
+      "reviewCount": 678,
+      "stock": 15,
+      "isFeatured": true,
+      "isActive": true
+    },
+    {
+      "id": "9",
+      "title": "Zara Blazer Coat",
+      "slug": "zara-blazer-coat",
+      "description": "Elegant oversized blazer coat in premium wool blend.",
+      "price": 129,
+      "compareAtPrice": 169,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=Zara+Blazer"],
+      "categoryId": "2",
+      "brandId": "7",
+      "rating": 4.2,
+      "reviewCount": 89,
+      "stock": 60,
+      "isFeatured": false,
+      "isActive": true
+    },
+    {
+      "id": "10",
+      "title": "Samsung Galaxy Tab S9",
+      "slug": "samsung-galaxy-tab-s9",
+      "description": "Premium Android tablet with S Pen and AMOLED display.",
+      "price": 799,
+      "compareAtPrice": 849,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=Galaxy+Tab+S9"],
+      "categoryId": "1",
+      "brandId": "2",
+      "rating": 4.5,
+      "reviewCount": 234,
+      "stock": 30,
+      "isFeatured": false,
+      "isActive": true
+    },
+    {
+      "id": "11",
+      "title": "Nike Dri-FIT T-Shirt",
+      "slug": "nike-dri-fit-tshirt",
+      "description": "Moisture-wicking technology for a dry, comfortable workout.",
+      "price": 35,
+      "compareAtPrice": 40,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=Nike+DriFit"],
+      "categoryId": "4",
+      "brandId": "3",
+      "rating": 4.4,
+      "reviewCount": 1567,
+      "stock": 300,
+      "isFeatured": false,
+      "isActive": true
+    },
+    {
+      "id": "12",
+      "title": "Apple iPad Pro 12.9\"",
+      "slug": "apple-ipad-pro-12",
+      "description": "The ultimate iPad experience with M2 chip and Liquid Retina XDR display.",
+      "price": 1099,
+      "compareAtPrice": 1199,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=iPad+Pro"],
+      "categoryId": "1",
+      "brandId": "1",
+      "rating": 4.8,
+      "reviewCount": 456,
+      "stock": 20,
+      "isFeatured": true,
+      "isActive": true
+    },
+    {
+      "id": "13",
+      "title": "Adidas Stan Smith",
+      "slug": "adidas-stan-smith",
+      "description": "Iconic sneakers that never go out of style.",
+      "price": 100,
+      "compareAtPrice": 100,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=Stan+Smith"],
+      "categoryId": "4",
+      "brandId": "4",
+      "rating": 4.3,
+      "reviewCount": 2345,
+      "stock": 150,
+      "isFeatured": false,
+      "isActive": true
+    },
+    {
+      "id": "14",
+      "title": "Sony PlayStation 5",
+      "slug": "sony-playstation-5",
+      "description": "Experience lightning-fast loading and immersive gaming.",
+      "price": 499,
+      "compareAtPrice": 499,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=PS5"],
+      "categoryId": "1",
+      "brandId": "6",
+      "rating": 4.9,
+      "reviewCount": 3456,
+      "stock": 10,
+      "isFeatured": true,
+      "isActive": true
+    },
+    {
+      "id": "15",
+      "title": "IKEA MALM Bed Frame",
+      "slug": "ikea-malm-bed-frame",
+      "description": "Clean lines with built-in storage. Queen size.",
+      "price": 249,
+      "compareAtPrice": 299,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=MALM+Bed"],
+      "categoryId": "3",
+      "brandId": "5",
+      "rating": 4.1,
+      "reviewCount": 876,
+      "stock": 40,
+      "isFeatured": false,
+      "isActive": true
+    },
+    {
+      "id": "16",
+      "title": "Zara Leather Handbag",
+      "slug": "zara-leather-handbag",
+      "description": "Premium leather handbag with gold-tone hardware.",
+      "price": 79,
+      "compareAtPrice": 99,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=Zara+Handbag"],
+      "categoryId": "2",
+      "brandId": "7",
+      "rating": 4.0,
+      "reviewCount": 123,
+      "stock": 80,
+      "isFeatured": false,
+      "isActive": true
+    },
+    {
+      "id": "17",
+      "title": "Dyson Airwrap Multi-Styler",
+      "slug": "dyson-airwrap-multi-styler",
+      "description": "Style without extreme heat. Multiple attachments included.",
+      "price": 599,
+      "compareAtPrice": 599,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=Airwrap"],
+      "categoryId": "6",
+      "brandId": "8",
+      "rating": 4.6,
+      "reviewCount": 345,
+      "stock": 25,
+      "isFeatured": true,
+      "isActive": true
+    },
+    {
+      "id": "18",
+      "title": "Nike Air Force 1",
+      "slug": "nike-air-force-1",
+      "description": "The radiance lives on with the basketball classic.",
+      "price": 110,
+      "compareAtPrice": 110,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=Air+Force+1"],
+      "categoryId": "4",
+      "brandId": "3",
+      "rating": 4.7,
+      "reviewCount": 5678,
+      "stock": 200,
+      "isFeatured": false,
+      "isActive": true
+    },
+    {
+      "id": "19",
+      "title": "Samsung 65\" OLED TV",
+      "slug": "samsung-65-oled-tv",
+      "description": "Cinematic OLED with AI upscaling and Dolby Atmos.",
+      "price": 2199,
+      "compareAtPrice": 2499,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=Samsung+OLED"],
+      "categoryId": "1",
+      "brandId": "2",
+      "rating": 4.8,
+      "reviewCount": 156,
+      "stock": 8,
+      "isFeatured": true,
+      "isActive": true
+    },
+    {
+      "id": "20",
+      "title": "Apple AirPods Pro 2",
+      "slug": "apple-airpods-pro-2",
+      "description": "Adaptive Audio, Personalized Spatial Audio with USB-C.",
+      "price": 249,
+      "compareAtPrice": 249,
+      "currency": "USD",
+      "images": ["https://placehold.co/600x600?text=AirPods+Pro"],
+      "categoryId": "1",
+      "brandId": "1",
+      "rating": 4.7,
+      "reviewCount": 2345,
+      "stock": 100,
+      "isFeatured": false,
+      "isActive": true
+    }
+  ],
+  "orders": [
+    {
+      "id": "1",
+      "userId": "1",
+      "items": [
+        {
+          "productId": "1",
+          "title": "iPhone 15 Pro",
+          "price": 1199,
+          "quantity": 1,
+          "image": "https://placehold.co/600x600?text=iPhone+15+Pro"
+        },
+        {
+          "productId": "20",
+          "title": "Apple AirPods Pro 2",
+          "price": 249,
+          "quantity": 1,
+          "image": "https://placehold.co/600x600?text=AirPods+Pro"
+        }
+      ],
+      "status": "delivered",
+      "subtotal": 1448,
+      "shipping": 0,
+      "tax": 115.84,
+      "total": 1563.84,
+      "shippingAddressId": "1",
+      "createdAt": "2024-06-15T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "userId": "1",
+      "items": [
+        {
+          "productId": "4",
+          "title": "Nike Air Max 270",
+          "price": 150,
+          "quantity": 2,
+          "image": "https://placehold.co/600x600?text=Air+Max+270"
+        }
+      ],
+      "status": "shipped",
+      "subtotal": 300,
+      "shipping": 15,
+      "tax": 24,
+      "total": 339,
+      "shippingAddressId": "1",
+      "createdAt": "2024-07-01T14:30:00Z"
+    },
+    {
+      "id": "3",
+      "userId": "2",
+      "items": [
+        {
+          "productId": "6",
+          "title": "Sony WH-1000XM5",
+          "price": 348,
+          "quantity": 1,
+          "image": "https://placehold.co/600x600?text=Sony+XM5"
+        },
+        {
+          "productId": "17",
+          "title": "Dyson Airwrap Multi-Styler",
+          "price": 599,
+          "quantity": 1,
+          "image": "https://placehold.co/600x600?text=Airwrap"
+        }
+      ],
+      "status": "confirmed",
+      "subtotal": 947,
+      "shipping": 0,
+      "tax": 75.76,
+      "total": 1022.76,
+      "shippingAddressId": "2",
+      "createdAt": "2024-07-10T09:15:00Z"
+    },
+    {
+      "id": "4",
+      "userId": "1",
+      "items": [
+        {
+          "productId": "8",
+          "title": "Dyson V15 Detect",
+          "price": 649,
+          "quantity": 1,
+          "image": "https://placehold.co/600x600?text=Dyson+V15"
+        }
+      ],
+      "status": "pending",
+      "subtotal": 649,
+      "shipping": 25,
+      "tax": 51.92,
+      "total": 725.92,
+      "shippingAddressId": "1",
+      "createdAt": "2024-07-12T16:45:00Z"
+    },
+    {
+      "id": "5",
+      "userId": "2",
+      "items": [
+        {
+          "productId": "3",
+          "title": "MacBook Air M3",
+          "price": 1099,
+          "quantity": 1,
+          "image": "https://placehold.co/600x600?text=MacBook+Air"
+        }
+      ],
+      "status": "cancelled",
+      "subtotal": 1099,
+      "shipping": 0,
+      "tax": 87.92,
+      "total": 1186.92,
+      "shippingAddressId": "2",
+      "createdAt": "2024-07-05T11:00:00Z"
+    },
+    {
+      "id": "6",
+      "userId": "1",
+      "items": [
+        {
+          "productId": "9",
+          "title": "Zara Blazer Coat",
+          "price": 129,
+          "quantity": 1,
+          "image": "https://placehold.co/600x600?text=Zara+Blazer"
+        },
+        {
+          "productId": "16",
+          "title": "Zara Leather Handbag",
+          "price": 79,
+          "quantity": 1,
+          "image": "https://placehold.co/600x600?text=Zara+Handbag"
+        }
+      ],
+      "status": "delivered",
+      "subtotal": 208,
+      "shipping": 10,
+      "tax": 16.64,
+      "total": 234.64,
+      "shippingAddressId": "1",
+      "createdAt": "2024-05-20T08:30:00Z"
+    }
+  ],
+  "cart": [
+    {
+      "id": "1",
+      "userId": "1",
+      "items": [
+        {
+          "productId": "14",
+          "title": "Sony PlayStation 5",
+          "price": 499,
+          "quantity": 1,
+          "image": "https://placehold.co/600x600?text=PS5"
+        },
+        {
+          "productId": "18",
+          "title": "Nike Air Force 1",
+          "price": 110,
+          "quantity": 2,
+          "image": "https://placehold.co/600x600?text=Air+Force+1"
+        }
+      ],
+      "total": 719,
+      "updatedAt": "2024-07-12T18:00:00Z"
+    },
+    {
+      "id": "2",
+      "userId": "2",
+      "items": [
+        {
+          "productId": "12",
+          "title": "Apple iPad Pro 12.9\"",
+          "price": 1099,
+          "quantity": 1,
+          "image": "https://placehold.co/600x600?text=iPad+Pro"
+        }
+      ],
+      "total": 1099,
+      "updatedAt": "2024-07-12T19:30:00Z"
+    }
+  ],
+  "wishlist": [
+    {
+      "id": "1",
+      "userId": "1",
+      "items": [
+        {
+          "productId": "8",
+          "addedAt": "2024-07-01T10:00:00Z"
+        },
+        {
+          "productId": "19",
+          "addedAt": "2024-07-05T14:00:00Z"
+        },
+        {
+          "productId": "6",
+          "addedAt": "2024-07-10T09:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "userId": "2",
+      "items": [
+        {
+          "productId": "3",
+          "addedAt": "2024-06-20T12:00:00Z"
+        },
+        {
+          "productId": "17",
+          "addedAt": "2024-07-08T16:00:00Z"
+        }
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "id": "1",
+      "productId": "1",
+      "userId": "1",
+      "userName": "Ahmed Hassan",
+      "rating": 5,
+      "title": "Best iPhone yet",
+      "comment": "The titanium design is amazing and the camera is incredible. Battery life is much better than my old iPhone.",
+      "createdAt": "2024-07-01T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "productId": "1",
+      "userId": "2",
+      "userName": "Sara Mohamed",
+      "rating": 4,
+      "title": "Great phone, pricey",
+      "comment": "Excellent performance and camera. Only downside is the price.",
+      "createdAt": "2024-07-05T14:00:00Z"
+    },
+    {
+      "id": "3",
+      "productId": "6",
+      "userId": "1",
+      "userName": "Ahmed Hassan",
+      "rating": 5,
+      "title": "Perfect noise cancelling",
+      "comment": "Best headphones I've ever owned. Sound quality is phenomenal.",
+      "createdAt": "2024-06-20T08:00:00Z"
+    },
+    {
+      "id": "4",
+      "productId": "4",
+      "userId": "2",
+      "userName": "Sara Mohamed",
+      "rating": 4,
+      "title": "Comfortable shoes",
+      "comment": "Very comfortable for daily wear. The air unit is really nice.",
+      "createdAt": "2024-06-25T11:00:00Z"
+    },
+    {
+      "id": "5",
+      "productId": "3",
+      "userId": "2",
+      "userName": "Sara Mohamed",
+      "rating": 5,
+      "title": "Perfect laptop",
+      "comment": "Incredibly thin and light. Performance is outstanding for my workflow.",
+      "createdAt": "2024-07-02T15:00:00Z"
+    },
+    {
+      "id": "6",
+      "productId": "8",
+      "userId": "1",
+      "userName": "Ahmed Hassan",
+      "rating": 5,
+      "title": "Revolutionary vacuum",
+      "comment": "The laser dust detection is a game changer. Picks up everything.",
+      "createdAt": "2024-07-08T09:00:00Z"
+    },
+    {
+      "id": "7",
+      "productId": "14",
+      "userId": "1",
+      "userName": "Ahmed Hassan",
+      "rating": 5,
+      "title": "Gaming masterpiece",
+      "comment": "The PS5 is everything I hoped for. Fast loading and amazing graphics.",
+      "createdAt": "2024-06-10T20:00:00Z"
+    },
+    {
+      "id": "8",
+      "productId": "5",
+      "userId": "2",
+      "userName": "Sara Mohamed",
+      "rating": 4,
+      "title": "Great running shoes",
+      "comment": "Very responsive and comfortable for long runs.",
+      "createdAt": "2024-06-18T07:00:00Z"
+    },
+    {
+      "id": "9",
+      "productId": "12",
+      "userId": "2",
+      "userName": "Sara Mohamed",
+      "rating": 5,
+      "title": "Ultimate tablet",
+      "comment": "Replaced my laptop for most tasks. The M2 chip is incredibly fast.",
+      "createdAt": "2024-07-06T13:00:00Z"
+    },
+    {
+      "id": "10",
+      "productId": "7",
+      "userId": "1",
+      "userName": "Ahmed Hassan",
+      "rating": 4,
+      "title": "Functional and stylish",
+      "comment": "Great storage solution. Easy to assemble and looks good.",
+      "createdAt": "2024-05-15T12:00:00Z"
+    }
+  ],
+  "addresses": [
+    {
+      "id": "1",
+      "userId": "1",
+      "label": "Home",
+      "fullName": "Ahmed Hassan",
+      "phone": "+201012345678",
+      "street": "15 El Tahrir Street",
+      "city": "Cairo",
+      "state": "Cairo",
+      "zipCode": "11511",
+      "country": "Egypt",
+      "isDefault": true
+    },
+    {
+      "id": "2",
+      "userId": "2",
+      "label": "Home",
+      "fullName": "Sara Mohamed",
+      "phone": "+201098765432",
+      "street": "42 Nile Street",
+      "city": "Giza",
+      "state": "Giza",
+      "zipCode": "12311",
+      "country": "Egypt",
+      "isDefault": true
+    },
+    {
+      "id": "3",
+      "userId": "1",
+      "label": "Work",
+      "fullName": "Ahmed Hassan",
+      "phone": "+201012345678",
+      "street": "89 Tech Hub, Smart Village",
+      "city": "6th of October",
+      "state": "Giza",
+      "zipCode": "12573",
+      "country": "Egypt",
+      "isDefault": false
+    }
+  ],
+  "coupons": [
+    {
+      "id": "1",
+      "code": "WELCOME10",
+      "discountPercent": 10,
+      "maxDiscount": 50,
+      "minOrder": 100,
+      "isActive": true,
+      "expiresAt": "2024-12-31T23:59:59Z"
+    },
+    {
+      "id": "2",
+      "code": "SUMMER20",
+      "discountPercent": 20,
+      "maxDiscount": 100,
+      "minOrder": 200,
+      "isActive": true,
+      "expiresAt": "2024-09-30T23:59:59Z"
+    },
+    {
+      "id": "3",
+      "code": "FLAT15",
+      "discountPercent": 15,
+      "maxDiscount": 75,
+      "minOrder": 150,
+      "isActive": false,
+      "expiresAt": "2024-06-01T23:59:59Z"
+    }
+  ]
+}
