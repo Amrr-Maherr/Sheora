@@ -6,5 +6,7 @@ export type Review = {
   rating: number;
   title: string;
   comment: string;
+  verifiedPurchase?: boolean;
+  helpful?: number;
   createdAt: string;
-}
+};

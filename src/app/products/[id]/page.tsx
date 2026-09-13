@@ -9,10 +9,5 @@ export default async function ProductDetailPage({
 }: ProductDetailPageProps) {
   const { id } = await params;
 
-  return (
-    <div>
-      <h1>Product Detail Page</h1>
-      <ProductDetailContainer productId={id} />
-    </div>
-  );
+  return <ProductDetailContainer productId={id} />;
 }

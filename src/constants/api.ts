@@ -10,6 +10,7 @@ export const API_ENDPOINTS = {
   cart: "/cart",
   wishlist: "/wishlist",
   reviews: "/reviews",
+  questions: "/questions",
   addresses: "/addresses",
   coupons: "/coupons",
 } as const;

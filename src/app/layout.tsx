@@ -1,43 +1,44 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Geist, Geist_Mono, Karla } from "next/font/google";
+import { Alexandria, Playfair_Display, Tajawal } from "next/font/google";
 import { Providers } from "@/app/providers";
 import { Footer, Header } from "@/components/layout";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const tajawal = Tajawal({
+  variable: "--font-tajawal",
+  subsets: ["arabic", "latin"],
+  weight: ["300", "400", "500", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const alexandria = Alexandria({
+  variable: "--font-alexandria",
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const karla = Karla({
-  variable: "--font-karla",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Sheora Store",
-  description: "E-commerce storefront built with Next.js",
+  title: "SHEORA | دار شِيورا للجمال والعطور الفاخرة",
+  description: "دار شيورا للجمال والعطور الفاخرة - مستحضرات تجميل راقية وعطور نيش ملكية",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} ${karla.variable} h-full antialiased`}
+      lang="ar"
+      dir="rtl"
+      className={`${tajawal.variable} ${alexandria.variable} ${playfair.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#f5f1ee] text-[#151313]">
+      <body className="min-h-full flex flex-col bg-[#FAF9F7] text-[#151211] font-sans">
         <Providers>
           <Header />
           <main className="flex-1">{children}</main>

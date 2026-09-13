@@ -1,6 +1,10 @@
 export { ProductListContainer } from "./ProductListContainer";
 export { ProductListPresenter } from "./ProductListPresenter";
+export { ProductCard } from "./ProductCard";
+export { ProductFilters } from "./ProductFilters";
 export { ProductDetailContainer } from "./ProductDetailContainer";
 export { ProductDetailPresenter } from "./ProductDetailPresenter";
+export { ProductGallery } from "./ProductGallery";
+export { BeforeAfterSlider } from "./BeforeAfterSlider";
 export { CategoryProductsContainer } from "./CategoryProductsContainer";
 export { BrandProductsContainer } from "./BrandProductsContainer";

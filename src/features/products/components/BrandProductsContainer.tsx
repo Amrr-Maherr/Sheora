@@ -9,7 +9,8 @@ type BrandProductsContainerProps = {
 }
 
 export function BrandProductsContainer({ slug }: BrandProductsContainerProps) {
-  const { data: brand, isLoading: brandLoading } = useBrandBySlug(slug);
+  const { data: brandData, isLoading: brandLoading } = useBrandBySlug(slug);
+  const brand = Array.isArray(brandData) ? brandData[0] : brandData;
   const brandId = brand?.id ?? "";
 
   const {
@@ -18,11 +19,22 @@ export function BrandProductsContainer({ slug }: BrandProductsContainerProps) {
     isError,
   } = useProductsByBrand(brandId);
 
+  const hero = brand
+    ? {
+        badge: `${brand.country} • منذ ${brand.founded}`,
+        title: brand.name,
+        description: brand.description,
+        breadcrumbLabel: brand.name,
+        breadcrumbHref: `/brands/${brand.slug}`,
+      }
+    : undefined;
+
   return (
     <ProductListPresenter
       products={products}
       isLoading={brandLoading || productsLoading}
       isError={isError}
+      hero={hero}
     />
   );
 }

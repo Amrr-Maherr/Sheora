@@ -11,3 +11,10 @@ export function useReviews(productId?: string) {
     enabled: Boolean(productId),
   });
 }
+
+export function useAllReviews() {
+  return useQuery({
+    queryKey: queryKeys.reviews.lists(),
+    queryFn: () => reviewsApi.getReviews(),
+  });
+}

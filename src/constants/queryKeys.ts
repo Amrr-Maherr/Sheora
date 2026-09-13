@@ -46,6 +46,15 @@ export const queryKeys = {
     lists: () => [...queryKeys.reviews.all, "list"] as const,
     list: (productId: string) => [...queryKeys.reviews.lists(), productId] as const,
   },
+  questions: {
+    all: ["questions"] as const,
+    lists: () => [...queryKeys.questions.all, "list"] as const,
+    list: (productId: string) => [...queryKeys.questions.lists(), productId] as const,
+  },
+  coupons: {
+    all: ["coupons"] as const,
+    lists: () => [...queryKeys.coupons.all, "list"] as const,
+  },
   addresses: {
     all: ["addresses"] as const,
     lists: () => [...queryKeys.addresses.all, "list"] as const,

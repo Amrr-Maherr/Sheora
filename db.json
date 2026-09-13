@@ -1,817 +1,5206 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "Ahmed Hassan",
-      "email": "ahmed@example.com",
-      "phone": "+201012345678",
+      "id": "user-1",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phone": "+201000000111",
       "role": "customer",
-      "avatar": "https://i.pravatar.cc/150?u=ahmed",
+      "avatar": "https://i.pravatar.cc/150?u=john",
       "createdAt": "2024-01-15T10:00:00Z"
     },
     {
-      "id": "2",
-      "name": "Sara Mohamed",
-      "email": "sara@example.com",
-      "phone": "+201098765432",
+      "id": "user-2",
+      "name": "Sarah Ahmed",
+      "email": "sarah@example.com",
+      "phone": "+201000000222",
       "role": "customer",
-      "avatar": "https://i.pravatar.cc/150?u=sara",
+      "avatar": "https://i.pravatar.cc/150?u=sarah",
       "createdAt": "2024-02-20T14:30:00Z"
     },
     {
-      "id": "3",
-      "name": "Omar Ali",
-      "email": "omar@example.com",
-      "phone": "+201055512345",
-      "role": "admin",
-      "avatar": "https://i.pravatar.cc/150?u=omar",
-      "createdAt": "2024-01-01T08:00:00Z"
-    }
-  ],
-  "categories": [
-    {
-      "id": "1",
-      "name": "Electronics",
-      "slug": "electronics",
-      "image": "https://placehold.co/400x300?text=Electronics",
-      "description": "Smartphones, laptops, tablets, and accessories"
+      "id": "user-3",
+      "name": "Michael Smith",
+      "email": "michael@example.com",
+      "phone": "+201000000333",
+      "role": "customer",
+      "avatar": "https://i.pravatar.cc/150?u=michael",
+      "createdAt": "2024-03-10T09:15:00Z"
     },
     {
-      "id": "2",
-      "name": "Clothing",
-      "slug": "clothing",
-      "image": "https://placehold.co/400x300?text=Clothing",
-      "description": "Men's and women's fashion"
-    },
-    {
-      "id": "3",
-      "name": "Home & Kitchen",
-      "slug": "home-kitchen",
-      "image": "https://placehold.co/400x300?text=Home+%26+Kitchen",
-      "description": "Furniture, appliances, and kitchen essentials"
-    },
-    {
-      "id": "4",
-      "name": "Sports",
-      "slug": "sports",
-      "image": "https://placehold.co/400x300?text=Sports",
-      "description": "Sports equipment and fitness gear"
-    },
-    {
-      "id": "5",
-      "name": "Books",
-      "slug": "books",
-      "image": "https://placehold.co/400x300?text=Books",
-      "description": "Fiction, non-fiction, and educational"
-    },
-    {
-      "id": "6",
-      "name": "Beauty",
-      "slug": "beauty",
-      "image": "https://placehold.co/400x300?text=Beauty",
-      "description": "Skincare, makeup, and personal care"
-    },
-    {
-      "id": "7",
-      "name": "Toys",
-      "slug": "toys",
-      "image": "https://placehold.co/400x300?text=Toys",
-      "description": "Toys and games for all ages"
-    },
-    {
-      "id": "8",
-      "name": "Groceries",
-      "slug": "groceries",
-      "image": "https://placehold.co/400x300?text=Groceries",
-      "description": "Fresh food, snacks, and beverages"
+      "id": "user-4",
+      "name": "Emma Laurent",
+      "email": "emma@example.com",
+      "phone": "+201000000444",
+      "role": "customer",
+      "avatar": "https://i.pravatar.cc/150?u=emma",
+      "createdAt": "2024-04-05T11:00:00Z"
     }
   ],
   "brands": [
     {
-      "id": "1",
-      "name": "Apple",
-      "slug": "apple",
-      "logo": "https://placehold.co/200x100?text=Apple",
-      "description": "Premium technology products"
+      "id": "brand-1",
+      "name": "Dior",
+      "slug": "dior",
+      "description": "French luxury house founded in 1946, renowned for timeless elegance and iconic fragrances like Sauvage and J'adore.",
+      "logo": "https://logo.clearbit.com/dior.com",
+      "image": "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&h=600&fit=crop",
+      "country": "France",
+      "founded": 1946,
+      "featured": true
     },
     {
-      "id": "2",
-      "name": "Samsung",
-      "slug": "samsung",
-      "logo": "https://placehold.co/200x100?text=Samsung",
-      "description": "Innovation for everyone"
+      "id": "brand-2",
+      "name": "Chanel",
+      "slug": "chanel",
+      "description": "Legendary French maison synonymous with sophistication, creator of the iconic Chanel N°5.",
+      "logo": "https://logo.clearbit.com/chanel.com",
+      "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop",
+      "country": "France",
+      "founded": 1910,
+      "featured": true
     },
     {
-      "id": "3",
-      "name": "Nike",
-      "slug": "nike",
-      "logo": "https://placehold.co/200x100?text=Nike",
-      "description": "Just Do It"
+      "id": "brand-3",
+      "name": "Tom Ford",
+      "slug": "tom-ford",
+      "description": "American luxury brand celebrated for bold, sensual and opulent fragrances.",
+      "logo": "https://logo.clearbit.com/tomford.com",
+      "image": "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800&h=600&fit=crop",
+      "country": "USA",
+      "founded": 2005,
+      "featured": true
     },
     {
-      "id": "4",
-      "name": "Adidas",
-      "slug": "adidas",
-      "logo": "https://placehold.co/200x100?text=Adidas",
-      "description": "Impossible is Nothing"
+      "id": "brand-4",
+      "name": "Giorgio Armani",
+      "slug": "giorgio-armani",
+      "description": "Italian elegance and minimalism, famous for Acqua di Giò and Sì collections.",
+      "logo": "https://logo.clearbit.com/armani.com",
+      "image": "https://images.unsplash.com/photo-1590156546946-ce55a12a6a5d?w=800&h=600&fit=crop",
+      "country": "Italy",
+      "founded": 1975,
+      "featured": true
     },
     {
-      "id": "5",
-      "name": "IKEA",
-      "slug": "ikea",
-      "logo": "https://placehold.co/200x100?text=IKEA",
-      "description": "Affordable home furnishing"
+      "id": "brand-5",
+      "name": "Yves Saint Laurent",
+      "slug": "yves-saint-laurent",
+      "description": "Parisian couture house with daring, youthful fragrances like Libre and Black Opium.",
+      "logo": "https://logo.clearbit.com/ysl.com",
+      "image": "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=800&h=600&fit=crop",
+      "country": "France",
+      "founded": 1961,
+      "featured": true
     },
     {
-      "id": "6",
-      "name": "Sony",
-      "slug": "sony",
-      "logo": "https://placehold.co/200x100?text=Sony",
-      "description": "Make.Believe"
+      "id": "brand-6",
+      "name": "Carolina Herrera",
+      "slug": "carolina-herrera",
+      "description": "New York elegance with feminine and iconic Good Girl and 212 fragrances.",
+      "logo": "https://logo.clearbit.com/carolinaherrera.com",
+      "image": "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=800&h=600&fit=crop",
+      "country": "USA",
+      "founded": 1980,
+      "featured": false
     },
     {
-      "id": "7",
-      "name": "Zara",
-      "slug": "zara",
-      "logo": "https://placehold.co/200x100?text=Zara",
-      "description": "Fashion forward clothing"
+      "id": "brand-7",
+      "name": "Paco Rabanne",
+      "slug": "paco-rabanne",
+      "description": "Avant-garde Spanish brand known for 1 Million, Lady Million and Phantom.",
+      "logo": "https://logo.clearbit.com/pacorabanne.com",
+      "image": "https://images.unsplash.com/photo-1595425959632-34f2822322ce?w=800&h=600&fit=crop",
+      "country": "Spain",
+      "founded": 1966,
+      "featured": false
     },
     {
-      "id": "8",
-      "name": "Dyson",
-      "slug": "dyson",
-      "logo": "https://placehold.co/200x100?text=Dyson",
-      "description": "Innovative home technology"
+      "id": "brand-8",
+      "name": "Jean Paul Gaultier",
+      "slug": "jean-paul-gaultier",
+      "description": "French haute couture with provocative and iconic Le Male and Scandal.",
+      "logo": "https://logo.clearbit.com/jeanpaulgaultier.com",
+      "image": "https://images.unsplash.com/photo-1613521140785-e85e427f8002?w=800&h=600&fit=crop",
+      "country": "France",
+      "founded": 1982,
+      "featured": false
+    },
+    {
+      "id": "brand-9",
+      "name": "Versace",
+      "slug": "versace",
+      "description": "Italian glamour and sensuality with Eros, Bright Crystal and Dylan Blue.",
+      "logo": "https://logo.clearbit.com/versace.com",
+      "image": "https://images.unsplash.com/photo-1594033197-955a7a65a105?w=800&h=600&fit=crop",
+      "country": "Italy",
+      "founded": 1978,
+      "featured": true
+    },
+    {
+      "id": "brand-10",
+      "name": "Maison Francis Kurkdjian",
+      "slug": "maison-francis-kurkdjian",
+      "description": "Parisian niche luxury house, creator of the cult Baccarat Rouge 540.",
+      "logo": "https://logo.clearbit.com/maisonfranciskurkdjian.com",
+      "image": "https://images.unsplash.com/photo-1588402323657-f1a3aa1e8819?w=800&h=600&fit=crop",
+      "country": "France",
+      "founded": 2009,
+      "featured": true
+    }
+  ],
+  "categories": [
+    {
+      "id": "category-1",
+      "name": "Men",
+      "slug": "men",
+      "description": "Refined fragrances crafted for the modern gentleman.",
+      "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=600&fit=crop",
+      "productCount": 16,
+      "featured": true
+    },
+    {
+      "id": "category-2",
+      "name": "Women",
+      "slug": "women",
+      "description": "Elegant and captivating scents celebrating femininity.",
+      "image": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&h=600&fit=crop",
+      "productCount": 18,
+      "featured": true
+    },
+    {
+      "id": "category-3",
+      "name": "Unisex",
+      "slug": "unisex",
+      "description": "Inclusive fragrances transcending gender boundaries.",
+      "image": "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&h=600&fit=crop",
+      "productCount": 6,
+      "featured": true
+    },
+    {
+      "id": "category-4",
+      "name": "Eau de Parfum",
+      "slug": "eau-de-parfum",
+      "description": "Concentrated and long-lasting Eau de Parfum creations.",
+      "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop",
+      "productCount": 26,
+      "featured": true
+    },
+    {
+      "id": "category-5",
+      "name": "Eau de Toilette",
+      "slug": "eau-de-toilette",
+      "description": "Light, fresh and versatile Eau de Toilette fragrances.",
+      "image": "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800&h=600&fit=crop",
+      "productCount": 10,
+      "featured": false
+    },
+    {
+      "id": "category-6",
+      "name": "Luxury",
+      "slug": "luxury",
+      "description": "Exclusive niche and haute perfumery masterpieces.",
+      "image": "https://images.unsplash.com/photo-1615529151169-7b1ff50dc7f2?w=800&h=600&fit=crop",
+      "productCount": 12,
+      "featured": true
+    },
+    {
+      "id": "category-7",
+      "name": "New Arrivals",
+      "slug": "new-arrivals",
+      "description": "Discover our latest fragrance novelties.",
+      "image": "https://images.unsplash.com/photo-1590156546946-ce55a12a6a5d?w=800&h=600&fit=crop",
+      "productCount": 8,
+      "featured": true
+    },
+    {
+      "id": "category-8",
+      "name": "Best Sellers",
+      "slug": "best-sellers",
+      "description": "Our most loved and iconic best-selling perfumes.",
+      "image": "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=800&h=600&fit=crop",
+      "productCount": 10,
+      "featured": true
+    },
+    {
+      "id": "category-9",
+      "name": "Woody",
+      "slug": "woody",
+      "description": "Warm, sophisticated woody fragrances with depth.",
+      "image": "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=600&fit=crop",
+      "productCount": 14,
+      "featured": false
+    },
+    {
+      "id": "category-10",
+      "name": "Floral",
+      "slug": "floral",
+      "description": "Romantic and luminous floral bouquets.",
+      "image": "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&h=600&fit=crop",
+      "productCount": 12,
+      "featured": false
+    },
+    {
+      "id": "category-11",
+      "name": "Fresh",
+      "slug": "fresh",
+      "description": "Invigorating citrus and aquatic freshness.",
+      "image": "https://images.unsplash.com/photo-1470259078422-826894b933aa?w=800&h=600&fit=crop",
+      "productCount": 10,
+      "featured": false
+    },
+    {
+      "id": "category-12",
+      "name": "Oriental",
+      "slug": "oriental",
+      "description": "Sensual oriental and amber opulence.",
+      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&h=600&fit=crop",
+      "productCount": 10,
+      "featured": false
     }
   ],
   "products": [
     {
-      "id": "1",
-      "title": "iPhone 15 Pro",
-      "slug": "iphone-15-pro",
-      "description": "The most powerful iPhone ever with A17 Pro chip, titanium design, and advanced camera system.",
-      "price": 1199,
-      "compareAtPrice": 1299,
+      "id": "product-1",
+      "brandId": "brand-1",
+      "categoryIds": [
+        "category-1",
+        "category-4",
+        "category-9",
+        "category-6"
+      ],
+      "name": "Sauvage Eau de Parfum",
+      "slug": "dior-sauvage-eau-de-parfum",
+      "description": "A fiercely fresh signature with a rugged trail. Inspired by wide-open skies and rocky landscapes, Sauvage embodies raw nobility.",
+      "shortDescription": "Fresh, spicy and woody signature for men.",
+      "price": 145,
+      "oldPrice": 165,
       "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=iPhone+15+Pro"],
-      "categoryId": "1",
-      "brandId": "1",
+      "discount": 12,
       "rating": 4.8,
-      "reviewCount": 245,
-      "stock": 50,
-      "isFeatured": true,
-      "isActive": true
-    },
-    {
-      "id": "2",
-      "title": "Samsung Galaxy S24 Ultra",
-      "slug": "samsung-galaxy-s24-ultra",
-      "description": "AI-powered smartphone with S Pen, titanium frame, and 200MP camera.",
-      "price": 1099,
-      "compareAtPrice": 1199,
-      "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=Galaxy+S24"],
-      "categoryId": "1",
-      "brandId": "2",
-      "rating": 4.7,
-      "reviewCount": 189,
+      "reviewsCount": 1245,
       "stock": 35,
-      "isFeatured": true,
-      "isActive": true
+      "sku": "DIOR-SAU-E01",
+      "gender": "men",
+      "size": "100ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-1-1",
+          "size": "50ml",
+          "price": 110,
+          "oldPrice": 130,
+          "stock": 27,
+          "sku": "DIOR-SAU-E01-50"
+        },
+        {
+          "id": "variant-1-2",
+          "size": "100ml",
+          "price": 145,
+          "oldPrice": 171,
+          "stock": 35,
+          "sku": "DIOR-SAU-E01-100"
+        },
+        {
+          "id": "variant-1-3",
+          "size": "150ml",
+          "price": 185,
+          "oldPrice": 218,
+          "stock": 12,
+          "sku": "DIOR-SAU-E01-150"
+        }
+      ],
+      "fragrance": {
+        "family": "Woody Aromatic",
+        "occasion": [
+          "Evening",
+          "Date"
+        ],
+        "season": [
+          "Autumn",
+          "Winter"
+        ],
+        "longevity": "8-10 hours",
+        "sillage": "Strong"
+      },
+      "notes": {
+        "top": [
+          "Bergamot",
+          "Pepper"
+        ],
+        "middle": [
+          "Lavender",
+          "Pink Pepper",
+          "Sichuan Pepper"
+        ],
+        "base": [
+          "Ambroxan",
+          "Patchouli",
+          "Labdanum"
+        ]
+      },
+      "features": [
+        "Premium glass bottle",
+        "Suitable for evening wear",
+        "Gift-ready packaging"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1590156546946-ce55a12a6a5d?w=800&h=800&fit=crop"
+      ],
+      "featured": true,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Featured",
+        "Best Seller",
+        "-12%"
+      ],
+      "relatedProductIds": [
+        "product-4",
+        "product-3",
+        "product-4"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-4",
+        "product-3"
+      ]
     },
     {
-      "id": "3",
-      "title": "MacBook Air M3",
-      "slug": "macbook-air-m3",
-      "description": "Impossibly thin with the M3 chip. Up to 18 hours of battery life.",
-      "price": 1099,
-      "compareAtPrice": 1199,
+      "id": "product-2",
+      "brandId": "brand-1",
+      "categoryIds": [
+        "category-2",
+        "category-4",
+        "category-10",
+        "category-6"
+      ],
+      "name": "J'adore Eau de Parfum",
+      "slug": "dior-jadore-eau-de-parfum",
+      "description": "A sensual floral bouquet, J'adore is a luminous and sensual perfume with jasmine and rose.",
+      "shortDescription": "Luminous floral bouquet.",
+      "price": 155,
+      "oldPrice": 155,
       "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=MacBook+Air"],
-      "categoryId": "1",
-      "brandId": "1",
+      "discount": 0,
       "rating": 4.9,
-      "reviewCount": 312,
-      "stock": 25,
-      "isFeatured": true,
-      "isActive": true
+      "reviewsCount": 987,
+      "stock": 42,
+      "sku": "DIOR-JAD-E02",
+      "gender": "women",
+      "size": "100ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-2-1",
+          "size": "100ml",
+          "price": 155,
+          "oldPrice": 155,
+          "stock": 42,
+          "sku": "DIOR-JAD-E02-100"
+        },
+        {
+          "id": "variant-2-2",
+          "size": "200ml",
+          "price": 210,
+          "oldPrice": 210,
+          "stock": 10,
+          "sku": "DIOR-JAD-E02-200"
+        }
+      ],
+      "fragrance": {
+        "family": "Floral",
+        "occasion": [
+          "Daily",
+          "Evening",
+          "Formal"
+        ],
+        "season": [
+          "Autumn",
+          "Winter",
+          "Spring"
+        ],
+        "longevity": "10-12 hours",
+        "sillage": "Soft"
+      },
+      "notes": {
+        "top": [
+          "Jasmine",
+          "Ylang-Ylang"
+        ],
+        "middle": [
+          "Damascus Rose",
+          "Rose"
+        ],
+        "base": [
+          "Musk",
+          "Sandalwood"
+        ]
+      },
+      "features": [
+        "Long lasting 8-10 hours",
+        "Refillable bottle",
+        "Strong sillage"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=800&h=800&fit=crop"
+      ],
+      "featured": true,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Featured",
+        "Best Seller"
+      ],
+      "relatedProductIds": [
+        "product-6",
+        "product-1",
+        "product-3"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-6",
+        "product-1"
+      ]
     },
     {
-      "id": "4",
-      "title": "Nike Air Max 270",
-      "slug": "nike-air-max-270",
-      "description": "The biggest Max Air unit yet for unmatched comfort.",
-      "price": 150,
-      "compareAtPrice": 180,
+      "id": "product-3",
+      "brandId": "brand-1",
+      "categoryIds": [
+        "category-2",
+        "category-4",
+        "category-10"
+      ],
+      "name": "Miss Dior Eau de Parfum",
+      "slug": "miss-dior-eau-de-parfum",
+      "description": "A couture floral creation embroidered with a bright mandarin and sensual rose.",
+      "shortDescription": "Couture rose-peony elegance.",
+      "price": 138,
+      "oldPrice": 158,
       "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=Air+Max+270"],
-      "categoryId": "4",
-      "brandId": "3",
-      "rating": 4.5,
-      "reviewCount": 567,
-      "stock": 100,
-      "isFeatured": false,
-      "isActive": true
-    },
-    {
-      "id": "5",
-      "title": "Adidas Ultraboost 23",
-      "slug": "adidas-ultraboost-23",
-      "description": "Responsive running shoes with Boost cushioning.",
-      "price": 190,
-      "compareAtPrice": 190,
-      "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=Ultraboost+23"],
-      "categoryId": "4",
-      "brandId": "4",
-      "rating": 4.6,
-      "reviewCount": 423,
-      "stock": 75,
-      "isFeatured": false,
-      "isActive": true
-    },
-    {
-      "id": "6",
-      "title": "Sony WH-1000XM5",
-      "slug": "sony-wh-1000xm5",
-      "description": "Industry-leading noise cancelling headphones with 30-hour battery.",
-      "price": 348,
-      "compareAtPrice": 399,
-      "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=Sony+XM5"],
-      "categoryId": "1",
-      "brandId": "6",
+      "discount": 13,
       "rating": 4.7,
-      "reviewCount": 891,
-      "stock": 40,
-      "isFeatured": true,
-      "isActive": true
+      "reviewsCount": 645,
+      "stock": 28,
+      "sku": "DIOR-MIS-E03",
+      "gender": "women",
+      "size": "100ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-3-1",
+          "size": "30ml",
+          "price": 78,
+          "oldPrice": 92,
+          "stock": 16,
+          "sku": "DIOR-MIS-E03-30"
+        },
+        {
+          "id": "variant-3-2",
+          "size": "60ml",
+          "price": 113,
+          "oldPrice": 133,
+          "stock": 23,
+          "sku": "DIOR-MIS-E03-60"
+        },
+        {
+          "id": "variant-3-3",
+          "size": "100ml",
+          "price": 138,
+          "oldPrice": 163,
+          "stock": 28,
+          "sku": "DIOR-MIS-E03-100"
+        }
+      ],
+      "fragrance": {
+        "family": "Floral",
+        "occasion": [
+          "Party",
+          "Evening"
+        ],
+        "season": [
+          "Spring",
+          "Summer",
+          "Autumn"
+        ],
+        "longevity": "12+ hours",
+        "sillage": "Enormous"
+      },
+      "notes": {
+        "top": [
+          "Mandarin",
+          "Pink Pepper"
+        ],
+        "middle": [
+          "Rose",
+          "Peony"
+        ],
+        "base": [
+          "Musk",
+          "Patchouli"
+        ]
+      },
+      "features": [
+        "Strong sillage",
+        "Premium glass bottle",
+        "Natural spray"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1590156546946-ce55a12a6a5d?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Best Seller",
+        "-13%"
+      ],
+      "relatedProductIds": [
+        "product-1",
+        "product-2",
+        "product-4"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-1",
+        "product-2"
+      ]
     },
     {
-      "id": "7",
-      "title": "IKEA KALLAX Shelf",
-      "slug": "ikea-kallax-shelf",
-      "description": "Versatile storage that works as a room divider or TV bench.",
-      "price": 89,
-      "compareAtPrice": 109,
+      "id": "product-4",
+      "brandId": "brand-1",
+      "categoryIds": [
+        "category-1",
+        "category-4",
+        "category-9"
+      ],
+      "name": "Dior Homme Intense",
+      "slug": "dior-homme-intense",
+      "description": "The intensity of an iris accented with amber wood, redefining modern masculinity.",
+      "shortDescription": "Iris and amber wood intensity.",
+      "price": 132,
+      "oldPrice": 150,
       "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=KALLAX"],
-      "categoryId": "3",
-      "brandId": "5",
-      "rating": 4.3,
-      "reviewCount": 1234,
-      "stock": 200,
-      "isFeatured": false,
-      "isActive": true
+      "discount": 12,
+      "rating": 4.6,
+      "reviewsCount": 412,
+      "stock": 18,
+      "sku": "DIOR-HOM-E04",
+      "gender": "men",
+      "size": "100ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-4-1",
+          "size": "50ml",
+          "price": 97,
+          "oldPrice": 114,
+          "stock": 10,
+          "sku": "DIOR-HOM-E04-50"
+        },
+        {
+          "id": "variant-4-2",
+          "size": "100ml",
+          "price": 132,
+          "oldPrice": 156,
+          "stock": 18,
+          "sku": "DIOR-HOM-E04-100"
+        },
+        {
+          "id": "variant-4-3",
+          "size": "150ml",
+          "price": 172,
+          "oldPrice": 203,
+          "stock": 12,
+          "sku": "DIOR-HOM-E04-150"
+        }
+      ],
+      "fragrance": {
+        "family": "Woody Floral Musk",
+        "occasion": [
+          "Daily",
+          "Office"
+        ],
+        "season": [
+          "Spring",
+          "Summer"
+        ],
+        "longevity": "6-8 hours",
+        "sillage": "Moderate"
+      },
+      "notes": {
+        "top": [
+          "Iris",
+          "Lavender"
+        ],
+        "middle": [
+          "Ambroxan",
+          "Pear"
+        ],
+        "base": [
+          "Cedar",
+          "Vetiver"
+        ]
+      },
+      "features": [
+        "Premium glass bottle",
+        "Ideal for daily use",
+        "Gift-ready packaging"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1590156546946-ce55a12a6a5d?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1595425959632-34f2822322ce?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": false,
+      "badges": [
+        "-12%"
+      ],
+      "relatedProductIds": [
+        "product-3",
+        "product-3",
+        "product-1"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-3",
+        "product-3"
+      ]
     },
     {
-      "id": "8",
-      "title": "Dyson V15 Detect",
-      "slug": "dyson-v15-detect",
-      "description": "Cordless vacuum with laser dust detection and LCD screen.",
-      "price": 649,
-      "compareAtPrice": 749,
+      "id": "product-5",
+      "brandId": "brand-2",
+      "categoryIds": [
+        "category-1",
+        "category-4",
+        "category-9",
+        "category-11"
+      ],
+      "name": "Bleu de Chanel Eau de Parfum",
+      "slug": "bleu-de-chanel-eau-de-parfum",
+      "description": "A timeless, woody aromatic with a mysterious, invigorating thrill of freedom.",
+      "shortDescription": "Woody aromatic freedom.",
+      "price": 148,
+      "oldPrice": 168,
       "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=Dyson+V15"],
-      "categoryId": "3",
-      "brandId": "8",
+      "discount": 12,
       "rating": 4.8,
-      "reviewCount": 678,
-      "stock": 15,
-      "isFeatured": true,
-      "isActive": true
+      "reviewsCount": 2103,
+      "stock": 55,
+      "sku": "CHAN-BLE-E05",
+      "gender": "men",
+      "size": "100ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-5-1",
+          "size": "100ml",
+          "price": 148,
+          "oldPrice": 175,
+          "stock": 55,
+          "sku": "CHAN-BLE-E05-100"
+        },
+        {
+          "id": "variant-5-2",
+          "size": "200ml",
+          "price": 203,
+          "oldPrice": 240,
+          "stock": 10,
+          "sku": "CHAN-BLE-E05-200"
+        }
+      ],
+      "fragrance": {
+        "family": "Woody Aromatic",
+        "occasion": [
+          "Evening",
+          "Date"
+        ],
+        "season": [
+          "Autumn",
+          "Winter"
+        ],
+        "longevity": "8-10 hours",
+        "sillage": "Strong"
+      },
+      "notes": {
+        "top": [
+          "Grapefruit",
+          "Lemon",
+          "Mint"
+        ],
+        "middle": [
+          "Ginger",
+          "Jasmine",
+          "Iso E Super"
+        ],
+        "base": [
+          "Sandalwood",
+          "Cedar",
+          "White Musk"
+        ]
+      },
+      "features": [
+        "Gift-ready packaging",
+        "Travel-friendly size",
+        "Strong sillage"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1613521140785-e85e427f8002?w=800&h=800&fit=crop"
+      ],
+      "featured": true,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Featured",
+        "Best Seller",
+        "-12%"
+      ],
+      "relatedProductIds": [
+        "product-7",
+        "product-6",
+        "product-4"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-7",
+        "product-6"
+      ]
     },
     {
-      "id": "9",
-      "title": "Zara Blazer Coat",
-      "slug": "zara-blazer-coat",
-      "description": "Elegant oversized blazer coat in premium wool blend.",
-      "price": 129,
-      "compareAtPrice": 169,
+      "id": "product-6",
+      "brandId": "brand-2",
+      "categoryIds": [
+        "category-2",
+        "category-4",
+        "category-10",
+        "category-6"
+      ],
+      "name": "Chanel No 5 Eau de Parfum",
+      "slug": "chanel-no-5-eau-de-parfum",
+      "description": "The very essence of femininity in a bottle. An aldehydic floral masterpiece since 1921.",
+      "shortDescription": "Iconic aldehydic floral.",
+      "price": 162,
+      "oldPrice": 162,
       "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=Zara+Blazer"],
-      "categoryId": "2",
-      "brandId": "7",
-      "rating": 4.2,
-      "reviewCount": 89,
-      "stock": 60,
-      "isFeatured": false,
-      "isActive": true
+      "discount": 0,
+      "rating": 4.7,
+      "reviewsCount": 876,
+      "stock": 38,
+      "sku": "CHAN-NO5-E06",
+      "gender": "women",
+      "size": "100ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-6-1",
+          "size": "30ml",
+          "price": 102,
+          "oldPrice": 102,
+          "stock": 26,
+          "sku": "CHAN-NO5-E06-30"
+        },
+        {
+          "id": "variant-6-2",
+          "size": "60ml",
+          "price": 137,
+          "oldPrice": 137,
+          "stock": 33,
+          "sku": "CHAN-NO5-E06-60"
+        },
+        {
+          "id": "variant-6-3",
+          "size": "100ml",
+          "price": 162,
+          "oldPrice": 162,
+          "stock": 38,
+          "sku": "CHAN-NO5-E06-100"
+        }
+      ],
+      "fragrance": {
+        "family": "Floral Aldehydic",
+        "occasion": [
+          "Daily",
+          "Evening",
+          "Formal"
+        ],
+        "season": [
+          "Autumn",
+          "Winter",
+          "Spring"
+        ],
+        "longevity": "10-12 hours",
+        "sillage": "Soft"
+      },
+      "notes": {
+        "top": [
+          "Aldehydes",
+          "Bergamot",
+          "Lemon"
+        ],
+        "middle": [
+          "Iris",
+          "Jasmine",
+          "Rose"
+        ],
+        "base": [
+          "Vanilla",
+          "Musk",
+          "Sandalwood"
+        ]
+      },
+      "features": [
+        "Suitable for evening wear",
+        "Long lasting 8-10 hours",
+        "Refillable bottle"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1595425959632-34f2822322ce?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1594033197-955a7a65a105?w=800&h=800&fit=crop"
+      ],
+      "featured": true,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Featured",
+        "Best Seller"
+      ],
+      "relatedProductIds": [
+        "product-8",
+        "product-5",
+        "product-8"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-8",
+        "product-5"
+      ]
     },
     {
-      "id": "10",
-      "title": "Samsung Galaxy Tab S9",
-      "slug": "samsung-galaxy-tab-s9",
-      "description": "Premium Android tablet with S Pen and AMOLED display.",
-      "price": 799,
-      "compareAtPrice": 849,
+      "id": "product-7",
+      "brandId": "brand-2",
+      "categoryIds": [
+        "category-2",
+        "category-4",
+        "category-12"
+      ],
+      "name": "Coco Mademoiselle Eau de Parfum",
+      "slug": "coco-mademoiselle-eau-de-parfum",
+      "description": "A vibrant oriental for a free, daring woman who breaks all codes.",
+      "shortDescription": "Vibrant oriental rose.",
+      "price": 152,
+      "oldPrice": 172,
       "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=Galaxy+Tab+S9"],
-      "categoryId": "1",
-      "brandId": "2",
-      "rating": 4.5,
-      "reviewCount": 234,
+      "discount": 12,
+      "rating": 4.8,
+      "reviewsCount": 1345,
       "stock": 30,
-      "isFeatured": false,
-      "isActive": true
+      "sku": "CHAN-COC-E07",
+      "gender": "women",
+      "size": "100ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-7-1",
+          "size": "50ml",
+          "price": 117,
+          "oldPrice": 138,
+          "stock": 22,
+          "sku": "CHAN-COC-E07-50"
+        },
+        {
+          "id": "variant-7-2",
+          "size": "100ml",
+          "price": 152,
+          "oldPrice": 179,
+          "stock": 30,
+          "sku": "CHAN-COC-E07-100"
+        },
+        {
+          "id": "variant-7-3",
+          "size": "150ml",
+          "price": 192,
+          "oldPrice": 227,
+          "stock": 12,
+          "sku": "CHAN-COC-E07-150"
+        }
+      ],
+      "fragrance": {
+        "family": "Oriental Floral",
+        "occasion": [
+          "Party",
+          "Evening"
+        ],
+        "season": [
+          "Spring",
+          "Summer",
+          "Autumn"
+        ],
+        "longevity": "12+ hours",
+        "sillage": "Enormous"
+      },
+      "notes": {
+        "top": [
+          "Orange",
+          "Bergamot"
+        ],
+        "middle": [
+          "Turkish Rose",
+          "Jasmine"
+        ],
+        "base": [
+          "White Musk",
+          "Patchouli",
+          "Vetiver"
+        ]
+      },
+      "features": [
+        "Ideal for daily use",
+        "Premium glass bottle",
+        "Natural spray"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1595425959632-34f2822322ce?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1613521140785-e85e427f8002?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1588402323657-f1a3aa1e8819?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Best Seller",
+        "-12%"
+      ],
+      "relatedProductIds": [
+        "product-8",
+        "product-6",
+        "product-5"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-8",
+        "product-6"
+      ]
     },
     {
-      "id": "11",
-      "title": "Nike Dri-FIT T-Shirt",
-      "slug": "nike-dri-fit-tshirt",
-      "description": "Moisture-wicking technology for a dry, comfortable workout.",
-      "price": 35,
-      "compareAtPrice": 40,
+      "id": "product-8",
+      "brandId": "brand-2",
+      "categoryIds": [
+        "category-2",
+        "category-4",
+        "category-10",
+        "category-7"
+      ],
+      "name": "Chance Eau Tendre Eau de Parfum",
+      "slug": "chance-eau-tendre-eau-de-parfum",
+      "description": "A sweet, delicate fruity-floral chance that swirls with grapefruit and jasmine.",
+      "shortDescription": "Delicate fruity-floral.",
+      "price": 142,
+      "oldPrice": 142,
       "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=Nike+DriFit"],
-      "categoryId": "4",
-      "brandId": "3",
-      "rating": 4.4,
-      "reviewCount": 1567,
-      "stock": 300,
-      "isFeatured": false,
-      "isActive": true
-    },
-    {
-      "id": "12",
-      "title": "Apple iPad Pro 12.9\"",
-      "slug": "apple-ipad-pro-12",
-      "description": "The ultimate iPad experience with M2 chip and Liquid Retina XDR display.",
-      "price": 1099,
-      "compareAtPrice": 1199,
-      "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=iPad+Pro"],
-      "categoryId": "1",
-      "brandId": "1",
-      "rating": 4.8,
-      "reviewCount": 456,
-      "stock": 20,
-      "isFeatured": true,
-      "isActive": true
-    },
-    {
-      "id": "13",
-      "title": "Adidas Stan Smith",
-      "slug": "adidas-stan-smith",
-      "description": "Iconic sneakers that never go out of style.",
-      "price": 100,
-      "compareAtPrice": 100,
-      "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=Stan+Smith"],
-      "categoryId": "4",
-      "brandId": "4",
-      "rating": 4.3,
-      "reviewCount": 2345,
-      "stock": 150,
-      "isFeatured": false,
-      "isActive": true
-    },
-    {
-      "id": "14",
-      "title": "Sony PlayStation 5",
-      "slug": "sony-playstation-5",
-      "description": "Experience lightning-fast loading and immersive gaming.",
-      "price": 499,
-      "compareAtPrice": 499,
-      "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=PS5"],
-      "categoryId": "1",
-      "brandId": "6",
-      "rating": 4.9,
-      "reviewCount": 3456,
-      "stock": 10,
-      "isFeatured": true,
-      "isActive": true
-    },
-    {
-      "id": "15",
-      "title": "IKEA MALM Bed Frame",
-      "slug": "ikea-malm-bed-frame",
-      "description": "Clean lines with built-in storage. Queen size.",
-      "price": 249,
-      "compareAtPrice": 299,
-      "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=MALM+Bed"],
-      "categoryId": "3",
-      "brandId": "5",
-      "rating": 4.1,
-      "reviewCount": 876,
-      "stock": 40,
-      "isFeatured": false,
-      "isActive": true
-    },
-    {
-      "id": "16",
-      "title": "Zara Leather Handbag",
-      "slug": "zara-leather-handbag",
-      "description": "Premium leather handbag with gold-tone hardware.",
-      "price": 79,
-      "compareAtPrice": 99,
-      "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=Zara+Handbag"],
-      "categoryId": "2",
-      "brandId": "7",
-      "rating": 4.0,
-      "reviewCount": 123,
-      "stock": 80,
-      "isFeatured": false,
-      "isActive": true
-    },
-    {
-      "id": "17",
-      "title": "Dyson Airwrap Multi-Styler",
-      "slug": "dyson-airwrap-multi-styler",
-      "description": "Style without extreme heat. Multiple attachments included.",
-      "price": 599,
-      "compareAtPrice": 599,
-      "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=Airwrap"],
-      "categoryId": "6",
-      "brandId": "8",
+      "discount": 0,
       "rating": 4.6,
-      "reviewCount": 345,
+      "reviewsCount": 523,
       "stock": 25,
-      "isFeatured": true,
-      "isActive": true
+      "sku": "CHAN-CHA-E08",
+      "gender": "women",
+      "size": "100ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-8-1",
+          "size": "100ml",
+          "price": 142,
+          "oldPrice": 142,
+          "stock": 25,
+          "sku": "CHAN-CHA-E08-100"
+        },
+        {
+          "id": "variant-8-2",
+          "size": "200ml",
+          "price": 197,
+          "oldPrice": 197,
+          "stock": 10,
+          "sku": "CHAN-CHA-E08-200"
+        }
+      ],
+      "fragrance": {
+        "family": "Floral Fruity",
+        "occasion": [
+          "Daily",
+          "Office"
+        ],
+        "season": [
+          "Spring",
+          "Summer"
+        ],
+        "longevity": "6-8 hours",
+        "sillage": "Moderate"
+      },
+      "notes": {
+        "top": [
+          "Quince",
+          "Grapefruit"
+        ],
+        "middle": [
+          "Jasmine",
+          "Rose"
+        ],
+        "base": [
+          "White Musk"
+        ]
+      },
+      "features": [
+        "Long lasting 8-10 hours",
+        "Suitable for evening wear",
+        "Strong sillage"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1613521140785-e85e427f8002?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1594033197-955a7a65a105?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": true,
+      "badges": [
+        "New"
+      ],
+      "relatedProductIds": [
+        "product-2",
+        "product-7",
+        "product-5"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-2",
+        "product-7"
+      ]
     },
     {
-      "id": "18",
-      "title": "Nike Air Force 1",
-      "slug": "nike-air-force-1",
-      "description": "The radiance lives on with the basketball classic.",
-      "price": 110,
-      "compareAtPrice": 110,
+      "id": "product-9",
+      "brandId": "brand-3",
+      "categoryIds": [
+        "category-3",
+        "category-4",
+        "category-12",
+        "category-6"
+      ],
+      "name": "Lost Cherry Eau de Parfum",
+      "slug": "tom-ford-lost-cherry-eau-de-parfum",
+      "description": "A intoxicating contrast of cherry liqueur and almond with warm, woody depths.",
+      "shortDescription": "Intense black cherry liqueur.",
+      "price": 395,
+      "oldPrice": 395,
       "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=Air+Force+1"],
-      "categoryId": "4",
-      "brandId": "3",
-      "rating": 4.7,
-      "reviewCount": 5678,
-      "stock": 200,
-      "isFeatured": false,
-      "isActive": true
+      "discount": 0,
+      "rating": 4.9,
+      "reviewsCount": 892,
+      "stock": 12,
+      "sku": "TF-LOS-E09",
+      "gender": "unisex",
+      "size": "50ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-9-1",
+          "size": "30ml",
+          "price": 350,
+          "oldPrice": 350,
+          "stock": 5,
+          "sku": "TF-LOS-E09-30"
+        },
+        {
+          "id": "variant-9-2",
+          "size": "50ml",
+          "price": 395,
+          "oldPrice": 395,
+          "stock": 12,
+          "sku": "TF-LOS-E09-50"
+        },
+        {
+          "id": "variant-9-3",
+          "size": "100ml",
+          "price": 440,
+          "oldPrice": 440,
+          "stock": 8,
+          "sku": "TF-LOS-E09-100"
+        }
+      ],
+      "fragrance": {
+        "family": "Oriental Floral",
+        "occasion": [
+          "Evening",
+          "Date"
+        ],
+        "season": [
+          "Autumn",
+          "Winter"
+        ],
+        "longevity": "8-10 hours",
+        "sillage": "Strong"
+      },
+      "notes": {
+        "top": [
+          "Black Cherry",
+          "Bitter Almond"
+        ],
+        "middle": [
+          "Turkish Rose",
+          "Jasmine Sambac"
+        ],
+        "base": [
+          "Peru Balsam",
+          "Sandalwood",
+          "Vetiver"
+        ]
+      },
+      "features": [
+        "Strong sillage",
+        "Premium glass bottle",
+        "Luxury niche craftsmanship"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1594033197-955a7a65a105?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1588402323657-f1a3aa1e8819?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=800&fit=crop"
+      ],
+      "featured": true,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Featured",
+        "Best Seller"
+      ],
+      "relatedProductIds": [
+        "product-10",
+        "product-11",
+        "product-12"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-10",
+        "product-11"
+      ]
     },
     {
-      "id": "19",
-      "title": "Samsung 65\" OLED TV",
-      "slug": "samsung-65-oled-tv",
-      "description": "Cinematic OLED with AI upscaling and Dolby Atmos.",
-      "price": 2199,
-      "compareAtPrice": 2499,
+      "id": "product-10",
+      "brandId": "brand-3",
+      "categoryIds": [
+        "category-3",
+        "category-4",
+        "category-9",
+        "category-12",
+        "category-6"
+      ],
+      "name": "Oud Wood",
+      "slug": "tom-ford-oud-wood",
+      "description": "Smoky oud, exotic sandalwood and cardamom — rare Oud Wood addiction.",
+      "shortDescription": "Smoky rare oud and sandalwood.",
+      "price": 390,
+      "oldPrice": 420,
       "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=Samsung+OLED"],
-      "categoryId": "1",
-      "brandId": "2",
+      "discount": 7,
       "rating": 4.8,
-      "reviewCount": 156,
-      "stock": 8,
-      "isFeatured": true,
-      "isActive": true
+      "reviewsCount": 654,
+      "stock": 15,
+      "sku": "TF-OUD-E10",
+      "gender": "unisex",
+      "size": "50ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-10-1",
+          "size": "30ml",
+          "price": 345,
+          "oldPrice": 407,
+          "stock": 7,
+          "sku": "TF-OUD-E10-30"
+        },
+        {
+          "id": "variant-10-2",
+          "size": "50ml",
+          "price": 390,
+          "oldPrice": 460,
+          "stock": 15,
+          "sku": "TF-OUD-E10-50"
+        },
+        {
+          "id": "variant-10-3",
+          "size": "100ml",
+          "price": 435,
+          "oldPrice": 513,
+          "stock": 10,
+          "sku": "TF-OUD-E10-100"
+        }
+      ],
+      "fragrance": {
+        "family": "Woody Oriental",
+        "occasion": [
+          "Daily",
+          "Evening",
+          "Formal"
+        ],
+        "season": [
+          "Autumn",
+          "Winter",
+          "Spring"
+        ],
+        "longevity": "10-12 hours",
+        "sillage": "Soft"
+      },
+      "notes": {
+        "top": [
+          "Cardamom",
+          "Rosewood"
+        ],
+        "middle": [
+          "Sandalwood",
+          "Vetiver"
+        ],
+        "base": [
+          "Oud",
+          "Amber",
+          "Vanilla"
+        ]
+      },
+      "features": [
+        "Premium glass bottle",
+        "Refillable bottle",
+        "Strong sillage"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1588402323657-f1a3aa1e8819?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&h=800&fit=crop"
+      ],
+      "featured": true,
+      "bestSeller": false,
+      "newArrival": false,
+      "badges": [
+        "Featured",
+        "-7%"
+      ],
+      "relatedProductIds": [
+        "product-9",
+        "product-9",
+        "product-11"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-9",
+        "product-9"
+      ]
     },
     {
-      "id": "20",
-      "title": "Apple AirPods Pro 2",
-      "slug": "apple-airpods-pro-2",
-      "description": "Adaptive Audio, Personalized Spatial Audio with USB-C.",
-      "price": 249,
-      "compareAtPrice": 249,
+      "id": "product-11",
+      "brandId": "brand-3",
+      "categoryIds": [
+        "category-2",
+        "category-4",
+        "category-12",
+        "category-6"
+      ],
+      "name": "Black Orchid Eau de Parfum",
+      "slug": "tom-ford-black-orchid-eau-de-parfum",
+      "description": "Sensual luxury of dark orchid, truffle and black plum wrapped in warm woods.",
+      "shortDescription": "Dark sensual orchid.",
+      "price": 165,
+      "oldPrice": 185,
       "currency": "USD",
-      "images": ["https://placehold.co/600x600?text=AirPods+Pro"],
-      "categoryId": "1",
-      "brandId": "1",
+      "discount": 11,
+      "rating": 4.6,
+      "reviewsCount": 734,
+      "stock": 22,
+      "sku": "TF-BLA-E11",
+      "gender": "women",
+      "size": "100ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-11-1",
+          "size": "100ml",
+          "price": 165,
+          "oldPrice": 195,
+          "stock": 22,
+          "sku": "TF-BLA-E11-100"
+        },
+        {
+          "id": "variant-11-2",
+          "size": "200ml",
+          "price": 220,
+          "oldPrice": 260,
+          "stock": 10,
+          "sku": "TF-BLA-E11-200"
+        }
+      ],
+      "fragrance": {
+        "family": "Oriental Floral",
+        "occasion": [
+          "Party",
+          "Evening"
+        ],
+        "season": [
+          "Spring",
+          "Summer",
+          "Autumn"
+        ],
+        "longevity": "12+ hours",
+        "sillage": "Enormous"
+      },
+      "notes": {
+        "top": [
+          "Truffle",
+          "Bergamot"
+        ],
+        "middle": [
+          "Black Orchid",
+          "Lotus"
+        ],
+        "base": [
+          "Patchouli",
+          "Vanilla",
+          "Frankincense"
+        ]
+      },
+      "features": [
+        "Long lasting 8-10 hours",
+        "Ideal for daily use",
+        "Luxury niche craftsmanship"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Best Seller",
+        "-11%"
+      ],
+      "relatedProductIds": [
+        "product-12",
+        "product-10",
+        "product-9"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-12",
+        "product-10"
+      ]
+    },
+    {
+      "id": "product-12",
+      "brandId": "brand-3",
+      "categoryIds": [
+        "category-3",
+        "category-4",
+        "category-12",
+        "category-6"
+      ],
+      "name": "Tobacco Vanille",
+      "slug": "tom-ford-tobacco-vanille",
+      "description": "Cozy tobacco and creamy vanilla — reminiscent of a private club in London.",
+      "shortDescription": "Opulent tobacco and vanilla.",
+      "price": 385,
+      "oldPrice": 385,
+      "currency": "USD",
+      "discount": 0,
+      "rating": 4.8,
+      "reviewsCount": 445,
+      "stock": 10,
+      "sku": "TF-TOB-E12",
+      "gender": "unisex",
+      "size": "50ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-12-1",
+          "size": "30ml",
+          "price": 340,
+          "oldPrice": 340,
+          "stock": 5,
+          "sku": "TF-TOB-E12-30"
+        },
+        {
+          "id": "variant-12-2",
+          "size": "50ml",
+          "price": 385,
+          "oldPrice": 385,
+          "stock": 10,
+          "sku": "TF-TOB-E12-50"
+        },
+        {
+          "id": "variant-12-3",
+          "size": "100ml",
+          "price": 430,
+          "oldPrice": 430,
+          "stock": 8,
+          "sku": "TF-TOB-E12-100"
+        }
+      ],
+      "fragrance": {
+        "family": "Oriental Spicy",
+        "occasion": [
+          "Daily",
+          "Office"
+        ],
+        "season": [
+          "Spring",
+          "Summer"
+        ],
+        "longevity": "6-8 hours",
+        "sillage": "Moderate"
+      },
+      "notes": {
+        "top": [
+          "Tobacco Leaf",
+          "Spices"
+        ],
+        "middle": [
+          "Tobacco Blossom",
+          "Vanilla"
+        ],
+        "base": [
+          "Dried Fruits",
+          "Cocoa"
+        ]
+      },
+      "features": [
+        "Luxury niche craftsmanship",
+        "Refillable bottle",
+        "Long lasting 8-10 hours"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": false,
+      "badges": [],
+      "relatedProductIds": [
+        "product-11",
+        "product-10",
+        "product-9"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-11",
+        "product-10"
+      ]
+    },
+    {
+      "id": "product-13",
+      "brandId": "brand-4",
+      "categoryIds": [
+        "category-1",
+        "category-4",
+        "category-11",
+        "category-9"
+      ],
+      "name": "Acqua di Giò Profumo",
+      "slug": "armani-acqua-di-gio-profumo",
+      "description": "A refined aquatic intensity inspired by the sea and volcanic stone.",
+      "shortDescription": "Aquatic woody intensity.",
+      "price": 128,
+      "oldPrice": 148,
+      "currency": "USD",
+      "discount": 14,
       "rating": 4.7,
-      "reviewCount": 2345,
-      "stock": 100,
-      "isFeatured": false,
-      "isActive": true
-    }
-  ],
-  "orders": [
-    {
-      "id": "1",
-      "userId": "1",
-      "items": [
+      "reviewsCount": 1123,
+      "stock": 40,
+      "sku": "ARMA-ADG-E13",
+      "gender": "men",
+      "size": "100ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
         {
-          "productId": "1",
-          "title": "iPhone 15 Pro",
-          "price": 1199,
-          "quantity": 1,
-          "image": "https://placehold.co/600x600?text=iPhone+15+Pro"
+          "id": "variant-13-1",
+          "size": "50ml",
+          "price": 93,
+          "oldPrice": 110,
+          "stock": 32,
+          "sku": "ARMA-ADG-E13-50"
         },
         {
-          "productId": "20",
-          "title": "Apple AirPods Pro 2",
-          "price": 249,
-          "quantity": 1,
-          "image": "https://placehold.co/600x600?text=AirPods+Pro"
-        }
-      ],
-      "status": "delivered",
-      "subtotal": 1448,
-      "shipping": 0,
-      "tax": 115.84,
-      "total": 1563.84,
-      "shippingAddressId": "1",
-      "createdAt": "2024-06-15T10:00:00Z"
-    },
-    {
-      "id": "2",
-      "userId": "1",
-      "items": [
-        {
-          "productId": "4",
-          "title": "Nike Air Max 270",
-          "price": 150,
-          "quantity": 2,
-          "image": "https://placehold.co/600x600?text=Air+Max+270"
-        }
-      ],
-      "status": "shipped",
-      "subtotal": 300,
-      "shipping": 15,
-      "tax": 24,
-      "total": 339,
-      "shippingAddressId": "1",
-      "createdAt": "2024-07-01T14:30:00Z"
-    },
-    {
-      "id": "3",
-      "userId": "2",
-      "items": [
-        {
-          "productId": "6",
-          "title": "Sony WH-1000XM5",
-          "price": 348,
-          "quantity": 1,
-          "image": "https://placehold.co/600x600?text=Sony+XM5"
+          "id": "variant-13-2",
+          "size": "100ml",
+          "price": 128,
+          "oldPrice": 151,
+          "stock": 40,
+          "sku": "ARMA-ADG-E13-100"
         },
         {
-          "productId": "17",
-          "title": "Dyson Airwrap Multi-Styler",
-          "price": 599,
-          "quantity": 1,
-          "image": "https://placehold.co/600x600?text=Airwrap"
+          "id": "variant-13-3",
+          "size": "150ml",
+          "price": 168,
+          "oldPrice": 198,
+          "stock": 12,
+          "sku": "ARMA-ADG-E13-150"
         }
       ],
-      "status": "confirmed",
-      "subtotal": 947,
-      "shipping": 0,
-      "tax": 75.76,
-      "total": 1022.76,
-      "shippingAddressId": "2",
-      "createdAt": "2024-07-10T09:15:00Z"
-    },
-    {
-      "id": "4",
-      "userId": "1",
-      "items": [
-        {
-          "productId": "8",
-          "title": "Dyson V15 Detect",
-          "price": 649,
-          "quantity": 1,
-          "image": "https://placehold.co/600x600?text=Dyson+V15"
-        }
+      "fragrance": {
+        "family": "Aquatic Woody",
+        "occasion": [
+          "Evening",
+          "Date"
+        ],
+        "season": [
+          "Autumn",
+          "Winter"
+        ],
+        "longevity": "8-10 hours",
+        "sillage": "Strong"
+      },
+      "notes": {
+        "top": [
+          "Sea Notes",
+          "Bergamot"
+        ],
+        "middle": [
+          "Geranium",
+          "Rosemary",
+          "Sage"
+        ],
+        "base": [
+          "Patchouli",
+          "Incense"
+        ]
+      },
+      "features": [
+        "Natural spray",
+        "Travel-friendly size",
+        "Suitable for evening wear"
       ],
-      "status": "pending",
-      "subtotal": 649,
-      "shipping": 25,
-      "tax": 51.92,
-      "total": 725.92,
-      "shippingAddressId": "1",
-      "createdAt": "2024-07-12T16:45:00Z"
-    },
-    {
-      "id": "5",
-      "userId": "2",
-      "items": [
-        {
-          "productId": "3",
-          "title": "MacBook Air M3",
-          "price": 1099,
-          "quantity": 1,
-          "image": "https://placehold.co/600x600?text=MacBook+Air"
-        }
+      "images": [
+        "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1590156546946-ce55a12a6a5d?w=800&h=800&fit=crop"
       ],
-      "status": "cancelled",
-      "subtotal": 1099,
-      "shipping": 0,
-      "tax": 87.92,
-      "total": 1186.92,
-      "shippingAddressId": "2",
-      "createdAt": "2024-07-05T11:00:00Z"
+      "featured": false,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Best Seller",
+        "-14%"
+      ],
+      "relatedProductIds": [
+        "product-4",
+        "product-14",
+        "product-15"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-4",
+        "product-14"
+      ]
     },
     {
-      "id": "6",
-      "userId": "1",
-      "items": [
+      "id": "product-14",
+      "brandId": "brand-4",
+      "categoryIds": [
+        "category-2",
+        "category-4",
+        "category-10"
+      ],
+      "name": "Sì Eau de Parfum",
+      "slug": "armani-si-eau-de-parfum",
+      "description": "Sì is a tribute to femininity, strength and emotion — sensual and intense.",
+      "shortDescription": "Chypre rose and vanilla.",
+      "price": 135,
+      "oldPrice": 135,
+      "currency": "USD",
+      "discount": 0,
+      "rating": 4.6,
+      "reviewsCount": 892,
+      "stock": 35,
+      "sku": "ARMA-SI-E14",
+      "gender": "women",
+      "size": "100ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
         {
-          "productId": "9",
-          "title": "Zara Blazer Coat",
-          "price": 129,
-          "quantity": 1,
-          "image": "https://placehold.co/600x600?text=Zara+Blazer"
+          "id": "variant-14-1",
+          "size": "100ml",
+          "price": 135,
+          "oldPrice": 135,
+          "stock": 35,
+          "sku": "ARMA-SI-E14-100"
         },
         {
-          "productId": "16",
-          "title": "Zara Leather Handbag",
-          "price": 79,
-          "quantity": 1,
-          "image": "https://placehold.co/600x600?text=Zara+Handbag"
+          "id": "variant-14-2",
+          "size": "200ml",
+          "price": 190,
+          "oldPrice": 190,
+          "stock": 10,
+          "sku": "ARMA-SI-E14-200"
         }
       ],
-      "status": "delivered",
-      "subtotal": 208,
-      "shipping": 10,
-      "tax": 16.64,
-      "total": 234.64,
-      "shippingAddressId": "1",
-      "createdAt": "2024-05-20T08:30:00Z"
+      "fragrance": {
+        "family": "Floral",
+        "occasion": [
+          "Daily",
+          "Evening",
+          "Formal"
+        ],
+        "season": [
+          "Autumn",
+          "Winter",
+          "Spring"
+        ],
+        "longevity": "10-12 hours",
+        "sillage": "Soft"
+      },
+      "notes": {
+        "top": [
+          "Blackcurrant"
+        ],
+        "middle": [
+          "May Rose",
+          "Freesia"
+        ],
+        "base": [
+          "Patchouli",
+          "Vanilla"
+        ]
+      },
+      "features": [
+        "Long lasting 8-10 hours",
+        "Natural spray",
+        "Suitable for evening wear"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=800&h=800&fit=crop"
+      ],
+      "featured": true,
+      "bestSeller": false,
+      "newArrival": false,
+      "badges": [
+        "Featured"
+      ],
+      "relatedProductIds": [
+        "product-7",
+        "product-6",
+        "product-11"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-7",
+        "product-6"
+      ]
+    },
+    {
+      "id": "product-15",
+      "brandId": "brand-4",
+      "categoryIds": [
+        "category-1",
+        "category-4",
+        "category-9",
+        "category-7"
+      ],
+      "name": "Armani Code Eau de Parfum",
+      "slug": "armani-code-eau-de-parfum",
+      "description": "A magnetic woody with bergamot and leathered suede for timeless seduction.",
+      "shortDescription": "Magnetic suede and tonka.",
+      "price": 118,
+      "oldPrice": 135,
+      "currency": "USD",
+      "discount": 13,
+      "rating": 4.5,
+      "reviewsCount": 334,
+      "stock": 26,
+      "sku": "ARMA-COD-E15",
+      "gender": "men",
+      "size": "100ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-15-1",
+          "size": "30ml",
+          "price": 58,
+          "oldPrice": 68,
+          "stock": 14,
+          "sku": "ARMA-COD-E15-30"
+        },
+        {
+          "id": "variant-15-2",
+          "size": "60ml",
+          "price": 93,
+          "oldPrice": 110,
+          "stock": 21,
+          "sku": "ARMA-COD-E15-60"
+        },
+        {
+          "id": "variant-15-3",
+          "size": "100ml",
+          "price": 118,
+          "oldPrice": 139,
+          "stock": 26,
+          "sku": "ARMA-COD-E15-100"
+        }
+      ],
+      "fragrance": {
+        "family": "Woody",
+        "occasion": [
+          "Party",
+          "Evening"
+        ],
+        "season": [
+          "Spring",
+          "Summer",
+          "Autumn"
+        ],
+        "longevity": "12+ hours",
+        "sillage": "Enormous"
+      },
+      "notes": {
+        "top": [
+          "Bergamot",
+          "Lemon"
+        ],
+        "middle": [
+          "Lavender",
+          "Suede"
+        ],
+        "base": [
+          "Tonka Bean",
+          "Cedar"
+        ]
+      },
+      "features": [
+        "Suitable for evening wear",
+        "Long lasting 8-10 hours",
+        "Strong sillage"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1590156546946-ce55a12a6a5d?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": true,
+      "badges": [
+        "New",
+        "-13%"
+      ],
+      "relatedProductIds": [
+        "product-4",
+        "product-1",
+        "product-5"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-4",
+        "product-1"
+      ]
+    },
+    {
+      "id": "product-16",
+      "brandId": "brand-5",
+      "categoryIds": [
+        "category-2",
+        "category-4",
+        "category-10",
+        "category-12"
+      ],
+      "name": "Libre Eau de Parfum",
+      "slug": "ysl-libre-eau-de-parfum",
+      "description": "Libre — freedom — burning freedom, a cool lavender edged with warm vanilla.",
+      "shortDescription": "Lavender and vanilla freedom.",
+      "price": 142,
+      "oldPrice": 162,
+      "currency": "USD",
+      "discount": 12,
+      "rating": 4.7,
+      "reviewsCount": 1567,
+      "stock": 48,
+      "sku": "YSL-LIB-E16",
+      "gender": "women",
+      "size": "90ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-16-1",
+          "size": "50ml",
+          "price": 112,
+          "oldPrice": 132,
+          "stock": 40,
+          "sku": "YSL-LIB-E16-50"
+        },
+        {
+          "id": "variant-16-2",
+          "size": "90ml",
+          "price": 142,
+          "oldPrice": 168,
+          "stock": 48,
+          "sku": "YSL-LIB-E16-90"
+        }
+      ],
+      "fragrance": {
+        "family": "Floral",
+        "occasion": [
+          "Daily",
+          "Office"
+        ],
+        "season": [
+          "Spring",
+          "Summer"
+        ],
+        "longevity": "6-8 hours",
+        "sillage": "Moderate"
+      },
+      "notes": {
+        "top": [
+          "Mandarin",
+          "Lavender"
+        ],
+        "middle": [
+          "Orange Blossom",
+          "Jasmine"
+        ],
+        "base": [
+          "Vanilla",
+          "Musk",
+          "Cedar"
+        ]
+      },
+      "features": [
+        "Strong sillage",
+        "Ideal for daily use",
+        "Natural spray"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1590156546946-ce55a12a6a5d?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1595425959632-34f2822322ce?w=800&h=800&fit=crop"
+      ],
+      "featured": true,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Featured",
+        "Best Seller",
+        "-12%"
+      ],
+      "relatedProductIds": [
+        "product-2",
+        "product-17",
+        "product-3"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-2",
+        "product-17"
+      ]
+    },
+    {
+      "id": "product-17",
+      "brandId": "brand-5",
+      "categoryIds": [
+        "category-2",
+        "category-4",
+        "category-12"
+      ],
+      "name": "Black Opium Eau de Parfum",
+      "slug": "ysl-black-opium-eau-de-parfum",
+      "description": "Addictive coffee, jasmine and vanilla — the dangerously glamourous Black Opium.",
+      "shortDescription": "Addictive coffee and vanilla.",
+      "price": 148,
+      "oldPrice": 168,
+      "currency": "USD",
+      "discount": 12,
+      "rating": 4.8,
+      "reviewsCount": 2134,
+      "stock": 33,
+      "sku": "YSL-BLA-E17",
+      "gender": "women",
+      "size": "90ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-17-1",
+          "size": "50ml",
+          "price": 118,
+          "oldPrice": 139,
+          "stock": 25,
+          "sku": "YSL-BLA-E17-50"
+        },
+        {
+          "id": "variant-17-2",
+          "size": "90ml",
+          "price": 148,
+          "oldPrice": 175,
+          "stock": 33,
+          "sku": "YSL-BLA-E17-90"
+        }
+      ],
+      "fragrance": {
+        "family": "Oriental",
+        "occasion": [
+          "Evening",
+          "Date"
+        ],
+        "season": [
+          "Autumn",
+          "Winter"
+        ],
+        "longevity": "8-10 hours",
+        "sillage": "Strong"
+      },
+      "notes": {
+        "top": [
+          "Coffee",
+          "Pink Pepper"
+        ],
+        "middle": [
+          "Jasmine",
+          "Orange Blossom"
+        ],
+        "base": [
+          "Vanilla",
+          "Patchouli",
+          "Musk"
+        ]
+      },
+      "features": [
+        "Premium glass bottle",
+        "Gift-ready packaging",
+        "Long lasting 8-10 hours"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1613521140785-e85e427f8002?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Best Seller",
+        "-12%"
+      ],
+      "relatedProductIds": [
+        "product-16",
+        "product-3",
+        "product-18"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-16",
+        "product-3"
+      ]
+    },
+    {
+      "id": "product-18",
+      "brandId": "brand-5",
+      "categoryIds": [
+        "category-1",
+        "category-4",
+        "category-9",
+        "category-11"
+      ],
+      "name": "Y Eau de Parfum",
+      "slug": "ysl-y-eau-de-parfum",
+      "description": "A vibrant fougère with fresh bergamot and sage anchored by warm vetiver.",
+      "shortDescription": "Fresh sage and bergamot.",
+      "price": 132,
+      "oldPrice": 132,
+      "currency": "USD",
+      "discount": 0,
+      "rating": 4.6,
+      "reviewsCount": 765,
+      "stock": 38,
+      "sku": "YSL-Y-E18",
+      "gender": "men",
+      "size": "100ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-18-1",
+          "size": "30ml",
+          "price": 72,
+          "oldPrice": 72,
+          "stock": 26,
+          "sku": "YSL-Y-E18-30"
+        },
+        {
+          "id": "variant-18-2",
+          "size": "60ml",
+          "price": 107,
+          "oldPrice": 107,
+          "stock": 33,
+          "sku": "YSL-Y-E18-60"
+        },
+        {
+          "id": "variant-18-3",
+          "size": "100ml",
+          "price": 132,
+          "oldPrice": 132,
+          "stock": 38,
+          "sku": "YSL-Y-E18-100"
+        }
+      ],
+      "fragrance": {
+        "family": "Fresh Woody",
+        "occasion": [
+          "Daily",
+          "Evening",
+          "Formal"
+        ],
+        "season": [
+          "Autumn",
+          "Winter",
+          "Spring"
+        ],
+        "longevity": "10-12 hours",
+        "sillage": "Soft"
+      },
+      "notes": {
+        "top": [
+          "Bergamot",
+          "Ginger",
+          "Apple"
+        ],
+        "middle": [
+          "Sage",
+          "Juniper Berries",
+          "Geranium"
+        ],
+        "base": [
+          "Tonka",
+          "Vetiver",
+          "Cedar"
+        ]
+      },
+      "features": [
+        "Suitable for evening wear",
+        "Premium glass bottle",
+        "Strong sillage"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1595425959632-34f2822322ce?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1594033197-955a7a65a105?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": true,
+      "badges": [
+        "New"
+      ],
+      "relatedProductIds": [
+        "product-13",
+        "product-16",
+        "product-1"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-13",
+        "product-16"
+      ]
+    },
+    {
+      "id": "product-19",
+      "brandId": "brand-5",
+      "categoryIds": [
+        "category-2",
+        "category-4",
+        "category-10"
+      ],
+      "name": "Mon Paris Eau de Parfum",
+      "slug": "ysl-mon-paris-eau-de-parfum",
+      "description": "A fruity floral vertigo inspired by Paris and the intoxication of love.",
+      "shortDescription": "Fruity datura and patchouli.",
+      "price": 138,
+      "oldPrice": 138,
+      "currency": "USD",
+      "discount": 0,
+      "rating": 4.5,
+      "reviewsCount": 432,
+      "stock": 22,
+      "sku": "YSL-MON-E19",
+      "gender": "women",
+      "size": "90ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-19-1",
+          "size": "50ml",
+          "price": 108,
+          "oldPrice": 108,
+          "stock": 14,
+          "sku": "YSL-MON-E19-50"
+        },
+        {
+          "id": "variant-19-2",
+          "size": "90ml",
+          "price": 138,
+          "oldPrice": 138,
+          "stock": 22,
+          "sku": "YSL-MON-E19-90"
+        }
+      ],
+      "fragrance": {
+        "family": "Floral Fruity",
+        "occasion": [
+          "Party",
+          "Evening"
+        ],
+        "season": [
+          "Spring",
+          "Summer",
+          "Autumn"
+        ],
+        "longevity": "12+ hours",
+        "sillage": "Enormous"
+      },
+      "notes": {
+        "top": [
+          "Strawberry",
+          "Raspberry",
+          "Bergamot"
+        ],
+        "middle": [
+          "Peony",
+          "Datura",
+          "Orange Blossom"
+        ],
+        "base": [
+          "Patchouli",
+          "White Musk"
+        ]
+      },
+      "features": [
+        "Refillable bottle",
+        "Travel-friendly size",
+        "Natural spray"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1595425959632-34f2822322ce?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1613521140785-e85e427f8002?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1588402323657-f1a3aa1e8819?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": false,
+      "badges": [],
+      "relatedProductIds": [
+        "product-2",
+        "product-18",
+        "product-17"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-2",
+        "product-18"
+      ]
+    },
+    {
+      "id": "product-20",
+      "brandId": "brand-6",
+      "categoryIds": [
+        "category-2",
+        "category-4",
+        "category-12"
+      ],
+      "name": "Good Girl Eau de Parfum",
+      "slug": "carolina-herrera-good-girl-eau-de-parfum",
+      "description": "The sensual duality of light and dark — jasmine and cocoa in a stiletto bottle.",
+      "shortDescription": "Tuberose and cocoa stiletto.",
+      "price": 155,
+      "oldPrice": 175,
+      "currency": "USD",
+      "discount": 11,
+      "rating": 4.7,
+      "reviewsCount": 1876,
+      "stock": 41,
+      "sku": "CH-GOO-E20",
+      "gender": "women",
+      "size": "80ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-20-1",
+          "size": "30ml",
+          "price": 100,
+          "oldPrice": 118,
+          "stock": 31,
+          "sku": "CH-GOO-E20-30"
+        },
+        {
+          "id": "variant-20-2",
+          "size": "80ml",
+          "price": 155,
+          "oldPrice": 183,
+          "stock": 41,
+          "sku": "CH-GOO-E20-80"
+        }
+      ],
+      "fragrance": {
+        "family": "Oriental Floral",
+        "occasion": [
+          "Daily",
+          "Office"
+        ],
+        "season": [
+          "Spring",
+          "Summer"
+        ],
+        "longevity": "6-8 hours",
+        "sillage": "Moderate"
+      },
+      "notes": {
+        "top": [
+          "Almond",
+          "Coffee"
+        ],
+        "middle": [
+          "Tuberose",
+          "Jasmine Sambac"
+        ],
+        "base": [
+          "Cocoa",
+          "Tonka",
+          "Vanilla"
+        ]
+      },
+      "features": [
+        "Long lasting 8-10 hours",
+        "Strong sillage",
+        "Refillable bottle"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1613521140785-e85e427f8002?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1594033197-955a7a65a105?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=800&fit=crop"
+      ],
+      "featured": true,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Featured",
+        "Best Seller",
+        "-11%"
+      ],
+      "relatedProductIds": [
+        "product-7",
+        "product-11",
+        "product-3"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-7",
+        "product-11"
+      ]
+    },
+    {
+      "id": "product-21",
+      "brandId": "brand-6",
+      "categoryIds": [
+        "category-1",
+        "category-5",
+        "category-11"
+      ],
+      "name": "212 Men Eau de Toilette",
+      "slug": "carolina-herrera-212-men-eau-de-toilette",
+      "description": "Urban, elegant and charismatic — a fresh floral musk for metropolitan men.",
+      "shortDescription": "Urban fresh musk.",
+      "price": 98,
+      "oldPrice": 115,
+      "currency": "USD",
+      "discount": 15,
+      "rating": 4.5,
+      "reviewsCount": 342,
+      "stock": 30,
+      "sku": "CH-212-E21",
+      "gender": "men",
+      "size": "100ml",
+      "concentration": "Eau de Toilette",
+      "variants": [
+        {
+          "id": "variant-21-1",
+          "size": "30ml",
+          "price": 38,
+          "oldPrice": 45,
+          "stock": 18,
+          "sku": "CH-212-E21-30"
+        },
+        {
+          "id": "variant-21-2",
+          "size": "60ml",
+          "price": 73,
+          "oldPrice": 86,
+          "stock": 25,
+          "sku": "CH-212-E21-60"
+        },
+        {
+          "id": "variant-21-3",
+          "size": "100ml",
+          "price": 98,
+          "oldPrice": 116,
+          "stock": 30,
+          "sku": "CH-212-E21-100"
+        }
+      ],
+      "fragrance": {
+        "family": "Woody Floral Musk",
+        "occasion": [
+          "Evening",
+          "Date"
+        ],
+        "season": [
+          "Autumn",
+          "Winter"
+        ],
+        "longevity": "8-10 hours",
+        "sillage": "Strong"
+      },
+      "notes": {
+        "top": [
+          "Grapefruit",
+          "Spices"
+        ],
+        "middle": [
+          "Gardenia",
+          "Lavender"
+        ],
+        "base": [
+          "Musk",
+          "Sandalwood"
+        ]
+      },
+      "features": [
+        "Travel-friendly size",
+        "Long lasting 8-10 hours",
+        "Premium glass bottle"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1594033197-955a7a65a105?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1588402323657-f1a3aa1e8819?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": false,
+      "badges": [
+        "-15%"
+      ],
+      "relatedProductIds": [
+        "product-5",
+        "product-22",
+        "product-18"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-5",
+        "product-22"
+      ]
+    },
+    {
+      "id": "product-22",
+      "brandId": "brand-6",
+      "categoryIds": [
+        "category-2",
+        "category-4",
+        "category-10",
+        "category-7"
+      ],
+      "name": "212 VIP Rose Eau de Parfum",
+      "slug": "carolina-herrera-212-vip-rose-eau-de-parfum",
+      "description": "A sparkling rosé glamour — champagne, peach blossom and amber.",
+      "shortDescription": "Champagne peach blossom.",
+      "price": 125,
+      "oldPrice": 125,
+      "currency": "USD",
+      "discount": 0,
+      "rating": 4.4,
+      "reviewsCount": 213,
+      "stock": 19,
+      "sku": "CH-VIP-E22",
+      "gender": "women",
+      "size": "80ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-22-1",
+          "size": "30ml",
+          "price": 70,
+          "oldPrice": 70,
+          "stock": 9,
+          "sku": "CH-VIP-E22-30"
+        },
+        {
+          "id": "variant-22-2",
+          "size": "80ml",
+          "price": 125,
+          "oldPrice": 125,
+          "stock": 19,
+          "sku": "CH-VIP-E22-80"
+        }
+      ],
+      "fragrance": {
+        "family": "Floral",
+        "occasion": [
+          "Daily",
+          "Evening",
+          "Formal"
+        ],
+        "season": [
+          "Autumn",
+          "Winter",
+          "Spring"
+        ],
+        "longevity": "10-12 hours",
+        "sillage": "Soft"
+      },
+      "notes": {
+        "top": [
+          "Champagne",
+          "Fruits"
+        ],
+        "middle": [
+          "Peach Blossom",
+          "Rose"
+        ],
+        "base": [
+          "Musk",
+          "White Amber"
+        ]
+      },
+      "features": [
+        "Suitable for evening wear",
+        "Long lasting 8-10 hours",
+        "Premium glass bottle"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1588402323657-f1a3aa1e8819?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": true,
+      "badges": [
+        "New"
+      ],
+      "relatedProductIds": [
+        "product-3",
+        "product-20",
+        "product-8"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-3",
+        "product-20"
+      ]
+    },
+    {
+      "id": "product-23",
+      "brandId": "brand-7",
+      "categoryIds": [
+        "category-1",
+        "category-5",
+        "category-12",
+        "category-9"
+      ],
+      "name": "1 Million Eau de Toilette",
+      "slug": "paco-rabanne-1-million-eau-de-toilette",
+      "description": "A coveted leather and spice opulence — daring, gold and addictive.",
+      "shortDescription": "Leather spice opulence.",
+      "price": 110,
+      "oldPrice": 130,
+      "currency": "USD",
+      "discount": 15,
+      "rating": 4.6,
+      "reviewsCount": 2456,
+      "stock": 45,
+      "sku": "PR-1MI-E23",
+      "gender": "men",
+      "size": "100ml",
+      "concentration": "Eau de Toilette",
+      "variants": [
+        {
+          "id": "variant-23-1",
+          "size": "100ml",
+          "price": 110,
+          "oldPrice": 130,
+          "stock": 45,
+          "sku": "PR-1MI-E23-100"
+        },
+        {
+          "id": "variant-23-2",
+          "size": "200ml",
+          "price": 165,
+          "oldPrice": 195,
+          "stock": 10,
+          "sku": "PR-1MI-E23-200"
+        }
+      ],
+      "fragrance": {
+        "family": "Woody Spicy",
+        "occasion": [
+          "Party",
+          "Evening"
+        ],
+        "season": [
+          "Spring",
+          "Summer",
+          "Autumn"
+        ],
+        "longevity": "12+ hours",
+        "sillage": "Enormous"
+      },
+      "notes": {
+        "top": [
+          "Blood Mandarin",
+          "Grapefruit",
+          "Mint"
+        ],
+        "middle": [
+          "Cinnamon",
+          "Spices",
+          "Rose"
+        ],
+        "base": [
+          "Leather",
+          "Amber",
+          "Patchouli"
+        ]
+      },
+      "features": [
+        "Luxury niche craftsmanship",
+        "Long lasting 8-10 hours",
+        "Ideal for daily use"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=800&fit=crop"
+      ],
+      "featured": true,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Featured",
+        "Best Seller",
+        "-15%"
+      ],
+      "relatedProductIds": [
+        "product-4",
+        "product-1",
+        "product-25"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-4",
+        "product-1"
+      ]
+    },
+    {
+      "id": "product-24",
+      "brandId": "brand-7",
+      "categoryIds": [
+        "category-2",
+        "category-4",
+        "category-10"
+      ],
+      "name": "Lady Million Eau de Parfum",
+      "slug": "paco-rabanne-lady-million-eau-de-parfum",
+      "description": "Fresh, sparkling floral — the diamond for a self-made woman.",
+      "shortDescription": "Raspberry jasmine honey.",
+      "price": 118,
+      "oldPrice": 138,
+      "currency": "USD",
+      "discount": 14,
+      "rating": 4.5,
+      "reviewsCount": 876,
+      "stock": 27,
+      "sku": "PR-LAD-E24",
+      "gender": "women",
+      "size": "80ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-24-1",
+          "size": "30ml",
+          "price": 63,
+          "oldPrice": 74,
+          "stock": 17,
+          "sku": "PR-LAD-E24-30"
+        },
+        {
+          "id": "variant-24-2",
+          "size": "80ml",
+          "price": 118,
+          "oldPrice": 139,
+          "stock": 27,
+          "sku": "PR-LAD-E24-80"
+        }
+      ],
+      "fragrance": {
+        "family": "Floral Fruity",
+        "occasion": [
+          "Daily",
+          "Office"
+        ],
+        "season": [
+          "Spring",
+          "Summer"
+        ],
+        "longevity": "6-8 hours",
+        "sillage": "Moderate"
+      },
+      "notes": {
+        "top": [
+          "Raspberry",
+          "Neroli"
+        ],
+        "middle": [
+          "Jasmine",
+          "Orange Blossom"
+        ],
+        "base": [
+          "Patchouli",
+          "Honey"
+        ]
+      },
+      "features": [
+        "Suitable for evening wear",
+        "Gift-ready packaging",
+        "Travel-friendly size"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": false,
+      "badges": [
+        "-14%"
+      ],
+      "relatedProductIds": [
+        "product-23",
+        "product-2",
+        "product-26"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-23",
+        "product-2"
+      ]
+    },
+    {
+      "id": "product-25",
+      "brandId": "brand-7",
+      "categoryIds": [
+        "category-1",
+        "category-5",
+        "category-11",
+        "category-9",
+        "category-7"
+      ],
+      "name": "Phantom Eau de Toilette",
+      "slug": "paco-rabanne-phantom-eau-de-toilette",
+      "description": "Futuristic aromatic with energizing lemon, lavender and creamy vanilla.",
+      "shortDescription": "Futuristic lavender vanilla.",
+      "price": 108,
+      "oldPrice": 108,
+      "currency": "USD",
+      "discount": 0,
+      "rating": 4.5,
+      "reviewsCount": 423,
+      "stock": 32,
+      "sku": "PR-PHA-E25",
+      "gender": "men",
+      "size": "100ml",
+      "concentration": "Eau de Toilette",
+      "variants": [
+        {
+          "id": "variant-25-1",
+          "size": "50ml",
+          "price": 73,
+          "oldPrice": 73,
+          "stock": 24,
+          "sku": "PR-PHA-E25-50"
+        },
+        {
+          "id": "variant-25-2",
+          "size": "100ml",
+          "price": 108,
+          "oldPrice": 108,
+          "stock": 32,
+          "sku": "PR-PHA-E25-100"
+        },
+        {
+          "id": "variant-25-3",
+          "size": "150ml",
+          "price": 148,
+          "oldPrice": 148,
+          "stock": 12,
+          "sku": "PR-PHA-E25-150"
+        }
+      ],
+      "fragrance": {
+        "family": "Woody Aromatic",
+        "occasion": [
+          "Evening",
+          "Date"
+        ],
+        "season": [
+          "Autumn",
+          "Winter"
+        ],
+        "longevity": "8-10 hours",
+        "sillage": "Strong"
+      },
+      "notes": {
+        "top": [
+          "Lemon",
+          "Lavender"
+        ],
+        "middle": [
+          "Patchouli",
+          "Geranium"
+        ],
+        "base": [
+          "Vetiver",
+          "Vanilla",
+          "Lavandin"
+        ]
+      },
+      "features": [
+        "Premium glass bottle",
+        "Gift-ready packaging",
+        "Strong sillage"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1590156546946-ce55a12a6a5d?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": true,
+      "badges": [
+        "New"
+      ],
+      "relatedProductIds": [
+        "product-26",
+        "product-5",
+        "product-1"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-26",
+        "product-5"
+      ]
+    },
+    {
+      "id": "product-26",
+      "brandId": "brand-7",
+      "categoryIds": [
+        "category-1",
+        "category-5",
+        "category-11",
+        "category-9"
+      ],
+      "name": "Invictus Eau de Toilette",
+      "slug": "paco-rabanne-invictus-eau-de-toilette",
+      "description": "A triumphant aquatic woody — fresh grapefruit and laurel with amber heat.",
+      "shortDescription": "Aquatic laurel and amber.",
+      "price": 115,
+      "oldPrice": 135,
+      "currency": "USD",
+      "discount": 15,
+      "rating": 4.6,
+      "reviewsCount": 1876,
+      "stock": 29,
+      "sku": "PR-INV-E26",
+      "gender": "men",
+      "size": "100ml",
+      "concentration": "Eau de Toilette",
+      "variants": [
+        {
+          "id": "variant-26-1",
+          "size": "100ml",
+          "price": 115,
+          "oldPrice": 136,
+          "stock": 29,
+          "sku": "PR-INV-E26-100"
+        },
+        {
+          "id": "variant-26-2",
+          "size": "200ml",
+          "price": 170,
+          "oldPrice": 201,
+          "stock": 10,
+          "sku": "PR-INV-E26-200"
+        }
+      ],
+      "fragrance": {
+        "family": "Aquatic Woody",
+        "occasion": [
+          "Daily",
+          "Evening",
+          "Formal"
+        ],
+        "season": [
+          "Autumn",
+          "Winter",
+          "Spring"
+        ],
+        "longevity": "10-12 hours",
+        "sillage": "Soft"
+      },
+      "notes": {
+        "top": [
+          "Grapefruit",
+          "Sea Notes"
+        ],
+        "middle": [
+          "Bay Laurel",
+          "Jasmine"
+        ],
+        "base": [
+          "Oakmoss",
+          "Ambergris",
+          "Patchouli"
+        ]
+      },
+      "features": [
+        "Strong sillage",
+        "Travel-friendly size",
+        "Ideal for daily use"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Best Seller",
+        "-15%"
+      ],
+      "relatedProductIds": [
+        "product-4",
+        "product-23",
+        "product-1"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-4",
+        "product-23"
+      ]
+    },
+    {
+      "id": "product-27",
+      "brandId": "brand-8",
+      "categoryIds": [
+        "category-1",
+        "category-4",
+        "category-12",
+        "category-9"
+      ],
+      "name": "Le Male Le Parfum",
+      "slug": "jean-paul-gaultier-le-male-le-parfum",
+      "description": "Irresistible captain intensity — spicy cardamom and vanilla woods.",
+      "shortDescription": "Iris vanilla captain.",
+      "price": 128,
+      "oldPrice": 148,
+      "currency": "USD",
+      "discount": 14,
+      "rating": 4.7,
+      "reviewsCount": 945,
+      "stock": 36,
+      "sku": "JPG-LEM-E27",
+      "gender": "men",
+      "size": "125ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-27-1",
+          "size": "75ml",
+          "price": 100,
+          "oldPrice": 118,
+          "stock": 24,
+          "sku": "JPG-LEM-E27-75"
+        },
+        {
+          "id": "variant-27-2",
+          "size": "125ml",
+          "price": 128,
+          "oldPrice": 151,
+          "stock": 36,
+          "sku": "JPG-LEM-E27-125"
+        }
+      ],
+      "fragrance": {
+        "family": "Oriental",
+        "occasion": [
+          "Party",
+          "Evening"
+        ],
+        "season": [
+          "Spring",
+          "Summer",
+          "Autumn"
+        ],
+        "longevity": "12+ hours",
+        "sillage": "Enormous"
+      },
+      "notes": {
+        "top": [
+          "Cardamom",
+          "Lavender"
+        ],
+        "middle": [
+          "Iris",
+          "Cinnamon"
+        ],
+        "base": [
+          "Vanilla",
+          "Tonka",
+          "Woods"
+        ]
+      },
+      "features": [
+        "Long lasting 8-10 hours",
+        "Luxury niche craftsmanship",
+        "Ideal for daily use"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1590156546946-ce55a12a6a5d?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=800&h=800&fit=crop"
+      ],
+      "featured": true,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Featured",
+        "Best Seller",
+        "-14%"
+      ],
+      "relatedProductIds": [
+        "product-1",
+        "product-28",
+        "product-13"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-1",
+        "product-28"
+      ]
+    },
+    {
+      "id": "product-28",
+      "brandId": "brand-8",
+      "categoryIds": [
+        "category-2",
+        "category-4",
+        "category-12"
+      ],
+      "name": "Scandal Eau de Parfum",
+      "slug": "jean-paul-gaultier-scandal-eau-de-parfum",
+      "description": "Honeyed gardenia and outrageous patchouli — scandal in a bottle.",
+      "shortDescription": "Honey gardenia patchouli.",
+      "price": 135,
+      "oldPrice": 155,
+      "currency": "USD",
+      "discount": 13,
+      "rating": 4.6,
+      "reviewsCount": 567,
+      "stock": 24,
+      "sku": "JPG-SCA-E28",
+      "gender": "women",
+      "size": "80ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-28-1",
+          "size": "30ml",
+          "price": 80,
+          "oldPrice": 94,
+          "stock": 14,
+          "sku": "JPG-SCA-E28-30"
+        },
+        {
+          "id": "variant-28-2",
+          "size": "80ml",
+          "price": 135,
+          "oldPrice": 159,
+          "stock": 24,
+          "sku": "JPG-SCA-E28-80"
+        }
+      ],
+      "fragrance": {
+        "family": "Oriental",
+        "occasion": [
+          "Daily",
+          "Office"
+        ],
+        "season": [
+          "Spring",
+          "Summer"
+        ],
+        "longevity": "6-8 hours",
+        "sillage": "Moderate"
+      },
+      "notes": {
+        "top": [
+          "Blood Orange",
+          "Gardenia"
+        ],
+        "middle": [
+          "Honey",
+          "Patchouli"
+        ],
+        "base": [
+          "Caramel",
+          "Licorice"
+        ]
+      },
+      "features": [
+        "Premium glass bottle",
+        "Gift-ready packaging",
+        "Luxury niche craftsmanship"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1590156546946-ce55a12a6a5d?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1595425959632-34f2822322ce?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": false,
+      "badges": [
+        "-13%"
+      ],
+      "relatedProductIds": [
+        "product-27",
+        "product-3",
+        "product-2"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-27",
+        "product-3"
+      ]
+    },
+    {
+      "id": "product-29",
+      "brandId": "brand-8",
+      "categoryIds": [
+        "category-2",
+        "category-4",
+        "category-10",
+        "category-7",
+        "category-6"
+      ],
+      "name": "Gaultier Divine Eau de Parfum",
+      "slug": "gaultier-divine-eau-de-parfum",
+      "description": "Solar white flowers and salty caramel meringue — divinely addicting.",
+      "shortDescription": "Solar meringue and lily.",
+      "price": 142,
+      "oldPrice": 142,
+      "currency": "USD",
+      "discount": 0,
+      "rating": 4.7,
+      "reviewsCount": 298,
+      "stock": 18,
+      "sku": "JPG-DIV-E29",
+      "gender": "women",
+      "size": "100ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-29-1",
+          "size": "100ml",
+          "price": 142,
+          "oldPrice": 142,
+          "stock": 18,
+          "sku": "JPG-DIV-E29-100"
+        },
+        {
+          "id": "variant-29-2",
+          "size": "200ml",
+          "price": 197,
+          "oldPrice": 197,
+          "stock": 10,
+          "sku": "JPG-DIV-E29-200"
+        }
+      ],
+      "fragrance": {
+        "family": "Oriental Floral",
+        "occasion": [
+          "Evening",
+          "Date"
+        ],
+        "season": [
+          "Autumn",
+          "Winter"
+        ],
+        "longevity": "8-10 hours",
+        "sillage": "Strong"
+      },
+      "notes": {
+        "top": [
+          "Bergamot",
+          "Calypso Accord"
+        ],
+        "middle": [
+          "White Flowers",
+          "Lily",
+          "Jasmine"
+        ],
+        "base": [
+          "Meringue",
+          "Patchouli"
+        ]
+      },
+      "features": [
+        "Long lasting 8-10 hours",
+        "Suitable for evening wear",
+        "Ideal for daily use"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1613521140785-e85e427f8002?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": true,
+      "badges": [
+        "New"
+      ],
+      "relatedProductIds": [
+        "product-27",
+        "product-28",
+        "product-8"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-27",
+        "product-28"
+      ]
+    },
+    {
+      "id": "product-30",
+      "brandId": "brand-9",
+      "categoryIds": [
+        "category-1",
+        "category-4",
+        "category-11",
+        "category-9"
+      ],
+      "name": "Eros Eau de Parfum",
+      "slug": "versace-eros-eau-de-parfum",
+      "description": "A powerful fresh-woody tribute to Greek passion and strength.",
+      "shortDescription": "Mint vanilla power.",
+      "price": 112,
+      "oldPrice": 132,
+      "currency": "USD",
+      "discount": 15,
+      "rating": 4.7,
+      "reviewsCount": 1654,
+      "stock": 52,
+      "sku": "VER-ERO-E30",
+      "gender": "men",
+      "size": "100ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-30-1",
+          "size": "30ml",
+          "price": 52,
+          "oldPrice": 61,
+          "stock": 40,
+          "sku": "VER-ERO-E30-30"
+        },
+        {
+          "id": "variant-30-2",
+          "size": "60ml",
+          "price": 87,
+          "oldPrice": 103,
+          "stock": 47,
+          "sku": "VER-ERO-E30-60"
+        },
+        {
+          "id": "variant-30-3",
+          "size": "100ml",
+          "price": 112,
+          "oldPrice": 132,
+          "stock": 52,
+          "sku": "VER-ERO-E30-100"
+        }
+      ],
+      "fragrance": {
+        "family": "Woody Fresh",
+        "occasion": [
+          "Daily",
+          "Evening",
+          "Formal"
+        ],
+        "season": [
+          "Autumn",
+          "Winter",
+          "Spring"
+        ],
+        "longevity": "10-12 hours",
+        "sillage": "Soft"
+      },
+      "notes": {
+        "top": [
+          "Mint",
+          "Green Apple",
+          "Lemon"
+        ],
+        "middle": [
+          "Tonka Bean",
+          "Geranium"
+        ],
+        "base": [
+          "Vanilla",
+          "Oakmoss",
+          "Cedar"
+        ]
+      },
+      "features": [
+        "Suitable for evening wear",
+        "Refillable bottle",
+        "Premium glass bottle"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1595425959632-34f2822322ce?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1594033197-955a7a65a105?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Best Seller",
+        "-15%"
+      ],
+      "relatedProductIds": [
+        "product-1",
+        "product-31",
+        "product-4"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-1",
+        "product-31"
+      ]
+    },
+    {
+      "id": "product-31",
+      "brandId": "brand-9",
+      "categoryIds": [
+        "category-2",
+        "category-5",
+        "category-10",
+        "category-11"
+      ],
+      "name": "Bright Crystal Eau de Toilette",
+      "slug": "versace-bright-crystal-eau-de-toilette",
+      "description": "A luminescent floral of peony, magnolia and crystalline musk.",
+      "shortDescription": "Luminescent peony musk.",
+      "price": 108,
+      "oldPrice": 108,
+      "currency": "USD",
+      "discount": 0,
+      "rating": 4.5,
+      "reviewsCount": 987,
+      "stock": 34,
+      "sku": "VER-BRI-E31",
+      "gender": "women",
+      "size": "90ml",
+      "concentration": "Eau de Toilette",
+      "variants": [
+        {
+          "id": "variant-31-1",
+          "size": "50ml",
+          "price": 78,
+          "oldPrice": 78,
+          "stock": 26,
+          "sku": "VER-BRI-E31-50"
+        },
+        {
+          "id": "variant-31-2",
+          "size": "90ml",
+          "price": 108,
+          "oldPrice": 108,
+          "stock": 34,
+          "sku": "VER-BRI-E31-90"
+        }
+      ],
+      "fragrance": {
+        "family": "Floral Fruity",
+        "occasion": [
+          "Party",
+          "Evening"
+        ],
+        "season": [
+          "Spring",
+          "Summer",
+          "Autumn"
+        ],
+        "longevity": "12+ hours",
+        "sillage": "Enormous"
+      },
+      "notes": {
+        "top": [
+          "Pomegranate",
+          "Yuzu",
+          "Iced Accord"
+        ],
+        "middle": [
+          "Peony",
+          "Lotus",
+          "Magnolia"
+        ],
+        "base": [
+          "Mahogany",
+          "Musk",
+          "Acajou Wood"
+        ]
+      },
+      "features": [
+        "Ideal for daily use",
+        "Refillable bottle",
+        "Suitable for evening wear"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1595425959632-34f2822322ce?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1613521140785-e85e427f8002?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1588402323657-f1a3aa1e8819?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": false,
+      "badges": [],
+      "relatedProductIds": [
+        "product-33",
+        "product-7",
+        "product-32"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-33",
+        "product-7"
+      ]
+    },
+    {
+      "id": "product-32",
+      "brandId": "brand-9",
+      "categoryIds": [
+        "category-1",
+        "category-5",
+        "category-11",
+        "category-9"
+      ],
+      "name": "Dylan Blue Pour Homme",
+      "slug": "versace-dylan-blue-pour-homme",
+      "description": "A Mediterranean sea breeze with violet leaf and smoky incense depths.",
+      "shortDescription": "Violet incense sea breeze.",
+      "price": 98,
+      "oldPrice": 118,
+      "currency": "USD",
+      "discount": 17,
+      "rating": 4.6,
+      "reviewsCount": 876,
+      "stock": 44,
+      "sku": "VER-DYL-E32",
+      "gender": "men",
+      "size": "100ml",
+      "concentration": "Eau de Toilette",
+      "variants": [
+        {
+          "id": "variant-32-1",
+          "size": "100ml",
+          "price": 98,
+          "oldPrice": 116,
+          "stock": 44,
+          "sku": "VER-DYL-E32-100"
+        },
+        {
+          "id": "variant-32-2",
+          "size": "200ml",
+          "price": 153,
+          "oldPrice": 181,
+          "stock": 10,
+          "sku": "VER-DYL-E32-200"
+        }
+      ],
+      "fragrance": {
+        "family": "Woody Aromatic",
+        "occasion": [
+          "Daily",
+          "Office"
+        ],
+        "season": [
+          "Spring",
+          "Summer"
+        ],
+        "longevity": "6-8 hours",
+        "sillage": "Moderate"
+      },
+      "notes": {
+        "top": [
+          "Bergamot",
+          "Grapefruit",
+          "Water Notes"
+        ],
+        "middle": [
+          "Violet Leaf",
+          "Patchouli"
+        ],
+        "base": [
+          "Incense",
+          "Mineral Musk"
+        ]
+      },
+      "features": [
+        "Premium glass bottle",
+        "Travel-friendly size",
+        "Gift-ready packaging"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1613521140785-e85e427f8002?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1594033197-955a7a65a105?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": false,
+      "badges": [
+        "-17%"
+      ],
+      "relatedProductIds": [
+        "product-31",
+        "product-30",
+        "product-1"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-31",
+        "product-30"
+      ]
+    },
+    {
+      "id": "product-33",
+      "brandId": "brand-9",
+      "categoryIds": [
+        "category-2",
+        "category-4",
+        "category-12"
+      ],
+      "name": "Crystal Noir Eau de Parfum",
+      "slug": "versace-crystal-noir-eau-de-parfum",
+      "description": "A mysterious gardenia and spice noir — sensual and ultra-feminine.",
+      "shortDescription": "Mysterious peony amber.",
+      "price": 122,
+      "oldPrice": 142,
+      "currency": "USD",
+      "discount": 14,
+      "rating": 4.6,
+      "reviewsCount": 423,
+      "stock": 21,
+      "sku": "VER-CRY-E33",
+      "gender": "women",
+      "size": "90ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-33-1",
+          "size": "50ml",
+          "price": 92,
+          "oldPrice": 109,
+          "stock": 13,
+          "sku": "VER-CRY-E33-50"
+        },
+        {
+          "id": "variant-33-2",
+          "size": "90ml",
+          "price": 122,
+          "oldPrice": 144,
+          "stock": 21,
+          "sku": "VER-CRY-E33-90"
+        }
+      ],
+      "fragrance": {
+        "family": "Oriental Floral",
+        "occasion": [
+          "Evening",
+          "Date"
+        ],
+        "season": [
+          "Autumn",
+          "Winter"
+        ],
+        "longevity": "8-10 hours",
+        "sillage": "Strong"
+      },
+      "notes": {
+        "top": [
+          "Ginger",
+          "Cardamom",
+          "Pepper"
+        ],
+        "middle": [
+          "Gardenia",
+          "Peony",
+          "Orange Blossom"
+        ],
+        "base": [
+          "Sandalwood",
+          "Musk",
+          "Amber"
+        ]
+      },
+      "features": [
+        "Travel-friendly size",
+        "Premium glass bottle",
+        "Gift-ready packaging"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1594033197-955a7a65a105?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1588402323657-f1a3aa1e8819?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": false,
+      "badges": [
+        "-14%"
+      ],
+      "relatedProductIds": [
+        "product-32",
+        "product-32",
+        "product-3"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-32",
+        "product-32"
+      ]
+    },
+    {
+      "id": "product-34",
+      "brandId": "brand-10",
+      "categoryIds": [
+        "category-3",
+        "category-4",
+        "category-12",
+        "category-6"
+      ],
+      "name": "Baccarat Rouge 540 Eau de Parfum",
+      "slug": "maison-francis-kurkdjian-baccarat-rouge-540-eau-de-parfum",
+      "description": "A luminous crystal amber and saffron alchemy — the world's most coveted scent.",
+      "shortDescription": "Saffron amber alchemy.",
+      "price": 420,
+      "oldPrice": 450,
+      "currency": "USD",
+      "discount": 7,
+      "rating": 4.9,
+      "reviewsCount": 1345,
+      "stock": 9,
+      "sku": "MFK-BAC-E34",
+      "gender": "unisex",
+      "size": "70ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-34-1",
+          "size": "35ml",
+          "price": 310,
+          "oldPrice": 366,
+          "stock": 5,
+          "sku": "MFK-BAC-E34-35"
+        },
+        {
+          "id": "variant-34-2",
+          "size": "70ml",
+          "price": 420,
+          "oldPrice": 496,
+          "stock": 9,
+          "sku": "MFK-BAC-E34-70"
+        },
+        {
+          "id": "variant-34-3",
+          "size": "200ml",
+          "price": 600,
+          "oldPrice": 708,
+          "stock": 6,
+          "sku": "MFK-BAC-E34-200"
+        }
+      ],
+      "fragrance": {
+        "family": "Oriental Woody",
+        "occasion": [
+          "Daily",
+          "Evening",
+          "Formal"
+        ],
+        "season": [
+          "Autumn",
+          "Winter",
+          "Spring"
+        ],
+        "longevity": "10-12 hours",
+        "sillage": "Soft"
+      },
+      "notes": {
+        "top": [
+          "Saffron",
+          "Jasmine"
+        ],
+        "middle": [
+          "Amberwood",
+          "Ambergris"
+        ],
+        "base": [
+          "Fir Resin",
+          "Cedar"
+        ]
+      },
+      "features": [
+        "Long lasting 8-10 hours",
+        "Gift-ready packaging",
+        "Ideal for daily use"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1588402323657-f1a3aa1e8819?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&h=800&fit=crop"
+      ],
+      "featured": true,
+      "bestSeller": true,
+      "newArrival": false,
+      "badges": [
+        "Featured",
+        "Best Seller",
+        "-7%"
+      ],
+      "relatedProductIds": [
+        "product-12",
+        "product-10",
+        "product-9"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-12",
+        "product-10"
+      ]
+    },
+    {
+      "id": "product-35",
+      "brandId": "brand-10",
+      "categoryIds": [
+        "category-3",
+        "category-4",
+        "category-9",
+        "category-7",
+        "category-6"
+      ],
+      "name": "Gentle Fluidity Gold Eau de Parfum",
+      "slug": "maison-francis-kurkdjian-gentle-fluidity-gold-eau-de-parfum",
+      "description": "Juniper and whisky duality with addictive vanilla amber warmth.",
+      "shortDescription": "Juniper whisky amber.",
+      "price": 285,
+      "oldPrice": 285,
+      "currency": "USD",
+      "discount": 0,
+      "rating": 4.6,
+      "reviewsCount": 234,
+      "stock": 14,
+      "sku": "MFK-GEN-E35",
+      "gender": "unisex",
+      "size": "70ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-35-1",
+          "size": "35ml",
+          "price": 175,
+          "oldPrice": 175,
+          "stock": 10,
+          "sku": "MFK-GEN-E35-35"
+        },
+        {
+          "id": "variant-35-2",
+          "size": "70ml",
+          "price": 285,
+          "oldPrice": 285,
+          "stock": 14,
+          "sku": "MFK-GEN-E35-70"
+        },
+        {
+          "id": "variant-35-3",
+          "size": "200ml",
+          "price": 465,
+          "oldPrice": 465,
+          "stock": 6,
+          "sku": "MFK-GEN-E35-200"
+        }
+      ],
+      "fragrance": {
+        "family": "Woody Aromatic",
+        "occasion": [
+          "Party",
+          "Evening"
+        ],
+        "season": [
+          "Spring",
+          "Summer",
+          "Autumn"
+        ],
+        "longevity": "12+ hours",
+        "sillage": "Enormous"
+      },
+      "notes": {
+        "top": [
+          "Juniper Berry",
+          "Bergamot"
+        ],
+        "middle": [
+          "Whisky",
+          "Nutmeg"
+        ],
+        "base": [
+          "Amber",
+          "Musk",
+          "Vanilla"
+        ]
+      },
+      "features": [
+        "Long lasting 8-10 hours",
+        "Strong sillage",
+        "Gift-ready packaging"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": true,
+      "badges": [
+        "New"
+      ],
+      "relatedProductIds": [
+        "product-12",
+        "product-34",
+        "product-36"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-12",
+        "product-34"
+      ]
+    },
+    {
+      "id": "product-36",
+      "brandId": "brand-10",
+      "categoryIds": [
+        "category-3",
+        "category-4",
+        "category-12",
+        "category-6"
+      ],
+      "name": "Oud Satin Mood",
+      "slug": "maison-francis-kurkdjian-oud-satin-mood",
+      "description": "A satiny veil of roses and velvety oud in golden light.",
+      "shortDescription": "Velvety rose and oud.",
+      "price": 310,
+      "oldPrice": 340,
+      "currency": "USD",
+      "discount": 9,
+      "rating": 4.7,
+      "reviewsCount": 312,
+      "stock": 11,
+      "sku": "MFK-OUD-E36",
+      "gender": "unisex",
+      "size": "70ml",
+      "concentration": "Eau de Parfum",
+      "variants": [
+        {
+          "id": "variant-36-1",
+          "size": "35ml",
+          "price": 200,
+          "oldPrice": 236,
+          "stock": 7,
+          "sku": "MFK-OUD-E36-35"
+        },
+        {
+          "id": "variant-36-2",
+          "size": "70ml",
+          "price": 310,
+          "oldPrice": 366,
+          "stock": 11,
+          "sku": "MFK-OUD-E36-70"
+        },
+        {
+          "id": "variant-36-3",
+          "size": "200ml",
+          "price": 490,
+          "oldPrice": 578,
+          "stock": 6,
+          "sku": "MFK-OUD-E36-200"
+        }
+      ],
+      "fragrance": {
+        "family": "Oriental",
+        "occasion": [
+          "Daily",
+          "Office"
+        ],
+        "season": [
+          "Spring",
+          "Summer"
+        ],
+        "longevity": "6-8 hours",
+        "sillage": "Moderate"
+      },
+      "notes": {
+        "top": [
+          "Violet",
+          "Agarwood"
+        ],
+        "middle": [
+          "Rose",
+          "Turkish Rose"
+        ],
+        "base": [
+          "Vanilla",
+          "Benzoin"
+        ]
+      },
+      "features": [
+        "Strong sillage",
+        "Refillable bottle",
+        "Long lasting 8-10 hours"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800&h=800&fit=crop"
+      ],
+      "featured": false,
+      "bestSeller": false,
+      "newArrival": false,
+      "badges": [
+        "-9%"
+      ],
+      "relatedProductIds": [
+        "product-34",
+        "product-35",
+        "product-35"
+      ],
+      "frequentlyBoughtTogether": [
+        "product-34",
+        "product-35"
+      ]
     }
   ],
   "cart": [
     {
-      "id": "1",
-      "userId": "1",
+      "id": "cart-1",
+      "userId": "user-1",
       "items": [
         {
-          "productId": "14",
-          "title": "Sony PlayStation 5",
-          "price": 499,
-          "quantity": 1,
-          "image": "https://placehold.co/600x600?text=PS5"
+          "productId": "product-1",
+          "variantId": "variant-1-2",
+          "quantity": 2,
+          "unitPrice": 145,
+          "totalPrice": 290
         },
         {
-          "productId": "18",
-          "title": "Nike Air Force 1",
-          "price": 110,
-          "quantity": 2,
-          "image": "https://placehold.co/600x600?text=Air+Force+1"
+          "productId": "product-9",
+          "variantId": "variant-9-2",
+          "quantity": 1,
+          "unitPrice": 395,
+          "totalPrice": 395
         }
       ],
-      "total": 719,
-      "updatedAt": "2024-07-12T18:00:00Z"
+      "subtotal": 685,
+      "shipping": 0,
+      "discount": 15,
+      "total": 670
     },
     {
-      "id": "2",
-      "userId": "2",
+      "id": "cart-2",
+      "userId": "user-2",
       "items": [
         {
-          "productId": "12",
-          "title": "Apple iPad Pro 12.9\"",
-          "price": 1099,
+          "productId": "product-5",
+          "variantId": "variant-5-2",
           "quantity": 1,
-          "image": "https://placehold.co/600x600?text=iPad+Pro"
+          "unitPrice": 203,
+          "totalPrice": 203
         }
       ],
-      "total": 1099,
-      "updatedAt": "2024-07-12T19:30:00Z"
+      "subtotal": 203,
+      "shipping": 0,
+      "discount": 0,
+      "total": 203
+    },
+    {
+      "id": "cart-3",
+      "userId": "user-3",
+      "items": [
+        {
+          "productId": "product-16",
+          "variantId": "variant-16-2",
+          "quantity": 1,
+          "unitPrice": 142,
+          "totalPrice": 142
+        },
+        {
+          "productId": "product-20",
+          "variantId": "variant-20-2",
+          "quantity": 1,
+          "unitPrice": 155,
+          "totalPrice": 155
+        },
+        {
+          "productId": "product-30",
+          "variantId": "variant-30-2",
+          "quantity": 2,
+          "unitPrice": 87,
+          "totalPrice": 174
+        }
+      ],
+      "subtotal": 471,
+      "shipping": 0,
+      "discount": 20,
+      "total": 451
+    },
+    {
+      "id": "cart-4",
+      "userId": "user-4",
+      "items": [],
+      "subtotal": 0,
+      "shipping": 0,
+      "discount": 0,
+      "total": 0
     }
   ],
   "wishlist": [
     {
-      "id": "1",
-      "userId": "1",
-      "items": [
-        {
-          "productId": "8",
-          "addedAt": "2024-07-01T10:00:00Z"
-        },
-        {
-          "productId": "19",
-          "addedAt": "2024-07-05T14:00:00Z"
-        },
-        {
-          "productId": "6",
-          "addedAt": "2024-07-10T09:00:00Z"
-        }
+      "id": "wishlist-1",
+      "userId": "user-1",
+      "productIds": [
+        "product-1",
+        "product-9",
+        "product-34"
       ]
     },
     {
-      "id": "2",
-      "userId": "2",
+      "id": "wishlist-2",
+      "userId": "user-2",
+      "productIds": [
+        "product-16",
+        "product-20",
+        "product-34",
+        "product-17"
+      ]
+    },
+    {
+      "id": "wishlist-3",
+      "userId": "user-3",
+      "productIds": [
+        "product-5",
+        "product-23",
+        "product-30"
+      ]
+    },
+    {
+      "id": "wishlist-4",
+      "userId": "user-4",
+      "productIds": []
+    }
+  ],
+  "orders": [
+    {
+      "id": "order-1",
+      "userId": "user-1",
       "items": [
         {
-          "productId": "3",
-          "addedAt": "2024-06-20T12:00:00Z"
+          "productId": "product-1",
+          "variantId": "variant-1-2",
+          "name": "Sauvage Eau de Parfum",
+          "quantity": 1,
+          "unitPrice": 145,
+          "totalPrice": 145
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "John Doe",
+        "phone": "+201000000111",
+        "country": "Egypt",
+        "city": "Cairo",
+        "address": "12 Talaat Harb Street",
+        "postalCode": "11511"
+      },
+      "billingAddress": {
+        "fullName": "John Doe",
+        "phone": "+201000000111",
+        "country": "Egypt",
+        "city": "Cairo",
+        "address": "12 Talaat Harb Street",
+        "postalCode": "11511"
+      },
+      "shippingMethod": "standard",
+      "paymentMethod": "cash_on_delivery",
+      "paymentStatus": "pending",
+      "orderStatus": "processing",
+      "subtotal": 145,
+      "discount": 10,
+      "shipping": 0,
+      "tax": 0,
+      "total": 135,
+      "couponCode": "WELCOME10",
+      "createdAt": "2026-09-10T10:00:00Z"
+    },
+    {
+      "id": "order-2",
+      "userId": "user-2",
+      "items": [
+        {
+          "productId": "product-16",
+          "variantId": "variant-16-2",
+          "name": "Libre Eau de Parfum",
+          "quantity": 1,
+          "unitPrice": 142,
+          "totalPrice": 142
         },
         {
-          "productId": "17",
-          "addedAt": "2024-07-08T16:00:00Z"
+          "productId": "product-20",
+          "variantId": "variant-20-2",
+          "name": "Good Girl Eau de Parfum",
+          "quantity": 1,
+          "unitPrice": 155,
+          "totalPrice": 155
         }
-      ]
+      ],
+      "shippingAddress": {
+        "fullName": "Sarah Ahmed",
+        "phone": "+201000000222",
+        "country": "Egypt",
+        "city": "Mansoura",
+        "address": "45 Nile Corniche",
+        "postalCode": "35511"
+      },
+      "billingAddress": {
+        "fullName": "Sarah Ahmed",
+        "phone": "+201000000222",
+        "country": "Egypt",
+        "city": "Mansoura",
+        "address": "45 Nile Corniche",
+        "postalCode": "35511"
+      },
+      "shippingMethod": "express",
+      "paymentMethod": "credit_card",
+      "paymentStatus": "paid",
+      "orderStatus": "shipped",
+      "subtotal": 297,
+      "discount": 0,
+      "shipping": 15,
+      "tax": 0,
+      "total": 312,
+      "couponCode": null,
+      "createdAt": "2026-09-08T14:30:00Z"
+    },
+    {
+      "id": "order-3",
+      "userId": "user-1",
+      "items": [
+        {
+          "productId": "product-5",
+          "variantId": "variant-5-2",
+          "name": "Bleu de Chanel Eau de Parfum",
+          "quantity": 2,
+          "unitPrice": 148,
+          "totalPrice": 296
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "John Doe",
+        "phone": "+201000000111",
+        "country": "Egypt",
+        "city": "Cairo",
+        "address": "12 Talaat Harb Street",
+        "postalCode": "11511"
+      },
+      "billingAddress": {
+        "fullName": "John Doe",
+        "phone": "+201000000111",
+        "country": "Egypt",
+        "city": "Cairo",
+        "address": "12 Talaat Harb Street",
+        "postalCode": "11511"
+      },
+      "shippingMethod": "standard",
+      "paymentMethod": "credit_card",
+      "paymentStatus": "paid",
+      "orderStatus": "delivered",
+      "subtotal": 296,
+      "discount": 29,
+      "shipping": 0,
+      "tax": 0,
+      "total": 267,
+      "couponCode": "LUXURY20",
+      "createdAt": "2026-08-15T09:00:00Z"
+    },
+    {
+      "id": "order-4",
+      "userId": "user-3",
+      "items": [
+        {
+          "productId": "product-34",
+          "variantId": "variant-34-2",
+          "name": "Baccarat Rouge 540 Eau de Parfum",
+          "quantity": 1,
+          "unitPrice": 420,
+          "totalPrice": 420
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Michael Smith",
+        "phone": "+201000000333",
+        "country": "Egypt",
+        "city": "Giza",
+        "address": "88 Smart Village",
+        "postalCode": "12573"
+      },
+      "billingAddress": {
+        "fullName": "Michael Smith",
+        "phone": "+201000000333",
+        "country": "Egypt",
+        "city": "Giza",
+        "address": "88 Smart Village",
+        "postalCode": "12573"
+      },
+      "shippingMethod": "express",
+      "paymentMethod": "credit_card",
+      "paymentStatus": "failed",
+      "orderStatus": "cancelled",
+      "subtotal": 420,
+      "discount": 0,
+      "shipping": 15,
+      "tax": 0,
+      "total": 435,
+      "couponCode": null,
+      "createdAt": "2026-09-01T11:00:00Z"
+    },
+    {
+      "id": "order-5",
+      "userId": "user-4",
+      "items": [
+        {
+          "productId": "product-23",
+          "variantId": "variant-23-2",
+          "name": "1 Million Eau de Toilette",
+          "quantity": 1,
+          "unitPrice": 110,
+          "totalPrice": 110
+        },
+        {
+          "productId": "product-8",
+          "variantId": "variant-8-2",
+          "name": "Chance Eau Tendre Eau de Parfum",
+          "quantity": 1,
+          "unitPrice": 142,
+          "totalPrice": 142
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Emma Laurent",
+        "phone": "+201000000444",
+        "country": "Egypt",
+        "city": "Cairo",
+        "address": "22 Zamalek Island",
+        "postalCode": "11211"
+      },
+      "billingAddress": {
+        "fullName": "Emma Laurent",
+        "phone": "+201000000444",
+        "country": "Egypt",
+        "city": "Cairo",
+        "address": "22 Zamalek Island",
+        "postalCode": "11211"
+      },
+      "shippingMethod": "standard",
+      "paymentMethod": "paypal",
+      "paymentStatus": "paid",
+      "orderStatus": "processing",
+      "subtotal": 252,
+      "discount": 0,
+      "shipping": 0,
+      "tax": 0,
+      "total": 252,
+      "couponCode": null,
+      "createdAt": "2026-09-12T16:45:00Z"
+    },
+    {
+      "id": "order-6",
+      "userId": "user-2",
+      "items": [
+        {
+          "productId": "product-9",
+          "variantId": "variant-9-2",
+          "name": "Lost Cherry Eau de Parfum",
+          "quantity": 1,
+          "unitPrice": 395,
+          "totalPrice": 395
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Sarah Ahmed",
+        "phone": "+201000000222",
+        "country": "Egypt",
+        "city": "Mansoura",
+        "address": "45 Nile Corniche",
+        "postalCode": "35511"
+      },
+      "billingAddress": {
+        "fullName": "Sarah Ahmed",
+        "phone": "+201000000222",
+        "country": "Egypt",
+        "city": "Mansoura",
+        "address": "45 Nile Corniche",
+        "postalCode": "35511"
+      },
+      "shippingMethod": "standard",
+      "paymentMethod": "credit_card",
+      "paymentStatus": "refunded",
+      "orderStatus": "cancelled",
+      "subtotal": 395,
+      "discount": 0,
+      "shipping": 0,
+      "tax": 0,
+      "total": 395,
+      "couponCode": null,
+      "createdAt": "2026-08-20T13:00:00Z"
     }
   ],
   "reviews": [
     {
-      "id": "1",
-      "productId": "1",
-      "userId": "1",
-      "userName": "Ahmed Hassan",
+      "id": "review-1",
+      "productId": "product-1",
+      "userId": "user-3",
+      "userName": "Michael Smith",
       "rating": 5,
-      "title": "Best iPhone yet",
-      "comment": "The titanium design is amazing and the camera is incredible. Battery life is much better than my old iPhone.",
-      "createdAt": "2024-07-01T10:00:00Z"
+      "title": "Signature scent",
+      "comment": "This has become my signature. Everyone asks what I'm wearing.",
+      "verifiedPurchase": false,
+      "helpful": 24,
+      "createdAt": "2026-08-15T15:53:00Z"
     },
     {
-      "id": "2",
-      "productId": "1",
-      "userId": "2",
-      "userName": "Sara Mohamed",
+      "id": "review-2",
+      "productId": "product-1",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "rating": 5,
+      "title": "Amazing fragrance",
+      "comment": "Very elegant and long lasting. Compliments all day!",
+      "verifiedPurchase": true,
+      "helpful": 14,
+      "createdAt": "2026-08-13T14:44:00Z"
+    },
+    {
+      "id": "review-3",
+      "productId": "product-1",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "rating": 5,
+      "title": "Amazing fragrance",
+      "comment": "Very elegant and long lasting. Compliments all day!",
+      "verifiedPurchase": true,
+      "helpful": 2,
+      "createdAt": "2026-08-21T10:23:00Z"
+    },
+    {
+      "id": "review-4",
+      "productId": "product-2",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "rating": 5,
+      "title": "Absolutely love it",
+      "comment": "One of the best perfumes I have ever bought. Longevity is 10+ hours.",
+      "verifiedPurchase": true,
+      "helpful": 1,
+      "createdAt": "2026-08-13T17:34:00Z"
+    },
+    {
+      "id": "review-5",
+      "productId": "product-2",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
       "rating": 4,
-      "title": "Great phone, pricey",
-      "comment": "Excellent performance and camera. Only downside is the price.",
-      "createdAt": "2024-07-05T14:00:00Z"
+      "title": "Great value",
+      "comment": "Excellent fragrance for the price. Will buy again.",
+      "verifiedPurchase": true,
+      "helpful": 1,
+      "createdAt": "2026-08-10T15:39:00Z"
     },
     {
-      "id": "3",
-      "productId": "6",
-      "userId": "1",
-      "userName": "Ahmed Hassan",
+      "id": "review-6",
+      "productId": "product-3",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
       "rating": 5,
-      "title": "Perfect noise cancelling",
-      "comment": "Best headphones I've ever owned. Sound quality is phenomenal.",
-      "createdAt": "2024-06-20T08:00:00Z"
+      "title": "Amazing fragrance",
+      "comment": "Very elegant and long lasting. Compliments all day!",
+      "verifiedPurchase": true,
+      "helpful": 39,
+      "createdAt": "2026-08-19T11:24:00Z"
     },
     {
-      "id": "4",
-      "productId": "4",
-      "userId": "2",
-      "userName": "Sara Mohamed",
+      "id": "review-7",
+      "productId": "product-3",
+      "userId": "user-1",
+      "userName": "John Doe",
       "rating": 4,
-      "title": "Comfortable shoes",
-      "comment": "Very comfortable for daily wear. The air unit is really nice.",
-      "createdAt": "2024-06-25T11:00:00Z"
+      "title": "Great scent",
+      "comment": "Love the smell but projection could be stronger. Still very good.",
+      "verifiedPurchase": true,
+      "helpful": 31,
+      "createdAt": "2026-08-23T18:14:00Z"
     },
     {
-      "id": "5",
-      "productId": "3",
-      "userId": "2",
-      "userName": "Sara Mohamed",
+      "id": "review-8",
+      "productId": "product-4",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "rating": 3,
+      "title": "Decent",
+      "comment": "Smells good but not as long lasting as expected. 4-5 hours.",
+      "verifiedPurchase": false,
+      "helpful": 5,
+      "createdAt": "2026-08-10T13:34:00Z"
+    },
+    {
+      "id": "review-9",
+      "productId": "product-4",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "rating": 2,
+      "title": "Not for me",
+      "comment": "Too sweet for my taste, but quality is good.",
+      "verifiedPurchase": false,
+      "helpful": 33,
+      "createdAt": "2026-08-27T12:45:00Z"
+    },
+    {
+      "id": "review-10",
+      "productId": "product-4",
+      "userId": "user-3",
+      "userName": "Michael Smith",
       "rating": 5,
-      "title": "Perfect laptop",
-      "comment": "Incredibly thin and light. Performance is outstanding for my workflow.",
-      "createdAt": "2024-07-02T15:00:00Z"
+      "title": "Absolutely love it",
+      "comment": "One of the best perfumes I have ever bought. Longevity is 10+ hours.",
+      "verifiedPurchase": true,
+      "helpful": 5,
+      "createdAt": "2026-08-28T15:55:00Z"
     },
     {
-      "id": "6",
-      "productId": "8",
-      "userId": "1",
-      "userName": "Ahmed Hassan",
-      "rating": 5,
-      "title": "Revolutionary vacuum",
-      "comment": "The laser dust detection is a game changer. Picks up everything.",
-      "createdAt": "2024-07-08T09:00:00Z"
+      "id": "review-11",
+      "productId": "product-4",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "rating": 3,
+      "title": "Decent",
+      "comment": "Smells good but not as long lasting as expected. 4-5 hours.",
+      "verifiedPurchase": true,
+      "helpful": 27,
+      "createdAt": "2026-08-16T16:24:00Z"
     },
     {
-      "id": "7",
-      "productId": "14",
-      "userId": "1",
-      "userName": "Ahmed Hassan",
-      "rating": 5,
-      "title": "Gaming masterpiece",
-      "comment": "The PS5 is everything I hoped for. Fast loading and amazing graphics.",
-      "createdAt": "2024-06-10T20:00:00Z"
-    },
-    {
-      "id": "8",
-      "productId": "5",
-      "userId": "2",
-      "userName": "Sara Mohamed",
+      "id": "review-12",
+      "productId": "product-5",
+      "userId": "user-3",
+      "userName": "Michael Smith",
       "rating": 4,
-      "title": "Great running shoes",
-      "comment": "Very responsive and comfortable for long runs.",
-      "createdAt": "2024-06-18T07:00:00Z"
+      "title": "Great value",
+      "comment": "Excellent fragrance for the price. Will buy again.",
+      "verifiedPurchase": true,
+      "helpful": 40,
+      "createdAt": "2026-08-18T14:24:00Z"
     },
     {
-      "id": "9",
-      "productId": "12",
-      "userId": "2",
-      "userName": "Sara Mohamed",
+      "id": "review-13",
+      "productId": "product-5",
+      "userId": "user-3",
+      "userName": "Michael Smith",
       "rating": 5,
-      "title": "Ultimate tablet",
-      "comment": "Replaced my laptop for most tasks. The M2 chip is incredibly fast.",
-      "createdAt": "2024-07-06T13:00:00Z"
+      "title": "Absolutely love it",
+      "comment": "One of the best perfumes I have ever bought. Longevity is 10+ hours.",
+      "verifiedPurchase": true,
+      "helpful": 36,
+      "createdAt": "2026-08-27T10:33:00Z"
     },
     {
-      "id": "10",
-      "productId": "7",
-      "userId": "1",
-      "userName": "Ahmed Hassan",
+      "id": "review-14",
+      "productId": "product-5",
+      "userId": "user-1",
+      "userName": "John Doe",
       "rating": 4,
-      "title": "Functional and stylish",
-      "comment": "Great storage solution. Easy to assemble and looks good.",
-      "createdAt": "2024-05-15T12:00:00Z"
+      "title": "Great value",
+      "comment": "Excellent fragrance for the price. Will buy again.",
+      "verifiedPurchase": true,
+      "helpful": 8,
+      "createdAt": "2026-08-23T16:21:00Z"
+    },
+    {
+      "id": "review-15",
+      "productId": "product-6",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "rating": 5,
+      "title": "Absolutely love it",
+      "comment": "One of the best perfumes I have ever bought. Longevity is 10+ hours.",
+      "verifiedPurchase": true,
+      "helpful": 9,
+      "createdAt": "2026-08-21T17:26:00Z"
+    },
+    {
+      "id": "review-16",
+      "productId": "product-6",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "rating": 5,
+      "title": "Perfect gift",
+      "comment": "Bought for my wife and she loves it. Beautiful bottle too.",
+      "verifiedPurchase": false,
+      "helpful": 39,
+      "createdAt": "2026-08-17T10:46:00Z"
+    },
+    {
+      "id": "review-17",
+      "productId": "product-6",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "rating": 5,
+      "title": "Signature scent",
+      "comment": "This has become my signature. Everyone asks what I'm wearing.",
+      "verifiedPurchase": false,
+      "helpful": 27,
+      "createdAt": "2026-08-19T11:12:00Z"
+    },
+    {
+      "id": "review-18",
+      "productId": "product-7",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "rating": 5,
+      "title": "Perfect gift",
+      "comment": "Bought for my wife and she loves it. Beautiful bottle too.",
+      "verifiedPurchase": false,
+      "helpful": 15,
+      "createdAt": "2026-08-10T11:59:00Z"
+    },
+    {
+      "id": "review-19",
+      "productId": "product-7",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "rating": 4,
+      "title": "Very nice",
+      "comment": "Beautiful fragrance, versatile for daily and evening.",
+      "verifiedPurchase": false,
+      "helpful": 7,
+      "createdAt": "2026-08-20T12:29:00Z"
+    },
+    {
+      "id": "review-20",
+      "productId": "product-7",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "rating": 5,
+      "title": "Absolutely love it",
+      "comment": "One of the best perfumes I have ever bought. Longevity is 10+ hours.",
+      "verifiedPurchase": true,
+      "helpful": 15,
+      "createdAt": "2026-08-27T12:34:00Z"
+    },
+    {
+      "id": "review-21",
+      "productId": "product-7",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "rating": 4,
+      "title": "Great scent",
+      "comment": "Love the smell but projection could be stronger. Still very good.",
+      "verifiedPurchase": false,
+      "helpful": 14,
+      "createdAt": "2026-08-15T12:43:00Z"
+    },
+    {
+      "id": "review-22",
+      "productId": "product-8",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "rating": 5,
+      "title": "Absolutely love it",
+      "comment": "One of the best perfumes I have ever bought. Longevity is 10+ hours.",
+      "verifiedPurchase": true,
+      "helpful": 5,
+      "createdAt": "2026-08-15T10:38:00Z"
+    },
+    {
+      "id": "review-23",
+      "productId": "product-8",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "rating": 4,
+      "title": "Great scent",
+      "comment": "Love the smell but projection could be stronger. Still very good.",
+      "verifiedPurchase": true,
+      "helpful": 32,
+      "createdAt": "2026-08-27T17:31:00Z"
+    },
+    {
+      "id": "review-24",
+      "productId": "product-9",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "rating": 4,
+      "title": "Great value",
+      "comment": "Excellent fragrance for the price. Will buy again.",
+      "verifiedPurchase": true,
+      "helpful": 41,
+      "createdAt": "2026-08-18T11:40:00Z"
+    },
+    {
+      "id": "review-25",
+      "productId": "product-9",
+      "userId": "user-1",
+      "userName": "John Doe",
+      "rating": 4,
+      "title": "Great value",
+      "comment": "Excellent fragrance for the price. Will buy again.",
+      "verifiedPurchase": true,
+      "helpful": 25,
+      "createdAt": "2026-08-28T14:52:00Z"
+    },
+    {
+      "id": "review-26",
+      "productId": "product-10",
+      "userId": "user-1",
+      "userName": "John Doe",
+      "rating": 5,
+      "title": "Perfect gift",
+      "comment": "Bought for my wife and she loves it. Beautiful bottle too.",
+      "verifiedPurchase": false,
+      "helpful": 7,
+      "createdAt": "2026-08-19T16:48:00Z"
+    },
+    {
+      "id": "review-27",
+      "productId": "product-10",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "rating": 5,
+      "title": "Signature scent",
+      "comment": "This has become my signature. Everyone asks what I'm wearing.",
+      "verifiedPurchase": true,
+      "helpful": 39,
+      "createdAt": "2026-08-21T13:32:00Z"
+    },
+    {
+      "id": "review-28",
+      "productId": "product-10",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "rating": 4,
+      "title": "Great value",
+      "comment": "Excellent fragrance for the price. Will buy again.",
+      "verifiedPurchase": true,
+      "helpful": 43,
+      "createdAt": "2026-08-21T12:52:00Z"
+    },
+    {
+      "id": "review-29",
+      "productId": "product-10",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "rating": 5,
+      "title": "Absolutely love it",
+      "comment": "One of the best perfumes I have ever bought. Longevity is 10+ hours.",
+      "verifiedPurchase": false,
+      "helpful": 3,
+      "createdAt": "2026-08-22T16:57:00Z"
+    },
+    {
+      "id": "review-30",
+      "productId": "product-11",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "rating": 3,
+      "title": "Decent",
+      "comment": "Smells good but not as long lasting as expected. 4-5 hours.",
+      "verifiedPurchase": false,
+      "helpful": 12,
+      "createdAt": "2026-08-12T10:24:00Z"
+    },
+    {
+      "id": "review-31",
+      "productId": "product-11",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "rating": 3,
+      "title": "Decent",
+      "comment": "Smells good but not as long lasting as expected. 4-5 hours.",
+      "verifiedPurchase": true,
+      "helpful": 36,
+      "createdAt": "2026-08-24T11:43:00Z"
+    },
+    {
+      "id": "review-32",
+      "productId": "product-11",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "rating": 4,
+      "title": "Very nice",
+      "comment": "Beautiful fragrance, versatile for daily and evening.",
+      "verifiedPurchase": true,
+      "helpful": 21,
+      "createdAt": "2026-08-18T12:25:00Z"
+    },
+    {
+      "id": "review-33",
+      "productId": "product-11",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "rating": 5,
+      "title": "Absolutely love it",
+      "comment": "One of the best perfumes I have ever bought. Longevity is 10+ hours.",
+      "verifiedPurchase": false,
+      "helpful": 24,
+      "createdAt": "2026-08-20T15:31:00Z"
+    },
+    {
+      "id": "review-34",
+      "productId": "product-12",
+      "userId": "user-1",
+      "userName": "John Doe",
+      "rating": 5,
+      "title": "Amazing fragrance",
+      "comment": "Very elegant and long lasting. Compliments all day!",
+      "verifiedPurchase": true,
+      "helpful": 3,
+      "createdAt": "2026-08-26T13:35:00Z"
+    },
+    {
+      "id": "review-35",
+      "productId": "product-12",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "rating": 5,
+      "title": "Amazing fragrance",
+      "comment": "Very elegant and long lasting. Compliments all day!",
+      "verifiedPurchase": false,
+      "helpful": 17,
+      "createdAt": "2026-08-14T16:38:00Z"
+    },
+    {
+      "id": "review-36",
+      "productId": "product-13",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "rating": 5,
+      "title": "Signature scent",
+      "comment": "This has become my signature. Everyone asks what I'm wearing.",
+      "verifiedPurchase": true,
+      "helpful": 25,
+      "createdAt": "2026-08-25T14:18:00Z"
+    },
+    {
+      "id": "review-37",
+      "productId": "product-13",
+      "userId": "user-1",
+      "userName": "John Doe",
+      "rating": 5,
+      "title": "Amazing fragrance",
+      "comment": "Very elegant and long lasting. Compliments all day!",
+      "verifiedPurchase": false,
+      "helpful": 12,
+      "createdAt": "2026-08-22T16:38:00Z"
+    },
+    {
+      "id": "review-38",
+      "productId": "product-14",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "rating": 5,
+      "title": "Amazing fragrance",
+      "comment": "Very elegant and long lasting. Compliments all day!",
+      "verifiedPurchase": true,
+      "helpful": 13,
+      "createdAt": "2026-08-25T14:20:00Z"
+    },
+    {
+      "id": "review-39",
+      "productId": "product-14",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "rating": 1,
+      "title": "Disappointed",
+      "comment": "Faded within 2 hours. Expected better for this price.",
+      "verifiedPurchase": false,
+      "helpful": 23,
+      "createdAt": "2026-08-26T18:44:00Z"
+    },
+    {
+      "id": "review-40",
+      "productId": "product-14",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "rating": 4,
+      "title": "Very nice",
+      "comment": "Beautiful fragrance, versatile for daily and evening.",
+      "verifiedPurchase": true,
+      "helpful": 22,
+      "createdAt": "2026-08-24T14:44:00Z"
+    },
+    {
+      "id": "review-41",
+      "productId": "product-14",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "rating": 4,
+      "title": "Very nice",
+      "comment": "Beautiful fragrance, versatile for daily and evening.",
+      "verifiedPurchase": true,
+      "helpful": 45,
+      "createdAt": "2026-08-24T12:41:00Z"
+    },
+    {
+      "id": "review-42",
+      "productId": "product-15",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "rating": 4,
+      "title": "Great value",
+      "comment": "Excellent fragrance for the price. Will buy again.",
+      "verifiedPurchase": true,
+      "helpful": 14,
+      "createdAt": "2026-08-26T13:26:00Z"
+    },
+    {
+      "id": "review-43",
+      "productId": "product-15",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "rating": 4,
+      "title": "Very nice",
+      "comment": "Beautiful fragrance, versatile for daily and evening.",
+      "verifiedPurchase": true,
+      "helpful": 39,
+      "createdAt": "2026-08-23T11:24:00Z"
+    },
+    {
+      "id": "review-44",
+      "productId": "product-15",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "rating": 1,
+      "title": "Disappointed",
+      "comment": "Faded within 2 hours. Expected better for this price.",
+      "verifiedPurchase": false,
+      "helpful": 29,
+      "createdAt": "2026-08-24T16:45:00Z"
+    },
+    {
+      "id": "review-45",
+      "productId": "product-15",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "rating": 5,
+      "title": "Absolutely love it",
+      "comment": "One of the best perfumes I have ever bought. Longevity is 10+ hours.",
+      "verifiedPurchase": true,
+      "helpful": 25,
+      "createdAt": "2026-08-18T10:34:00Z"
+    },
+    {
+      "id": "review-46",
+      "productId": "product-16",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "rating": 5,
+      "title": "Absolutely love it",
+      "comment": "One of the best perfumes I have ever bought. Longevity is 10+ hours.",
+      "verifiedPurchase": true,
+      "helpful": 32,
+      "createdAt": "2026-08-19T10:18:00Z"
+    },
+    {
+      "id": "review-47",
+      "productId": "product-16",
+      "userId": "user-1",
+      "userName": "John Doe",
+      "rating": 5,
+      "title": "Amazing fragrance",
+      "comment": "Very elegant and long lasting. Compliments all day!",
+      "verifiedPurchase": true,
+      "helpful": 38,
+      "createdAt": "2026-08-25T16:14:00Z"
+    },
+    {
+      "id": "review-48",
+      "productId": "product-16",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "rating": 5,
+      "title": "Amazing fragrance",
+      "comment": "Very elegant and long lasting. Compliments all day!",
+      "verifiedPurchase": true,
+      "helpful": 12,
+      "createdAt": "2026-08-26T15:55:00Z"
+    },
+    {
+      "id": "review-49",
+      "productId": "product-16",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "rating": 4,
+      "title": "Great value",
+      "comment": "Excellent fragrance for the price. Will buy again.",
+      "verifiedPurchase": false,
+      "helpful": 28,
+      "createdAt": "2026-08-14T14:23:00Z"
+    },
+    {
+      "id": "review-50",
+      "productId": "product-17",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "rating": 5,
+      "title": "Perfect gift",
+      "comment": "Bought for my wife and she loves it. Beautiful bottle too.",
+      "verifiedPurchase": true,
+      "helpful": 27,
+      "createdAt": "2026-08-12T17:44:00Z"
+    },
+    {
+      "id": "review-51",
+      "productId": "product-17",
+      "userId": "user-1",
+      "userName": "John Doe",
+      "rating": 5,
+      "title": "Amazing fragrance",
+      "comment": "Very elegant and long lasting. Compliments all day!",
+      "verifiedPurchase": false,
+      "helpful": 15,
+      "createdAt": "2026-08-14T12:59:00Z"
+    },
+    {
+      "id": "review-52",
+      "productId": "product-18",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "rating": 4,
+      "title": "Great value",
+      "comment": "Excellent fragrance for the price. Will buy again.",
+      "verifiedPurchase": true,
+      "helpful": 1,
+      "createdAt": "2026-08-23T17:28:00Z"
+    },
+    {
+      "id": "review-53",
+      "productId": "product-18",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "rating": 4,
+      "title": "Great scent",
+      "comment": "Love the smell but projection could be stronger. Still very good.",
+      "verifiedPurchase": true,
+      "helpful": 6,
+      "createdAt": "2026-08-11T16:31:00Z"
+    },
+    {
+      "id": "review-54",
+      "productId": "product-18",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "rating": 4,
+      "title": "Great value",
+      "comment": "Excellent fragrance for the price. Will buy again.",
+      "verifiedPurchase": true,
+      "helpful": 43,
+      "createdAt": "2026-08-13T11:37:00Z"
+    }
+  ],
+  "questions": [
+    {
+      "id": "question-1",
+      "productId": "product-1",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "question": "How long does it last on skin?",
+      "answer": "Longevity is around 8-10 hours with moderate to strong sillage.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-18T10:30:00Z",
+      "helpful": 2
+    },
+    {
+      "id": "question-2",
+      "productId": "product-1",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "question": "How is the sillage?",
+      "answer": "Strong projection for the first 2 hours, then close to skin after 6 hours.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-22T10:30:00Z",
+      "helpful": 4
+    },
+    {
+      "id": "question-3",
+      "productId": "product-2",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "question": "What season is it best for?",
+      "answer": "It shines in autumn and winter, but also works in spring evenings.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-15T10:30:00Z",
+      "helpful": 20
+    },
+    {
+      "id": "question-4",
+      "productId": "product-2",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "question": "What season is it best for?",
+      "answer": "It shines in autumn and winter, but also works in spring evenings.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-15T10:30:00Z",
+      "helpful": 6
+    },
+    {
+      "id": "question-5",
+      "productId": "product-3",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "question": "Can I get a smaller size?",
+      "answer": "Yes, we offer 30ml and 50ml travel sizes for this perfume.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-27T10:30:00Z",
+      "helpful": 9
+    },
+    {
+      "id": "question-6",
+      "productId": "product-3",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "question": "How long does it last on skin?",
+      "answer": "Longevity is around 8-10 hours with moderate to strong sillage.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-22T10:30:00Z",
+      "helpful": 3
+    },
+    {
+      "id": "question-7",
+      "productId": "product-4",
+      "userId": "user-1",
+      "userName": "John Doe",
+      "question": "Is this suitable for everyday use?",
+      "answer": "Yes, it works great for daily and office wear, and also evening.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-28T10:30:00Z",
+      "helpful": 4
+    },
+    {
+      "id": "question-8",
+      "productId": "product-4",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "question": "Is this authentic? Do you provide original packaging?",
+      "answer": "Yes, 100% authentic, sealed with cellophane and batch code, with gift-ready packaging.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-23T10:30:00Z",
+      "helpful": 10
+    },
+    {
+      "id": "question-9",
+      "productId": "product-5",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "question": "How long does it last on skin?",
+      "answer": "Longevity is around 8-10 hours with moderate to strong sillage.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-26T10:30:00Z",
+      "helpful": 7
+    },
+    {
+      "id": "question-10",
+      "productId": "product-5",
+      "userId": "user-3",
+      "userName": "Michael Smith",
+      "question": "How long does it last on skin?",
+      "answer": "Longevity is around 8-10 hours with moderate to strong sillage.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-25T10:30:00Z",
+      "helpful": 9
+    },
+    {
+      "id": "question-11",
+      "productId": "product-6",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "question": "Is the bottle refillable?",
+      "answer": "This fragrance comes in a luxury refillable bottle — you can purchase refills.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-15T10:30:00Z",
+      "helpful": 18
+    },
+    {
+      "id": "question-12",
+      "productId": "product-7",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "question": "Is this authentic? Do you provide original packaging?",
+      "answer": "Yes, 100% authentic, sealed with cellophane and batch code, with gift-ready packaging.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-22T10:30:00Z",
+      "helpful": 0
+    },
+    {
+      "id": "question-13",
+      "productId": "product-8",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "question": "Is this suitable for everyday use?",
+      "answer": "Yes, it works great for daily and office wear, and also evening.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-25T10:30:00Z",
+      "helpful": 13
+    },
+    {
+      "id": "question-14",
+      "productId": "product-8",
+      "userId": "user-1",
+      "userName": "John Doe",
+      "question": "Can I get a smaller size?",
+      "answer": "Yes, we offer 30ml and 50ml travel sizes for this perfume.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-23T10:30:00Z",
+      "helpful": 11
+    },
+    {
+      "id": "question-15",
+      "productId": "product-9",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "question": "What season is it best for?",
+      "answer": "It shines in autumn and winter, but also works in spring evenings.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-21T10:30:00Z",
+      "helpful": 12
+    },
+    {
+      "id": "question-16",
+      "productId": "product-10",
+      "userId": "user-1",
+      "userName": "John Doe",
+      "question": "How is the sillage?",
+      "answer": "Strong projection for the first 2 hours, then close to skin after 6 hours.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-24T10:30:00Z",
+      "helpful": 3
+    },
+    {
+      "id": "question-17",
+      "productId": "product-11",
+      "userId": "user-4",
+      "userName": "Emma Laurent",
+      "question": "How is the sillage?",
+      "answer": "Strong projection for the first 2 hours, then close to skin after 6 hours.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-18T10:30:00Z",
+      "helpful": 12
+    },
+    {
+      "id": "question-18",
+      "productId": "product-12",
+      "userId": "user-1",
+      "userName": "John Doe",
+      "question": "Is this authentic? Do you provide original packaging?",
+      "answer": "Yes, 100% authentic, sealed with cellophane and batch code, with gift-ready packaging.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-22T10:30:00Z",
+      "helpful": 10
+    },
+    {
+      "id": "question-19",
+      "productId": "product-12",
+      "userId": "user-2",
+      "userName": "Sarah Ahmed",
+      "question": "Is this authentic? Do you provide original packaging?",
+      "answer": "Yes, 100% authentic, sealed with cellophane and batch code, with gift-ready packaging.",
+      "answeredBy": "store",
+      "createdAt": "2026-08-25T10:30:00Z",
+      "helpful": 2
+    }
+  ],
+  "coupons": [
+    {
+      "id": "coupon-1",
+      "code": "WELCOME10",
+      "type": "percentage",
+      "value": 10,
+      "minimumOrder": 50,
+      "maximumDiscount": 30,
+      "isActive": true,
+      "expiresAt": "2026-12-31T23:59:59Z",
+      "description": "10% off for new customers"
+    },
+    {
+      "id": "coupon-2",
+      "code": "LUXURY20",
+      "type": "percentage",
+      "value": 20,
+      "minimumOrder": 200,
+      "maximumDiscount": 80,
+      "isActive": true,
+      "expiresAt": "2026-11-30T23:59:59Z",
+      "description": "20% off luxury fragrances over $200"
+    },
+    {
+      "id": "coupon-3",
+      "code": "SAVE15",
+      "type": "fixed",
+      "value": 15,
+      "minimumOrder": 100,
+      "maximumDiscount": 15,
+      "isActive": true,
+      "expiresAt": "2026-10-15T23:59:59Z",
+      "description": "$15 off orders over $100"
+    },
+    {
+      "id": "coupon-4",
+      "code": "FREESHIP",
+      "type": "free_shipping",
+      "value": 0,
+      "minimumOrder": 75,
+      "maximumDiscount": 0,
+      "isActive": true,
+      "expiresAt": "2026-12-15T23:59:59Z",
+      "description": "Free shipping over $75"
+    },
+    {
+      "id": "coupon-5",
+      "code": "EXPIRED10",
+      "type": "percentage",
+      "value": 10,
+      "minimumOrder": 50,
+      "maximumDiscount": 30,
+      "isActive": false,
+      "expiresAt": "2025-12-31T23:59:59Z",
+      "description": "Expired coupon"
     }
   ],
   "addresses": [
     {
-      "id": "1",
-      "userId": "1",
+      "id": "address-1",
+      "userId": "user-1",
       "label": "Home",
-      "fullName": "Ahmed Hassan",
-      "phone": "+201012345678",
-      "street": "15 El Tahrir Street",
+      "fullName": "John Doe",
+      "phone": "+201000000111",
+      "street": "12 Talaat Harb Street",
       "city": "Cairo",
       "state": "Cairo",
       "zipCode": "11511",
@@ -819,59 +5208,56 @@
       "isDefault": true
     },
     {
-      "id": "2",
-      "userId": "2",
+      "id": "address-2",
+      "userId": "user-2",
       "label": "Home",
-      "fullName": "Sara Mohamed",
-      "phone": "+201098765432",
-      "street": "42 Nile Street",
-      "city": "Giza",
-      "state": "Giza",
-      "zipCode": "12311",
+      "fullName": "Sarah Ahmed",
+      "phone": "+201000000222",
+      "street": "45 Nile Corniche",
+      "city": "Mansoura",
+      "state": "Dakahlia",
+      "zipCode": "35511",
       "country": "Egypt",
       "isDefault": true
     },
     {
-      "id": "3",
-      "userId": "1",
-      "label": "Work",
-      "fullName": "Ahmed Hassan",
-      "phone": "+201012345678",
-      "street": "89 Tech Hub, Smart Village",
-      "city": "6th of October",
+      "id": "address-3",
+      "userId": "user-3",
+      "label": "Office",
+      "fullName": "Michael Smith",
+      "phone": "+201000000333",
+      "street": "88 Smart Village",
+      "city": "Giza",
       "state": "Giza",
       "zipCode": "12573",
       "country": "Egypt",
+      "isDefault": true
+    },
+    {
+      "id": "address-4",
+      "userId": "user-4",
+      "label": "Home",
+      "fullName": "Emma Laurent",
+      "phone": "+201000000444",
+      "street": "22 Zamalek Island",
+      "city": "Cairo",
+      "state": "Cairo",
+      "zipCode": "11211",
+      "country": "Egypt",
+      "isDefault": true
+    },
+    {
+      "id": "address-5",
+      "userId": "user-1",
+      "label": "Work",
+      "fullName": "John Doe",
+      "phone": "+201000000111",
+      "street": "Tech Park Building 5",
+      "city": "New Cairo",
+      "state": "Cairo",
+      "zipCode": "11835",
+      "country": "Egypt",
       "isDefault": false
-    }
-  ],
-  "coupons": [
-    {
-      "id": "1",
-      "code": "WELCOME10",
-      "discountPercent": 10,
-      "maxDiscount": 50,
-      "minOrder": 100,
-      "isActive": true,
-      "expiresAt": "2024-12-31T23:59:59Z"
-    },
-    {
-      "id": "2",
-      "code": "SUMMER20",
-      "discountPercent": 20,
-      "maxDiscount": 100,
-      "minOrder": 200,
-      "isActive": true,
-      "expiresAt": "2024-09-30T23:59:59Z"
-    },
-    {
-      "id": "3",
-      "code": "FLAT15",
-      "discountPercent": 15,
-      "maxDiscount": 75,
-      "minOrder": 150,
-      "isActive": false,
-      "expiresAt": "2024-06-01T23:59:59Z"
     }
   ]
 }

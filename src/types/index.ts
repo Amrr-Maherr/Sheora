@@ -1,10 +1,11 @@
-export type { Product } from "./product";
+export type { Product, ProductVariant, ProductFragrance, ProductNotes } from "./product";
 export type { Category } from "./category";
 export type { Brand } from "./brand";
 export type { User } from "./user";
-export type { Order, OrderItem, OrderStatus } from "./order";
+export type { Order, OrderItem, OrderStatus, PaymentStatus } from "./order";
 export type { Cart, CartItem } from "./cart";
 export type { Wishlist, WishlistItem } from "./wishlist";
 export type { Review } from "./review";
+export type { Question } from "./question";
 export type { Address } from "./address";
 export type { Coupon } from "./coupon";

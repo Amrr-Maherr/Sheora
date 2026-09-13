@@ -1,9 +1,14 @@
 export type Coupon = {
   id: string;
   code: string;
-  discountPercent: number;
-  maxDiscount: number;
-  minOrder: number;
+  type?: "percentage" | "fixed" | "free_shipping";
+  value?: number;
+  discountPercent?: number;
+  maxDiscount?: number;
+  maximumDiscount?: number;
+  minOrder?: number;
+  minimumOrder?: number;
   isActive: boolean;
   expiresAt: string;
-}
+  description?: string;
+};

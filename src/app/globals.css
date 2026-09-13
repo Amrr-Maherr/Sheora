@@ -1,26 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5f1ee;
-  --foreground: #151313;
+  --background: #FAF9F7;
+  --foreground: #151211;
   --card: #ffffff;
-  --card-foreground: #151313;
+  --card-foreground: #151211;
   --popover: #ffffff;
-  --popover-foreground: #151313;
-  --primary: #1c1918;
-  --primary-foreground: #fdfdfd;
-  --secondary: #efeae7;
-  --secondary-foreground: #1d1a1a;
-  --muted: #f2eeeb;
-  --muted-foreground: #6f6a67;
-  --accent: #e4d1c0;
-  --accent-foreground: #151313;
-  --destructive: #b94727;
+  --popover-foreground: #151211;
+  --primary: #171615;
+  --primary-foreground: #ffffff;
+  --secondary: #F5F1EB;
+  --secondary-foreground: #171615;
+  --muted: #F2EEE9;
+  --muted-foreground: #78716C;
+  --accent: #B88A44;
+  --accent-foreground: #ffffff;
+  --gold: #B88A44;
+  --gold-hover: #A57835;
+  --gold-light: #D8A86C;
+  --gold-pale: #FBF5EC;
+  --gold-dark: #8C6426;
+  --obsidian: #121110;
+  --obsidian-surface: #1A1918;
+  --destructive: #B94727;
   --destructive-foreground: #ffffff;
-  --border: rgba(28, 25, 24, 0.12);
+  --border: rgba(28, 25, 24, 0.1);
   --input: rgba(28, 25, 24, 0.08);
-  --ring: rgba(21, 19, 19, 0.3);
-  --radius: 24px;
+  --ring: rgba(184, 138, 68, 0.4);
+  --radius: 12px;
 }
 
 @theme inline {
@@ -43,13 +50,17 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-gold-hover: var(--gold-hover);
+  --color-gold-light: var(--gold-light);
+  --color-gold-pale: var(--gold-pale);
+  --color-obsidian: var(--obsidian);
 }
 
 @layer base {
   * {
     box-sizing: border-box;
     border-color: var(--border);
-    outline-color: var(--ring);
   }
 
   html {
@@ -60,11 +71,16 @@
     margin: 0;
     background: var(--background);
     color: var(--foreground);
-    font-family: var(--font-karla), sans-serif;
+    font-family: var(--font-tajawal), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-alexandria), var(--font-tajawal), sans-serif;
   }
 
   a {
     text-decoration: none;
+    color: inherit;
   }
 
   img {
@@ -73,10 +89,44 @@
   }
 }
 
-.font-display {
-  font-family: var(--font-cormorant), serif;
+.font-alexandria {
+  font-family: var(--font-alexandria), sans-serif;
 }
 
-.font-body {
-  font-family: var(--font-karla), sans-serif;
+.font-tajawal {
+  font-family: var(--font-tajawal), sans-serif;
+}
+
+.font-playfair {
+  font-family: var(--font-playfair), serif;
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #f5d99b 0%, #d7b163 25%, #c8902d 60%, #b77b1a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #C59A5A 0%, #B88A44 50%, #9E743A 100%);
+}
+
+.gold-border-glow {
+  box-shadow: 0 0 15px rgba(184, 138, 68, 0.2);
+}
+
+/* Custom smooth scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF9F7;
+}
+::-webkit-scrollbar-thumb {
+  background: #d5cfc9;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B88A44;
 }

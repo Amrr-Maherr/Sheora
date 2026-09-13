@@ -7,21 +7,17 @@ export const productsApi = {
 
   getProductsByCategory: (categoryId: string) =>
     apiClient.get<Product[]>(
-      `${API_ENDPOINTS.products}?categoryId=${categoryId}`,
+      `${API_ENDPOINTS.products}?categoryIds_like=${categoryId}`,
     ),
 
   getProductsByBrand: (brandId: string) =>
     apiClient.get<Product[]>(`${API_ENDPOINTS.products}?brandId=${brandId}`),
 
   searchProducts: (query: string) => {
-    const params = new URLSearchParams();
-    if (query.trim()) {
-      params.set("title_like", query.trim());
-    }
-    const queryString = params.toString();
-    return apiClient.get<Product[]>(
-      `${API_ENDPOINTS.products}${queryString ? `?${queryString}` : ""}`,
-    );
+    const q = query.trim();
+    if (!q) return apiClient.get<Product[]>(API_ENDPOINTS.products);
+    // JSON Server full-text search `q=` searches all fields (name, description, etc.)
+    return apiClient.get<Product[]>(`${API_ENDPOINTS.products}?q=${encodeURIComponent(q)}`);
   },
 
   getProductById: (id: string) =>

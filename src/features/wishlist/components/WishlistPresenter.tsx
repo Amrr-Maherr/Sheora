@@ -19,12 +19,13 @@ export function WishlistPresenter({
 }: WishlistPresenterProps) {
   if (isLoading) return <LoadingState />;
   if (isError) return <ErrorState />;
-  if (!wishlist || wishlist.items.length === 0) return <EmptyState />;
+  const count = wishlist?.productIds?.length ?? wishlist?.items?.length ?? 0;
+  if (!wishlist || count === 0) return <EmptyState />;
 
   return (
     <div>
       <h2>Wishlist</h2>
-      <p>{wishlist.items.length} items</p>
+      <p>{count} items</p>
     </div>
   );
 }

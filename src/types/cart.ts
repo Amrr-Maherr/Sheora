@@ -1,15 +1,23 @@
 export type CartItem = {
   productId: string;
-  title: string;
-  price: number;
+  variantId?: string;
   quantity: number;
-  image: string;
-}
+  unitPrice: number;
+  totalPrice: number;
+  // legacy
+  title?: string;
+  price?: number;
+  image?: string;
+};
 
 export type Cart = {
   id: string;
   userId: string;
   items: CartItem[];
+  subtotal: number;
+  shipping: number;
+  discount: number;
   total: number;
-  updatedAt: string;
-}
+  couponCode?: string | null;
+  updatedAt?: string;
+};

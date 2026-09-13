@@ -9,10 +9,5 @@ export default async function CategoryProductsPage({
 }: CategoryProductsPageProps) {
   const { slug } = await params;
 
-  return (
-    <div>
-      <h1>Category Products Page</h1>
-      <CategoryProductsContainer slug={slug} />
-    </div>
-  );
+  return <CategoryProductsContainer slug={slug} />;
 }
