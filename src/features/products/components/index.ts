@@ -5,6 +5,6 @@ export { ProductFilters } from "./ProductFilters";
 export { ProductDetailContainer } from "./ProductDetailContainer";
 export { ProductDetailPresenter } from "./ProductDetailPresenter";
 export { ProductGallery } from "./ProductGallery";
-export { BeforeAfterSlider } from "./BeforeAfterSlider";
+export { BeforeAfterSlider } from "@/components/shared/BeforeAfterSlider";
 export { CategoryProductsContainer } from "./CategoryProductsContainer";
 export { BrandProductsContainer } from "./BrandProductsContainer";

@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import type { Product } from "@/types";
 import { ProductGallery } from "./ProductGallery";
-import { BeforeAfterSlider } from "./BeforeAfterSlider";
+import { BeforeAfterSlider } from "@/components/shared/BeforeAfterSlider";
 
 type ProductDetailPresenterProps = {
   product?: Product;
@@ -131,10 +131,10 @@ export function ProductDetailPresenter({
   const bundleSavings = bundleRawTotal - bundleDiscountedTotal;
 
   return (
-    <div className="flex flex-col w-full bg-[#FAF9F7] py-6 sm:py-8">
-      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 w-full space-y-8">
+    <div className="flex w-full min-w-0 flex-col overflow-x-clip bg-[#FAF9F7] py-6 sm:py-8">
+      <div className="mx-auto w-full min-w-0 max-w-[1280px] space-y-8 px-4 sm:px-6">
         {/* 1. Breadcrumbs */}
-        <nav aria-label="مسار التنقل" className="flex items-center gap-2 text-[12px] text-[#78716C]">
+        <nav aria-label="مسار التنقل" className="flex min-w-0 flex-wrap items-center gap-2 text-[12px] text-[#78716C]">
           <Link href="/" className="hover:text-[#B88A44] transition-colors">
             الرئيسية
           </Link>
@@ -143,14 +143,14 @@ export function ProductDetailPresenter({
             مستحضرات التجميل والشفاه
           </Link>
           <span>/</span>
-          <span className="text-[#151211] font-semibold">{product.name}</span>
+          <span className="min-w-0 truncate font-semibold text-[#151211]">{product.name}</span>
         </nav>
 
         {/* 2. Interactive Category Mode Switcher / Banner */}
-        <section className="flex flex-wrap items-center justify-between gap-4 p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#B88A44]/25 text-[12px] text-[#8C6426]">
-          <div className="flex items-center gap-2 font-medium">
-            <Sparkles className="size-4 text-[#B88A44]" />
-            <span>توصيل مجاني فاخر مع عينات استكشافية حصرية مع كل أوردر فوق 300 ج.م</span>
+        <section className="flex min-w-0 flex-wrap items-center justify-between gap-4 rounded-2xl border border-[#B88A44]/25 bg-[#FAF7F2] p-3.5 text-[12px] text-[#8C6426]">
+          <div className="flex min-w-0 items-center gap-2 font-medium">
+            <Sparkles className="size-4 shrink-0 text-[#B88A44]" />
+            <span className="leading-snug">توصيل مجاني فاخر مع عينات استكشافية حصرية مع كل أوردر فوق 300 ج.م</span>
           </div>
           <div className="hidden md:flex items-center gap-6 text-[#78716C] text-[11px]">
             <span>شحن سريع خلال 24-48 ساعة</span>
@@ -162,9 +162,9 @@ export function ProductDetailPresenter({
         </section>
 
         {/* 3. Main Single Product Section (1216x1086) */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        <section className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-14">
           {/* Left Column in RTL: Hero Gallery (Span 6) */}
-          <div className="lg:col-span-6 sticky top-28">
+          <div className="min-w-0 w-full lg:col-span-6 lg:sticky lg:top-28 lg:self-start">
             <ProductGallery
               images={product.images ?? []}
               productName={product.name}
@@ -172,60 +172,60 @@ export function ProductDetailPresenter({
           </div>
 
           {/* Right Column in RTL: Specifications & Variant Engine (Span 6) */}
-          <div className="lg:col-span-6 space-y-6 text-right">
+          <div className="min-w-0 space-y-6 text-right lg:col-span-6">
             {/* Brand, Rating, and Title */}
-            <div className="space-y-2 pb-4 border-b border-[#EDE8E3]">
-              <span className="font-playfair text-[12px] font-bold tracking-[0.2em] text-[#B88A44] uppercase block">
+            <div className="space-y-2 border-b border-[#EDE8E3] pb-4">
+              <span className="font-playfair block text-[11px] font-bold tracking-[0.2em] text-[#B88A44] uppercase sm:text-[12px]">
                 MAISON SHEORA • PARIS HAUTE BEAUTÉ
               </span>
 
-              <h1 className="font-alexandria text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#151211] leading-snug">
+              <h1 className="font-alexandria text-2xl font-extrabold leading-snug text-[#151211] sm:text-3xl lg:text-4xl">
                 {product.name}
               </h1>
 
-              <div className="flex items-center justify-between pt-1 text-[12px]">
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-[12px]">
                 {/* Rating */}
-                <div className="flex items-center gap-1.5 font-bold text-[#151211]">
+                <div className="flex min-w-0 flex-wrap items-center gap-1.5 font-bold text-[#151211]">
                   <div className="flex items-center gap-0.5 text-[#B88A44]">
                     {[1, 2, 3, 4, 5].map((s) => (
                       <Star key={s} className="size-3.5 fill-[#B88A44]" />
                     ))}
                   </div>
                   <span>5.0</span>
-                  <span className="text-[#8C827A] font-normal">
+                  <span className="font-normal text-[#8C827A]">
                     (420 تقييم موثق ومعتمد)
                   </span>
                 </div>
 
                 {/* SKU */}
-                <span className="text-[#8C827A] font-mono text-[11px]">
+                <span className="shrink-0 font-mono text-[11px] text-[#8C827A]">
                   رمز المنتج: {product.sku ?? "SH-RV-901"}
                 </span>
               </div>
             </div>
 
             {/* Pricing Section */}
-            <div className="space-y-2 bg-[#FAF7F2] p-4 rounded-2xl border border-[#EDE8E3]">
-              <div className="flex items-baseline gap-3">
-                <span className="font-alexandria text-3xl font-extrabold text-[#151211]">
+            <div className="space-y-2 rounded-2xl border border-[#EDE8E3] bg-[#FAF7F2] p-4">
+              <div className="flex flex-wrap items-baseline gap-2 sm:gap-3">
+                <span className="font-alexandria text-2xl font-extrabold text-[#151211] sm:text-3xl">
                   {product.price} ج.م
                 </span>
                 <span className="text-base text-[#A8A19B] line-through">
                   {oldPrice} ج.م
                 </span>
-                <span className="px-2.5 py-0.5 rounded-full bg-[#B94727]/10 text-[#B94727] text-[11px] font-bold">
+                <span className="rounded-full bg-[#B94727]/10 px-2.5 py-0.5 text-[11px] font-bold text-[#B94727]">
                   وفر {discountAmount} ج.م (خصم {discountPercent}%)
                 </span>
               </div>
 
-              <p className="text-[11px] text-[#8C6426] flex items-center gap-1.5">
-                <CheckCircle2 className="size-3.5" />
+              <p className="flex items-start gap-1.5 text-[11px] text-[#8C6426] sm:items-center">
+                <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 sm:mt-0" />
                 <span>السعر شامل ضريبة القيمة المضافة، التغليف المخملي الفاخر وعينة هدية</span>
               </p>
             </div>
 
             {/* Description narrative */}
-            <p className="text-[13px] sm:text-[14px] text-[#6E6761] leading-relaxed">
+            <p className="text-[13px] leading-relaxed text-[#6E6761] sm:text-[14px]">
               {product.description ??
                 "تحفة كوتور باريسية مستوحاة من الأناقة الراقية، تركيبة غنية بزيت الكاميليا النادر ومستخلصات الورد الجوري لترطيب عميق يدوم طوال اليوم مع لمسة لونية مخملية مشبعة تأسر الأنظار من أول تمريرة."}
             </p>
@@ -234,35 +234,36 @@ export function ProductDetailPresenter({
             <div className="space-y-4 pt-2">
               {/* Shade Selector */}
               <div className="space-y-2">
-                <div className="flex items-center justify-between text-[13px]">
-                  <span className="font-bold text-[#151211]">
+                <div className="flex min-w-0 flex-wrap items-center justify-between gap-2 text-[13px]">
+                  <span className="shrink-0 font-bold text-[#151211]">
                     اختاري الدرجة الملكية:
                   </span>
-                  <span className="text-[#B88A44] font-medium text-[12px]">
+                  <span className="min-w-0 truncate text-[12px] font-medium text-[#B88A44]">
                     {shadeOptions[selectedShade].name}
                   </span>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-2 py-1">
                   {shadeOptions.map((shade, idx) => (
                     <button
                       key={shade.name}
                       type="button"
                       onClick={() => setSelectedShade(idx)}
-                      className={`size-9 rounded-full transition-all cursor-pointer relative flex items-center justify-center ${
+                      className={`relative flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition-all ${
                         selectedShade === idx
-                          ? "ring-2 ring-offset-2 ring-[#B88A44] scale-110"
+                          ? "scale-110 ring-2 ring-[#B88A44] ring-offset-2"
                           : "opacity-85 hover:opacity-100"
                       }`}
                       style={{ backgroundColor: shade.color }}
                       aria-label={shade.name}
+                      aria-pressed={selectedShade === idx}
                     >
                       {selectedShade === idx && (
                         <div className="size-2 rounded-full bg-white shadow-xs" />
                       )}
                     </button>
                   ))}
-                  <span className="text-[11px] text-[#8C827A] font-mono mr-2">
+                  <span className="shrink-0 font-mono text-[11px] text-[#8C827A]">
                     كود: {shadeOptions[selectedShade].code}
                   </span>
                 </div>
@@ -270,19 +271,19 @@ export function ProductDetailPresenter({
 
               {/* Finish Selector */}
               <div className="space-y-2">
-                <span className="font-bold text-[#151211] text-[13px] block">
+                <span className="block text-[13px] font-bold text-[#151211]">
                   نوع اللمسة النهائية (Finish):
                 </span>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 gap-2 min-[420px]:grid-cols-3">
                   {finishOptions.map((f) => (
                     <button
                       key={f.id}
                       type="button"
                       onClick={() => setSelectedFinish(f.id)}
-                      className={`py-2.5 px-3 rounded-xl text-[12px] font-medium transition-all cursor-pointer ${
+                      className={`cursor-pointer rounded-xl px-3 py-2.5 text-[11px] font-medium leading-snug transition-all sm:text-[12px] ${
                         selectedFinish === f.id
                           ? "bg-[#151211] text-white shadow-xs"
-                          : "bg-white border border-[#EDE8E3] text-[#554F49] hover:border-[#B88A44]"
+                          : "border border-[#EDE8E3] bg-white text-[#554F49] hover:border-[#B88A44]"
                       }`}
                     >
                       {f.label}
@@ -293,24 +294,24 @@ export function ProductDetailPresenter({
             </div>
 
             {/* Quantity and Actions */}
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex min-w-0 flex-col gap-3 pt-2 sm:flex-row sm:items-center">
               {/* Quantity Selector */}
-              <div className="flex items-center h-12 rounded-xl bg-white border border-[#EDE8E3] px-3">
+              <div className="flex h-12 w-full shrink-0 items-center justify-between rounded-xl border border-[#EDE8E3] bg-white px-3 sm:w-auto sm:justify-start">
                 <button
                   type="button"
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="p-1 hover:text-[#B88A44] cursor-pointer"
+                  className="cursor-pointer p-1 hover:text-[#B88A44]"
                   aria-label="تقليل الكمية"
                 >
                   <Minus className="size-4" />
                 </button>
-                <span className="w-10 text-center font-bold text-[14px]">
+                <span className="w-10 text-center text-[14px] font-bold">
                   {quantity}
                 </span>
                 <button
                   type="button"
                   onClick={() => setQuantity(quantity + 1)}
-                  className="p-1 hover:text-[#B88A44] cursor-pointer"
+                  className="cursor-pointer p-1 hover:text-[#B88A44]"
                   aria-label="زيادة الكمية"
                 >
                   <Plus className="size-4" />
@@ -321,10 +322,10 @@ export function ProductDetailPresenter({
               <button
                 type="button"
                 onClick={handleAddToCart}
-                className="flex-1 h-12 rounded-xl bg-[#B88A44] hover:bg-[#A57835] text-white font-bold text-[14px] flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all cursor-pointer"
+                className="flex h-12 min-w-0 flex-1 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#B88A44] text-[13px] font-bold text-white shadow-md transition-all hover:bg-[#A57835] hover:shadow-lg sm:text-[14px]"
               >
-                <ShoppingBag className="size-4" />
-                <span>
+                <ShoppingBag className="size-4 shrink-0" />
+                <span className="truncate">
                   {addedToCart
                     ? "تمت الإضافة للسلة!"
                     : `أضف إلى السلة | ${product.price * quantity} ج.م`}
@@ -333,17 +334,17 @@ export function ProductDetailPresenter({
             </div>
 
             {/* Value / Guarantee Perks */}
-            <div className="grid grid-cols-3 gap-2 py-3 border-y border-[#EDE8E3] text-center text-[11px] text-[#6E6761]">
+            <div className="grid grid-cols-1 gap-2 border-y border-[#EDE8E3] py-3 text-center text-[11px] text-[#6E6761] min-[480px]:grid-cols-3">
               <div className="flex items-center justify-center gap-1.5">
-                <Truck className="size-3.5 text-[#B88A44]" />
+                <Truck className="size-3.5 shrink-0 text-[#B88A44]" />
                 <span>شحن سريع لحد باب بيتك</span>
               </div>
               <div className="flex items-center justify-center gap-1.5">
-                <Gift className="size-3.5 text-[#B88A44]" />
+                <Gift className="size-3.5 shrink-0 text-[#B88A44]" />
                 <span>تغليف هدايا راقي ومجاني</span>
               </div>
               <div className="flex items-center justify-center gap-1.5">
-                <Shield className="size-3.5 text-[#B88A44]" />
+                <Shield className="size-3.5 shrink-0 text-[#B88A44]" />
                 <span>عينات مجانية مع كل أوردر</span>
               </div>
             </div>
@@ -440,38 +441,41 @@ export function ProductDetailPresenter({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white rounded-3xl p-6 sm:p-8 border border-[#EDE8E3] shadow-sm">
+          <div className="grid grid-cols-1 items-center gap-8 rounded-3xl border border-[#EDE8E3] bg-white p-4 shadow-sm sm:p-6 lg:grid-cols-12 lg:p-8">
             {/* Draggable Slider on Left in RTL (Span 7) */}
-            <div className="lg:col-span-7">
-              <BeforeAfterSlider />
+            <div className="min-w-0 lg:col-span-7">
+              <BeforeAfterSlider
+                hint="حرك المؤشر يميناً ويساراً لمقارنة تأثير الترطيب وإشراقة البشرة الحية"
+                frameClassName="rounded-3xl shadow-lg"
+              />
             </div>
 
             {/* Clinical stats card on Right in RTL (Span 5) */}
-            <div className="lg:col-span-5 space-y-6">
-              <div className="bg-[#FAF7F2] p-5 rounded-2xl border border-[#EDE8E3] space-y-4">
-                <h3 className="font-alexandria font-bold text-[15px] text-[#151211]">
+            <div className="min-w-0 space-y-6 lg:col-span-5">
+              <div className="space-y-4 rounded-2xl border border-[#EDE8E3] bg-[#FAF7F2] p-5">
+                <h3 className="font-alexandria text-[15px] font-bold text-[#151211]">
                   نتائج الدراسات المخبرية المعتمدة (14 يوماً)
                 </h3>
 
                 {/* Stat 1 */}
                 <div className="space-y-1">
-                  <div className="flex justify-between text-[12px]">
-                    <span className="text-[#4A4541]">ترطيب عميق فوري وحماية الحاجز الخلوي</span>
-                    <strong className="text-[#B88A44] font-bold">+94%</strong>
+                  <div className="flex justify-between gap-3 text-[12px]">
+                    <span className="min-w-0 text-[#4A4541]">ترطيب عميق فوري وحماية الحاجز الخلوي</span>
+                    <strong className="shrink-0 font-bold text-[#B88A44]">+94%</strong>
                   </div>
-                  <div className="h-2 w-full rounded-full bg-[#EDE8E3] overflow-hidden">
-                    <div className="h-full bg-[#B88A44] rounded-full" style={{ width: "94%" }} />
+                  <div className="h-2 w-full overflow-hidden rounded-full bg-[#EDE8E3]">
+                    <div className="h-full rounded-full bg-[#B88A44]" style={{ width: "94%" }} />
                   </div>
                 </div>
 
                 {/* Stat 2 */}
                 <div className="space-y-1">
-                  <div className="flex justify-between text-[12px]">
-                    <span className="text-[#4A4541]">إشراقة وتوحيد لون البشرة ونضارة الذهب</span>
-                    <strong className="text-[#B88A44] font-bold">+88%</strong>
+                  <div className="flex justify-between gap-3 text-[12px]">
+                    <span className="min-w-0 text-[#4A4541]">إشراقة وتوحيد لون البشرة ونضارة الذهب</span>
+                    <strong className="shrink-0 font-bold text-[#B88A44]">+88%</strong>
                   </div>
-                  <div className="h-2 w-full rounded-full bg-[#EDE8E3] overflow-hidden">
-                    <div className="h-full bg-[#B88A44] rounded-full" style={{ width: "88%" }} />
+                  <div className="h-2 w-full overflow-hidden rounded-full bg-[#EDE8E3]">
+                    <div className="h-full rounded-full bg-[#B88A44]" style={{ width: "88%" }} />
                   </div>
                 </div>
 
@@ -514,23 +518,23 @@ export function ProductDetailPresenter({
 
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#EDE8E3] shadow-sm space-y-6">
             {/* 3 Bundled Cards */}
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4 lg:gap-8">
+            <div className="flex flex-col items-center justify-center gap-4 md:flex-row lg:gap-8">
               {/* Product 1 */}
-              <div className="flex-1 w-full max-w-[260px] p-4 rounded-2xl bg-[#FAF9F7] border border-[#EDE8E3] text-center space-y-2">
-                <span className="inline-block px-2 py-0.5 rounded-full bg-[#151211] text-white text-[10px] font-semibold mb-1">
+              <div className="w-full min-w-0 max-w-[260px] flex-1 space-y-2 rounded-2xl border border-[#EDE8E3] bg-[#FAF9F7] p-4 text-center">
+                <span className="mb-1 inline-block rounded-full bg-[#151211] px-2 py-0.5 text-[10px] font-semibold text-white">
                   المنتج الحالي
                 </span>
-                <div className="aspect-square w-full rounded-xl overflow-hidden bg-white p-2 flex items-center justify-center">
+                <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl bg-white p-2">
                   <img
                     src={bundleProduct1.images?.[0] ?? "/images/figma/prod_lipstick.png"}
                     alt={bundleProduct1.name}
                     className="max-h-full max-w-full object-contain"
                   />
                 </div>
-                <h4 className="font-alexandria text-[13px] font-bold text-[#151211] line-clamp-1">
+                <h4 className="font-alexandria line-clamp-1 text-[13px] font-bold text-[#151211]">
                   {bundleProduct1.name}
                 </h4>
-                <span className="text-[13px] font-bold text-[#B88A44] block">
+                <span className="block text-[13px] font-bold text-[#B88A44]">
                   {bundleProduct1.price} ج.م
                 </span>
               </div>
@@ -538,21 +542,21 @@ export function ProductDetailPresenter({
               <span className="text-2xl font-bold text-[#B88A44]">+</span>
 
               {/* Product 2 */}
-              <div className="flex-1 w-full max-w-[260px] p-4 rounded-2xl bg-[#FAF9F7] border border-[#EDE8E3] text-center space-y-2">
-                <span className="inline-block px-2 py-0.5 rounded-full bg-[#FAF7F2] text-[#8C6426] border border-[#B88A44]/25 text-[10px] font-semibold mb-1">
+              <div className="w-full min-w-0 max-w-[260px] flex-1 space-y-2 rounded-2xl border border-[#EDE8E3] bg-[#FAF9F7] p-4 text-center">
+                <span className="mb-1 inline-block rounded-full border border-[#B88A44]/25 bg-[#FAF7F2] px-2 py-0.5 text-[10px] font-semibold text-[#8C6426]">
                   عطر مكمل
                 </span>
-                <div className="aspect-square w-full rounded-xl overflow-hidden bg-white p-2 flex items-center justify-center">
+                <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl bg-white p-2">
                   <img
                     src={bundleProduct2.images?.[0] ?? "/images/figma/prod_perfume.png"}
                     alt={bundleProduct2.name}
                     className="max-h-full max-w-full object-contain"
                   />
                 </div>
-                <h4 className="font-alexandria text-[13px] font-bold text-[#151211] line-clamp-1">
+                <h4 className="font-alexandria line-clamp-1 text-[13px] font-bold text-[#151211]">
                   {bundleProduct2.name}
                 </h4>
-                <span className="text-[13px] font-bold text-[#B88A44] block">
+                <span className="block text-[13px] font-bold text-[#B88A44]">
                   {bundleProduct2.price} ج.م
                 </span>
               </div>
@@ -560,30 +564,30 @@ export function ProductDetailPresenter({
               <span className="text-2xl font-bold text-[#B88A44]">+</span>
 
               {/* Product 3 */}
-              <div className="flex-1 w-full max-w-[260px] p-4 rounded-2xl bg-[#FAF9F7] border border-[#EDE8E3] text-center space-y-2">
-                <span className="inline-block px-2 py-0.5 rounded-full bg-[#FAF7F2] text-[#8C6426] border border-[#B88A44]/25 text-[10px] font-semibold mb-1">
+              <div className="w-full min-w-0 max-w-[260px] flex-1 space-y-2 rounded-2xl border border-[#EDE8E3] bg-[#FAF9F7] p-4 text-center">
+                <span className="mb-1 inline-block rounded-full border border-[#B88A44]/25 bg-[#FAF7F2] px-2 py-0.5 text-[10px] font-semibold text-[#8C6426]">
                   سيروم النضارة
                 </span>
-                <div className="aspect-square w-full rounded-xl overflow-hidden bg-white p-2 flex items-center justify-center">
+                <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl bg-white p-2">
                   <img
                     src={bundleProduct3.images?.[0] ?? "/images/figma/prod_serum.png"}
                     alt={bundleProduct3.name}
                     className="max-h-full max-w-full object-contain"
                   />
                 </div>
-                <h4 className="font-alexandria text-[13px] font-bold text-[#151211] line-clamp-1">
+                <h4 className="font-alexandria line-clamp-1 text-[13px] font-bold text-[#151211]">
                   {bundleProduct3.name}
                 </h4>
-                <span className="text-[13px] font-bold text-[#B88A44] block">
+                <span className="block text-[13px] font-bold text-[#B88A44]">
                   {bundleProduct3.price} ج.م
                 </span>
               </div>
             </div>
 
             {/* Bundle Total & CTA */}
-            <div className="pt-4 border-t border-[#EDE8E3] flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div>
-                <div className="flex items-baseline gap-3">
+            <div className="flex flex-col items-center justify-between gap-4 border-t border-[#EDE8E3] pt-4 sm:flex-row">
+              <div className="min-w-0 w-full sm:w-auto">
+                <div className="flex flex-wrap items-baseline gap-2 sm:gap-3">
                   <span className="text-[12px] text-[#8C827A]">السعر الإجمالي للمجموعة:</span>
                   <span className="font-alexandria text-2xl font-extrabold text-[#151211]">
                     {bundleDiscountedTotal} ج.م
@@ -591,11 +595,11 @@ export function ProductDetailPresenter({
                   <span className="text-sm text-[#A8A19B] line-through">
                     {bundleRawTotal} ج.م
                   </span>
-                  <span className="px-2 py-0.5 rounded-full bg-[#2A7A4D]/10 text-[#2A7A4D] text-[11px] font-bold">
+                  <span className="rounded-full bg-[#2A7A4D]/10 px-2 py-0.5 text-[11px] font-bold text-[#2A7A4D]">
                     وفرت {bundleSavings} ج.م (15%)
                   </span>
                 </div>
-                <p className="text-[11px] text-[#78716C] mt-0.5">
+                <p className="mt-0.5 text-[11px] text-[#78716C]">
                   تصل المجموعة كاملة في حقيبة مخملية مطرزة مع 3 عينات مجانية إضافية
                 </p>
               </div>
@@ -606,10 +610,10 @@ export function ProductDetailPresenter({
                   setBundleAdded(true);
                   setTimeout(() => setBundleAdded(false), 2500);
                 }}
-                className="h-12 px-8 rounded-xl bg-[#B88A44] hover:bg-[#A57835] text-white font-bold text-[13px] flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all cursor-pointer shrink-0"
+                className="flex h-12 w-full shrink-0 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#B88A44] px-6 text-[13px] font-bold text-white shadow-md transition-all hover:bg-[#A57835] hover:shadow-lg sm:w-auto sm:px-8"
               >
-                <ShoppingBag className="size-4" />
-                <span>
+                <ShoppingBag className="size-4 shrink-0" />
+                <span className="truncate">
                   {bundleAdded ? "تمت إضافة المجموعة بنجاح!" : "إضافة المجموعة الكاملة بخصم 15%"}
                 </span>
               </button>

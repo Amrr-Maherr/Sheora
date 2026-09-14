@@ -13,9 +13,11 @@ import {
   Quote,
   BadgeCheck,
   Building2,
+  Gift,
 } from "lucide-react";
 import type { Product, Category, Brand, Review } from "@/types";
 import { ProductCard } from "@/features/products/components/ProductCard";
+import { BeforeAfterSlider } from "@/components/shared/BeforeAfterSlider";
 
 type HomePagePresenterProps = {
   products: Product[];
@@ -42,9 +44,6 @@ export function HomePagePresenter({
   reviews,
   reviewsLoading,
 }: HomePagePresenterProps) {
-  // Before & After slider state
-  const [sliderPosition, setSliderPosition] = useState(50);
-  const [isDragging, setIsDragging] = useState(false);
   // Video modal state
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   // VIP Newsletter state
@@ -67,13 +66,6 @@ export function HomePagePresenter({
     unisex: "/images/figma/cat_skincare.png",
   };
 
-  const handleSliderMove = (clientX: number, rect: DOMRect) => {
-    // In RTL, 0 is right edge, width is left edge
-    const x = clientX - rect.left;
-    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
-    setSliderPosition(percentage);
-  };
-
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email.trim()) {
@@ -85,14 +77,37 @@ export function HomePagePresenter({
 
   return (
     <div className="flex flex-col w-full bg-[#FAF9F7] overflow-hidden">
-      {/* 1. Promo Announcement Banner */}
-      <section className="bg-[#FAF7F2] border-b border-[#EDE7DF] py-2.5 px-4 text-center">
-        <p className="text-[12px] md:text-[13px] text-[#8C6426] font-medium flex items-center justify-center gap-2">
-          <Sparkles className="size-3.5 text-[#B88A44]" />
-          <span>استخدم الرمز الترويجي</span>
-          <strong className="text-[#151211] font-bold bg-[#B88A44]/15 px-2 py-0.5 rounded-sm">SHEORA25</strong>
-          <span>للحصول على خصم 25% مع شحن مجاني لكافة الطلبات</span>
-        </p>
+      {/* 1. Promo Announcement Banner — marquee */}
+      <section className="overflow-hidden border-b border-[#EDE7DF] bg-[#FAF7F2] py-2.5" aria-label="عروض شِيورا الحالية">
+        <div className="flex w-full overflow-hidden" dir="ltr">
+          <div className="animate-sheora-marquee flex items-center whitespace-nowrap px-4 text-[12px] font-medium text-[#8C6426] md:text-[13px]">
+            {[0, 1].map((copy) => (
+              <p key={copy} className="flex shrink-0 items-center gap-10 pe-10" dir="rtl" aria-hidden={copy === 1}>
+                <span className="inline-flex items-center gap-2">
+                  <Sparkles className="size-3.5 shrink-0 text-[#B88A44]" />
+                  مجموعة العطور الملكية 2026 متاحة الآن — إصدارات محدودة بتغليف فاخر حصري
+                </span>
+                <span className="text-[#D4C4B0]" aria-hidden>
+                  ✦
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <Gift className="size-3.5 shrink-0 text-[#B88A44]" />
+                  عينة فاخرة مجانية مع كل طلب فوق 800 ج.م داخل القاهرة والجيزة
+                </span>
+                <span className="text-[#D4C4B0]" aria-hidden>
+                  ✦
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <Sparkles className="size-3.5 shrink-0 text-[#B88A44]" />
+                  توصيل سريع خلال 24 ساعة للطلبات المؤكدة قبل الساعة 2 مساءً
+                </span>
+                <span className="text-[#D4C4B0]" aria-hidden>
+                  ✦
+                </span>
+              </p>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* 2. Hero Section */}
@@ -356,68 +371,8 @@ export function HomePagePresenter({
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#FAF9F7] rounded-3xl p-6 sm:p-8 border border-[#EDE8E3]">
             {/* Left in RTL: Interactive Before/After Split Slider */}
-            <div className="lg:col-span-7 flex flex-col items-center">
-              <div
-                className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden select-none cursor-ew-resize border border-[#EDE8E3] shadow-md"
-                onMouseDown={() => setIsDragging(true)}
-                onMouseUp={() => setIsDragging(false)}
-                onMouseLeave={() => setIsDragging(false)}
-                onTouchStart={() => setIsDragging(true)}
-                onTouchEnd={() => setIsDragging(false)}
-                onMouseMove={(e) => {
-                  if (isDragging) {
-                    handleSliderMove(e.clientX, e.currentTarget.getBoundingClientRect());
-                  }
-                }}
-                onTouchMove={(e) => {
-                  if (isDragging && e.touches[0]) {
-                    handleSliderMove(e.touches[0].clientX, e.currentTarget.getBoundingClientRect());
-                  }
-                }}
-              >
-                {/* Background Image: After */}
-                <img
-                  src="/images/figma/after_skin.png"
-                  alt="بعد 14 يوماً من الاستخدام"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-
-                {/* Foreground Clipped Image: Before */}
-                <div
-                  className="absolute inset-y-0 left-0 overflow-hidden"
-                  style={{ width: `${sliderPosition}%` }}
-                >
-                  <img
-                    src="/images/figma/before_skin.png"
-                    alt="قبل الاستخدام"
-                    className="absolute inset-0 w-full h-full object-cover max-w-none"
-                    style={{ width: "100%", height: "100%" }}
-                  />
-                  <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/70 text-white text-[11px] font-medium backdrop-blur-sm">
-                    قبل الاستخدام
-                  </div>
-                </div>
-
-                <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#B88A44] text-white text-[11px] font-medium shadow-md">
-                  بعد 14 يوماً فقط
-                </div>
-
-                {/* Vertical Draggable Divider Line & Golden Circular Handle */}
-                <div
-                  className="absolute inset-y-0 pointer-events-none"
-                  style={{ left: `${sliderPosition}%` }}
-                >
-                  <div className="h-full w-0.5 bg-white shadow-lg relative">
-                    <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 size-9 rounded-full bg-[#B88A44] text-white border-2 border-white flex items-center justify-center shadow-xl">
-                      <span className="text-[12px] font-bold">⟷</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <span className="text-[12px] text-[#8C827A] mt-3">
-                حرّك المؤشر يميناً ويساراً للمقارنة المباشرة بين حالة البشرة
-              </span>
+            <div className="lg:col-span-7">
+              <BeforeAfterSlider />
             </div>
 
             {/* Right in RTL: Spotlight Product & Proven Metrics */}

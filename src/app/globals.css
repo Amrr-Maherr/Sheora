@@ -115,6 +115,27 @@
   box-shadow: 0 0 15px rgba(184, 138, 68, 0.2);
 }
 
+@keyframes sheora-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-sheora-marquee {
+  animation: sheora-marquee 28s linear infinite;
+  width: max-content;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-sheora-marquee {
+    animation: none;
+    transform: none;
+  }
+}
+
 /* Custom smooth scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

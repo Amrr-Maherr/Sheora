@@ -31,12 +31,34 @@ export function Header() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [promoCopied, setPromoCopied] = useState(false);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       router.push(`/products?q=${encodeURIComponent(searchQuery.trim())}`);
     }
+  };
+
+  const handleCopyPromoCode = async () => {
+    const code = "SHEORA25";
+
+    try {
+      await navigator.clipboard.writeText(code);
+    } catch {
+      const textarea = document.createElement("textarea");
+      textarea.value = code;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "absolute";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+    }
+
+    setPromoCopied(true);
+    window.setTimeout(() => setPromoCopied(false), 2000);
   };
 
   return (
@@ -47,7 +69,17 @@ export function Header() {
           <div className="flex items-center gap-2">
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#B88A44] animate-pulse" />
             <p className="text-[#f5f0eb] tracking-wide font-light">
-              استخدم الرمز الترويجي <strong className="text-[#E8B577] font-semibold">SHEORA25</strong> للحصول على خصم 25% مع شحن مجاني لكافة الطلبات
+              استخدم الرمز الترويجي{" "}
+              <button
+                type="button"
+                onClick={handleCopyPromoCode}
+                title={promoCopied ? "تم نسخ الرمز" : "انقر لنسخ الرمز"}
+                aria-label={promoCopied ? "تم نسخ الرمز SHEORA25" : "نسخ الرمز الترويجي SHEORA25"}
+                className="inline-flex items-center rounded-sm border border-[#E8B577]/35 bg-[#B88A44]/20 px-2 py-0.5 font-semibold text-[#E8B577] transition-colors hover:border-[#E8B577]/55 hover:bg-[#B88A44]/30 hover:text-[#F5D99B] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B88A44] cursor-pointer"
+              >
+                {promoCopied ? "تم النسخ ✓" : "SHEORA25"}
+              </button>{" "}
+              للحصول على خصم 25% مع شحن مجاني لكافة الطلبات
             </p>
           </div>
           <div className="hidden md:flex items-center gap-5 text-[#d5cfc9]">
