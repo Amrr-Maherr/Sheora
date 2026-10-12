@@ -13,6 +13,9 @@ import {
   Quote,
   BadgeCheck,
   Building2,
+  Flame,
+  Package,
+  Truck,
   Gift,
 } from "lucide-react";
 import type { Product, Category, Brand, Review } from "@/types";
@@ -110,71 +113,64 @@ export function HomePagePresenter({
         </div>
       </section>
 
-      {/* 2. Hero Section */}
-      <section className="relative w-full py-12 md:py-16 lg:py-20 bg-gradient-to-b from-[#FAF9F7] via-[#F6F2EC] to-[#FAF9F7]">
-        <div className="mx-auto max-w-[1280px] px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            {/* Right column in RTL: Text Narrative */}
-            <div className="lg:col-span-6 space-y-6 text-right z-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B88A44]/10 border border-[#B88A44]/20 text-[#8C6426] text-[11px] font-semibold tracking-wider">
-                <Sparkles className="size-3 text-[#B88A44]" />
-                <span>مجموعة العطور الملكية 2026</span>
-              </div>
+      {/* 2. Hero Video Section */}
+      <section
+        className="relative w-full h-[520px] md:h-[580px] overflow-hidden flex items-center border-b border-[#d2c3c4]/10 bg-black"
+        dir="rtl"
+      >
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover object-center z-0 opacity-80"
+          src="/assets/warm_modern_fashion_hero.mp4"
+        />
 
-              <h1 className="font-alexandria text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#151211] leading-[1.15] tracking-tight">
-                اكتشف عطرك.
-                <br />
-                <span className="text-[#B88A44]">اصنع حضورك.</span>
-              </h1>
+        <div className="absolute inset-0 z-10 bg-gradient-to-l from-black/70 via-black/40 to-black/10 pointer-events-none" />
 
-              <p className="text-[14px] sm:text-[16px] text-[#6E6761] leading-relaxed max-w-[480px]">
-                عطور فاخرة صُممت لتترك أثراً لا يُنسى، بتركيبات استثنائية تجمع بين الأصالة الشرقية والفخامة العصرية في كل رشة.
-              </p>
+        <div className="relative z-20 w-full max-w-[1280px] mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl">
+            <h1 className="font-alexandria text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.15] tracking-tight">
+              عطور وأزياء.
+              <br />
+              <span className="text-[#e8b577] drop-shadow-sm">لأناقةٍ لا تُنسى.</span>
+            </h1>
 
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <Link
-                  href="/products"
-                  className="inline-flex items-center justify-center gap-2 h-[48px] px-8 rounded-full bg-[#B88A44] hover:bg-[#A57835] text-white font-medium text-[14px] shadow-md hover:shadow-lg transition-all"
-                >
-                  <span>اكتشف الآن</span>
-                  <ArrowLeft className="size-4" />
-                </Link>
+            <p className="text-white/90 text-sm md:text-lg leading-relaxed mt-6 mb-8 max-w-xl font-sans">
+              عطور فاخرة وقمصان وبناطيل مختارة بعناية — جودة عالية وتفاصيل عصرية تناسب كل يوم.
+            </p>
 
-                <button
-                  type="button"
-                  onClick={() => setIsVideoModalOpen(true)}
-                  className="inline-flex items-center justify-center gap-2.5 h-[48px] px-6 rounded-full border border-[#B88A44]/50 bg-white hover:bg-[#FAF7F2] text-[#151211] font-medium text-[14px] transition-all cursor-pointer"
-                >
-                  <div className="flex size-6 items-center justify-center rounded-full bg-[#B88A44] text-white">
-                    <Play className="size-3 fill-white ml-0.5" />
-                  </div>
-                  <span>شاهد الفيلم</span>
-                </button>
-              </div>
+            <div className="flex flex-wrap items-center gap-4 mb-8">
+              <Link
+                href="/products"
+                className="inline-flex items-center justify-center gap-2 bg-[#b88a44] hover:bg-[#a67b3b] text-white font-medium text-sm md:text-base px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+              >
+                <span>تسوق الآن</span>
+                <ArrowLeft className="size-4" />
+              </Link>
+
+              <Link
+                href="/products"
+                className="inline-flex items-center justify-center gap-2 border border-white/30 hover:border-white bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-medium text-sm md:text-base px-7 py-3.5 rounded-full transition-all duration-300 hover:-translate-y-0.5"
+              >
+                <span>الأكثر طلباً</span>
+                <Flame className="size-4 text-[#e8b577]" />
+              </Link>
             </div>
 
-            {/* Left column in RTL: Hero Perfume Presentation */}
-            <div className="lg:col-span-6 relative flex justify-center items-center">
-              <div className="relative w-full max-w-[540px] aspect-square rounded-3xl overflow-hidden shadow-2xl border border-[#EDE8E3] bg-white group">
-                <img
-                  src="/images/figma/hero_box.png"
-                  alt="صندوق عطر شِيورا الفاخر"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-6 right-6 left-6 flex items-center justify-between text-white pointer-events-none">
-                  <div>
-                    <span className="text-[11px] font-medium tracking-widest text-[#E8B577] uppercase block">
-                      Édition Royale Limitée
-                    </span>
-                    <h3 className="font-alexandria text-lg font-bold">
-                      عطر أوريليا إكسير رويال
-                    </h3>
-                  </div>
-                  <span className="px-3 py-1 rounded-full bg-[#B88A44] text-white font-bold text-[12px]">
-                    100ml EDP
-                  </span>
-                </div>
+            <div className="flex flex-wrap items-center gap-6 text-xs md:text-sm text-white/80 pt-4 border-t border-white/20">
+              <div className="flex items-center gap-2">
+                <BadgeCheck className="size-4 text-[#e8b577]" />
+                <span>منتجات أصلية 100%</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Package className="size-4 text-[#e8b577]" />
+                <span>تغليف أنيق مجاني</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Truck className="size-4 text-[#e8b577]" />
+                <span>شحن سريع وآمن</span>
               </div>
             </div>
           </div>
