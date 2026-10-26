@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Alexandria, Playfair_Display, Tajawal } from "next/font/google";
 import { Providers } from "@/app/providers";
 import { Footer, Header } from "@/components/layout";
+import { CartDrawerContainer, CartProvider } from "@/features/cart";
 import "./globals.css";
 
 const tajawal = Tajawal({
@@ -40,9 +41,12 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[#FAF9F7] text-[#151211] font-sans">
         <Providers>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <CartProvider>
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <CartDrawerContainer />
+          </CartProvider>
         </Providers>
       </body>
     </html>

@@ -1,27 +1,19 @@
 "use client";
 
+import { Suspense } from "react";
 import { useBrandBySlug } from "@/features/brands";
-import { useProductsByBrand } from "../hooks";
-import { ProductListPresenter } from "./ProductListPresenter";
+import { ProductListContainer } from "./ProductListContainer";
 
 type BrandProductsContainerProps = {
   slug: string;
-}
+};
 
 export function BrandProductsContainer({ slug }: BrandProductsContainerProps) {
-  const { data: brandData, isLoading: brandLoading } = useBrandBySlug(slug);
-  const brand = Array.isArray(brandData) ? brandData[0] : brandData;
-  const brandId = brand?.id ?? "";
-
-  const {
-    data: products = [],
-    isLoading: productsLoading,
-    isError,
-  } = useProductsByBrand(brandId);
+  const { data: brand } = useBrandBySlug(slug);
 
   const hero = brand
     ? {
-        badge: `${brand.country} • منذ ${brand.founded}`,
+        badge: `${brand.productCount ?? 0} منتج`,
         title: brand.name,
         description: brand.description,
         breadcrumbLabel: brand.name,
@@ -30,11 +22,19 @@ export function BrandProductsContainer({ slug }: BrandProductsContainerProps) {
     : undefined;
 
   return (
-    <ProductListPresenter
-      products={products}
-      isLoading={brandLoading || productsLoading}
-      isError={isError}
-      hero={hero}
-    />
+    <Suspense
+      fallback={
+        <div className="mx-auto max-w-[1280px] px-4 py-12">
+          <div className="h-64 rounded-3xl bg-gray-100 animate-pulse" />
+        </div>
+      }
+    >
+      <ProductListContainer
+        fixedBrandSlug={slug}
+        basePath={`/brands/${slug}`}
+        hero={hero}
+        showBrands={false}
+      />
+    </Suspense>
   );
 }

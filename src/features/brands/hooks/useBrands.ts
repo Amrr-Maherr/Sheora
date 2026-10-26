@@ -9,11 +9,10 @@ export function useBrands() {
   });
 }
 
-export function useBrand(id: string) {
+export function useHomeBrands() {
   return useQuery({
-    queryKey: queryKeys.brands.detail(id),
-    queryFn: () => brandsApi.getBrandById(id),
-    enabled: Boolean(id),
+    queryKey: queryKeys.brands.home(),
+    queryFn: brandsApi.getHomeBrands,
   });
 }
 
@@ -21,7 +20,6 @@ export function useBrandBySlug(slug: string) {
   return useQuery({
     queryKey: [...queryKeys.brands.all, "slug", slug] as const,
     queryFn: () => brandsApi.getBrandBySlug(slug),
-    select: (brands) => brands[0],
     enabled: Boolean(slug),
   });
 }

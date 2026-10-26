@@ -18,3 +18,10 @@ export function useAllReviews() {
     queryFn: () => reviewsApi.getReviews(),
   });
 }
+
+export function useHomeReviews(perPage = 3) {
+  return useQuery({
+    queryKey: queryKeys.reviews.home(),
+    queryFn: () => reviewsApi.getHomeReviews(perPage),
+  });
+}

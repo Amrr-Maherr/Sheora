@@ -15,6 +15,8 @@ import {
   PhoneCall,
   MapPin,
 } from "lucide-react";
+import { useCartDrawer } from "@/features/cart/context";
+import { formatPrice } from "@/features/cart/lib/format";
 
 const categories = [
   { name: "العناية بالبشرة", href: "/products?category=skincare", active: true },
@@ -32,6 +34,12 @@ export function Header() {
   const [searchQuery, setSearchQuery] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [promoCopied, setPromoCopied] = useState(false);
+  const { totals, isOpen, openCart } = useCartDrawer();
+
+  const handleOpenCart = () => {
+    setMobileMenuOpen(false);
+    openCart();
+  };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -140,7 +148,7 @@ export function Header() {
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             {/* Custom Gift CTA */}
             <Link
-              href="/products?collection=gifts"
+              href="/products"
               className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#B88A44]/40 bg-[#FAF7F2] text-[#8C6426] hover:bg-[#B88A44] hover:text-white text-[12px] font-medium transition-all"
             >
               <Gift className="size-3.5 text-[#B88A44]" />
@@ -168,24 +176,32 @@ export function Header() {
               <Heart className="size-5" />
             </Link>
 
-            {/* Cart Link with Badge */}
-            <Link
-              href="/cart"
-              className="flex items-center gap-2.5 px-3 py-2 rounded-full bg-[#151211] text-white hover:bg-[#B88A44] transition-all"
+            {/* Cart Drawer Trigger */}
+            <button
+              type="button"
+              onClick={handleOpenCart}
+              aria-haspopup="dialog"
+              aria-expanded={isOpen}
+              aria-label={`فتح سلة المشتريات (${totals.itemCount} منتجات)`}
+              className="flex items-center gap-2.5 px-3 py-2 rounded-full bg-[#151211] text-white hover:bg-[#B88A44] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B88A44] focus-visible:ring-offset-2"
             >
               <div className="relative">
                 <ShoppingBag className="size-4" />
-                <span className="absolute -top-1.5 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-[#B88A44] text-[9px] font-bold text-white">
-                  2
-                </span>
+                {totals.itemCount > 0 && (
+                  <span className="absolute -top-1.5 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#B88A44] px-0.5 text-[9px] font-bold text-white">
+                    {totals.itemCount}
+                  </span>
+                )}
               </div>
               <span className="hidden sm:inline text-[12px] font-medium">
                 سلة المشتريات
               </span>
-              <span className="hidden md:inline text-[11px] text-[#D8A86C] border-r border-white/20 pr-2 mr-1">
-                1,200 ج.م
-              </span>
-            </Link>
+              {totals.total > 0 && (
+                <span className="hidden md:inline text-[11px] text-[#D8A86C] border-r border-white/20 pr-2 mr-1">
+                  {formatPrice(totals.total)} ج.م
+                </span>
+              )}
+            </button>
 
             {/* Mobile Menu Trigger */}
             <button
@@ -270,7 +286,9 @@ export function Header() {
           <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[12px] text-[#D5CFC9]">
             <Link href="/account" onClick={() => setMobileMenuOpen(false)}>حسابي</Link>
             <Link href="/wishlist" onClick={() => setMobileMenuOpen(false)}>المفضلة</Link>
-            <Link href="/cart" onClick={() => setMobileMenuOpen(false)}>السلة (2)</Link>
+            <button type="button" onClick={handleOpenCart} aria-haspopup="dialog">
+              السلة
+            </button>
           </div>
         </div>
       )}

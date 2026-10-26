@@ -3,6 +3,7 @@ export { ProductListPresenter } from "./ProductListPresenter";
 export { ProductCard } from "./ProductCard";
 export { ProductFilters } from "./ProductFilters";
 export { ProductDetailContainer } from "./ProductDetailContainer";
+export { LaravelProductDetailContainer } from "./LaravelProductDetailContainer";
 export { ProductDetailPresenter } from "./ProductDetailPresenter";
 export { ProductGallery } from "./ProductGallery";
 export { BeforeAfterSlider } from "@/components/shared/BeforeAfterSlider";

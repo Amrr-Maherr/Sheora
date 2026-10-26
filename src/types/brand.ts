@@ -1,4 +1,4 @@
-export type Brand = {
+﻿export type Brand = {
   id: string;
   name: string;
   slug: string;
@@ -8,4 +8,5 @@ export type Brand = {
   country: string;
   founded: number;
   featured: boolean;
+  productCount?: number;
 };

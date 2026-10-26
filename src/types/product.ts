@@ -31,9 +31,11 @@ export type Product = {
   shortDescription: string;
   price: number;
   oldPrice: number;
+  priceFrom?: number | null;
+  compareAtPriceFrom?: number | null;
   currency: string;
   discount: number;
-  rating: number;
+  rating: number | null;
   reviewsCount: number;
   stock: number;
   sku: string;
@@ -54,7 +56,10 @@ export type Product = {
   // legacy compatibility
   title?: string;
   compareAtPrice?: number;
+  brandName?: string;
+  brandSlug?: string;
   categoryId?: string;
+  categorySlug?: string;
   reviewCount?: number;
   isFeatured?: boolean;
   isActive?: boolean;

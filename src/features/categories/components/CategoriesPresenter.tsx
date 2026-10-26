@@ -18,14 +18,6 @@ type CategoriesPresenterProps = {
   isError: boolean;
 };
 
-const categoryImageMap: Record<string, string> = {
-  men: "/images/figma/cat_eyes.png",
-  women: "/images/figma/cat_makeup.png",
-  unisex: "/images/figma/cat_skincare.png",
-  "eau-de-parfum": "/images/figma/cat_eyes.png",
-  luxury: "/images/figma/hero_box.png",
-};
-
 export function CategoriesPresenter({ categories, isLoading, isError }: CategoriesPresenterProps) {
   const featuredCount = categories.filter((c) => c.featured).length;
 
@@ -108,7 +100,7 @@ export function CategoriesPresenter({ categories, isLoading, isError }: Categori
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             {categories.map((category, idx) => {
               const spanClass = idx % 5 === 0 ? "md:col-span-6" : idx % 5 === 1 ? "md:col-span-6" : "md:col-span-4";
-              const imgSrc = categoryImageMap[category.slug] ?? category.image;
+              const imgSrc = category.image;
               const isLarge = idx % 5 < 2;
               return (
                 <Link
@@ -116,7 +108,11 @@ export function CategoriesPresenter({ categories, isLoading, isError }: Categori
                   href={`/categories/${category.slug}`}
                   className={`${spanClass} group relative h-[320px] sm:h-[360px] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all`}
                 >
-                  <img src={imgSrc} alt={category.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                  {imgSrc ? (
+                    <img src={imgSrc} alt={category.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                  ) : (
+                    <div className="h-full w-full bg-[#EDE8E3]" />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#151211]/85 via-[#151211]/25 to-transparent" />
                   <div className={`absolute bottom-5 right-5 left-5 space-y-1.5 text-white ${isLarge ? "text-right" : "text-center"}`}>
                     <span className="text-[11px] font-semibold text-[#E8B577] tracking-wider uppercase flex items-center gap-1.5 justify-center data-[large=true]:justify-start [&[data-large=true]]:justify-start" data-large={isLarge}>

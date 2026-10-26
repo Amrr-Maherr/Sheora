@@ -11,11 +11,23 @@ export const queryKeys = {
     byBrand: (brandId: string) =>
       [...queryKeys.products.lists(), "brand", brandId] as const,
     search: (query: string) => [...queryKeys.products.lists(), "search", query] as const,
+    bestSellers: (perPage: number) =>
+      [...queryKeys.products.lists(), "best-sellers", perPage] as const,
+    laravelLists: () => [...queryKeys.products.all, "laravel", "list"] as const,
+    laravelList: (perPage: number) =>
+      [...queryKeys.products.laravelLists(), perPage] as const,
+    laravelDetails: () => [...queryKeys.products.all, "laravel", "detail"] as const,
+    laravelDetail: (slug: string) =>
+      [...queryKeys.products.laravelDetails(), slug] as const,
+    related: (slug: string) =>
+      [...queryKeys.products.all, "related", slug] as const,
+    spotlight: () => [...queryKeys.products.lists(), "spotlight"] as const,
   },
   categories: {
     all: ["categories"] as const,
     lists: () => [...queryKeys.categories.all, "list"] as const,
     list: (filters: unknown) => [...queryKeys.categories.lists(), filters] as const,
+    home: () => [...queryKeys.categories.all, "home"] as const,
     details: () => [...queryKeys.categories.all, "detail"] as const,
     detail: (id: string) => [...queryKeys.categories.details(), id] as const,
   },
@@ -23,6 +35,7 @@ export const queryKeys = {
     all: ["brands"] as const,
     lists: () => [...queryKeys.brands.all, "list"] as const,
     list: (filters: unknown) => [...queryKeys.brands.lists(), filters] as const,
+    home: () => [...queryKeys.brands.all, "home"] as const,
     details: () => [...queryKeys.brands.all, "detail"] as const,
     detail: (id: string) => [...queryKeys.brands.details(), id] as const,
   },
@@ -45,6 +58,7 @@ export const queryKeys = {
     all: ["reviews"] as const,
     lists: () => [...queryKeys.reviews.all, "list"] as const,
     list: (productId: string) => [...queryKeys.reviews.lists(), productId] as const,
+    home: () => [...queryKeys.reviews.all, "home"] as const,
   },
   questions: {
     all: ["questions"] as const,

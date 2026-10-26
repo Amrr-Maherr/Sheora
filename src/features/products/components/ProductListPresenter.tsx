@@ -14,20 +14,24 @@ import {
   Sparkles,
   SlidersHorizontal,
 } from "lucide-react";
-import type { Product } from "@/types";
+import type { Brand, Product } from "@/types";
 import { ProductCard } from "./ProductCard";
 import { ProductFilters, type FilterState } from "./ProductFilters";
 
 type ProductListPresenterProps = {
   products: Product[];
-  totalCount?: number;
-  filters?: FilterState;
-  onFilterChange?: (filters: FilterState) => void;
-  onResetFilters?: () => void;
-  sortOption?: string;
-  onSortChange?: (option: string) => void;
-  currentPage?: number;
-  onPageChange?: (page: number) => void;
+  brands: Brand[];
+  totalCount: number;
+  totalPages: number;
+  priceMin: number;
+  priceMax: number;
+  filters: FilterState;
+  onFilterChange: (filters: FilterState) => void;
+  onResetFilters: () => void;
+  sortOption: string;
+  onSortChange: (option: string) => void;
+  currentPage: number;
+  onPageChange: (page: number) => void;
   isLoading: boolean;
   isError: boolean;
   hero?: {
@@ -39,49 +43,40 @@ type ProductListPresenterProps = {
   };
 };
 
-const defaultFilters: FilterState = {
-  selectedBrands: [],
-  minPrice: 100,
-  maxPrice: 2000,
-  selectedIngredient: null,
-  selectedSkinType: null,
-  minRating: null,
-  onlyDeals: false,
-  freeSamples: false,
-};
-
 export function ProductListPresenter({
   products,
-  totalCount = products.length,
-  filters = defaultFilters,
-  onFilterChange = () => {},
-  onResetFilters = () => {},
-  sortOption = "popularity",
-  onSortChange = () => {},
-  currentPage = 1,
-  onPageChange = () => {},
+  brands,
+  totalCount,
+  totalPages,
+  priceMin,
+  priceMax,
+  filters,
+  onFilterChange,
+  onResetFilters,
+  sortOption,
+  onSortChange,
+  currentPage,
+  onPageChange,
   isLoading,
+  isError,
   hero,
 }: ProductListPresenterProps) {
-  const heroBadge = hero?.badge ?? "مجموعة العناية الفائقة";
-  const heroTitle = hero?.title ?? "سيروم وإكسير النضارة الفاخر";
+  const heroBadge = hero?.badge ?? "مجموعة العناية";
+  const heroTitle = hero?.title ?? "كل المنتجات";
   const heroDescription =
     hero?.description ??
-    "اكتشفي تشكيلة استثنائية من أرقى مستحضرات العناية المركزة، مصممة لإعادة إشراقة ونضارة البشرة بمكونات طبيعية نقية وتقنيات متطورة تحاكي طقوس الجمال الأزلية.";
-  const breadcrumbLabel = hero?.breadcrumbLabel ?? "سيروم وإكسير النضارة";
-  const breadcrumbHref = hero?.breadcrumbHref ?? "/products?category=skincare";
+    "استعرضي منتجات العناية المتاحة، مع تحديث مباشر للأسعار والتوفر من الكتالوج.";
+  const breadcrumbLabel = hero?.breadcrumbLabel ?? "كل المنتجات";
+  const breadcrumbHref = hero?.breadcrumbHref ?? "/products";
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   // Active filters helper
   const hasActiveFilters =
     filters.selectedBrands.length > 0 ||
-    filters.selectedIngredient !== null ||
-    filters.selectedSkinType !== null ||
     filters.minRating !== null ||
     filters.onlyDeals ||
-    filters.freeSamples ||
-    filters.maxPrice < 2000;
+    filters.maxPrice < priceMax;
 
   return (
     <div className="flex flex-col w-full bg-[#FAF9F7] py-6 sm:py-8">
@@ -104,7 +99,7 @@ export function ProductListPresenter({
           {/* Trust Banner Chip */}
           <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF7F2] border border-[#B88A44]/25 text-[#8C6426] font-medium text-[11px]">
             <ShieldCheck className="size-3.5 text-[#B88A44]" />
-            <span>منتجات أصلية ومضمونة 100% من الوكلاء المعتمدين</span>
+            <span>منتجات أصلية من ماركات معتمدة</span>
           </div>
         </div>
 
@@ -164,6 +159,9 @@ export function ProductListPresenter({
               </div>
               <ProductFilters
                 filters={filters}
+                brands={brands}
+                priceMin={priceMin}
+                priceMax={priceMax}
                 onFilterChange={onFilterChange}
                 onReset={onResetFilters}
               />
@@ -184,6 +182,9 @@ export function ProductListPresenter({
           <div className="hidden lg:block lg:col-span-3 sticky top-28">
             <ProductFilters
               filters={filters}
+              brands={brands}
+              priceMin={priceMin}
+              priceMax={priceMax}
               onFilterChange={onFilterChange}
               onReset={onResetFilters}
             />
@@ -199,12 +200,14 @@ export function ProductListPresenter({
                   التصفية الحالية:
                 </span>
 
-                {filters.maxPrice < 2000 && (
+                {filters.maxPrice < priceMax && (
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FAF7F2] border border-[#B88A44]/30 text-[#8C6426] text-[11px]">
                     <span>السعر: حتى {filters.maxPrice} ج.م</span>
                     <button
                       type="button"
-                      onClick={() => onFilterChange({ ...filters, maxPrice: 2000 })}
+                      onClick={() =>
+                        onFilterChange({ ...filters, maxPrice: priceMax })
+                      }
                       className="hover:text-black cursor-pointer"
                     >
                       <X className="size-3" />
@@ -212,12 +215,56 @@ export function ProductListPresenter({
                   </span>
                 )}
 
-                {filters.selectedIngredient && (
+                {filters.selectedBrands.map((slug) => {
+                  const brandName =
+                    brands.find((brand) => brand.slug === slug)?.name ?? slug;
+                  return (
+                    <span
+                      key={slug}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FAF7F2] border border-[#B88A44]/30 text-[#8C6426] text-[11px]"
+                    >
+                      <span>{brandName}</span>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          onFilterChange({
+                            ...filters,
+                            selectedBrands: filters.selectedBrands.filter(
+                              (brand) => brand !== slug,
+                            ),
+                          })
+                        }
+                        className="hover:text-black cursor-pointer"
+                      >
+                        <X className="size-3" />
+                      </button>
+                    </span>
+                  );
+                })}
+
+                {filters.minRating !== null && (
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FAF7F2] border border-[#B88A44]/30 text-[#8C6426] text-[11px]">
-                    <span>{filters.selectedIngredient}</span>
+                    <span>{filters.minRating}+ نجوم</span>
                     <button
                       type="button"
-                      onClick={() => onFilterChange({ ...filters, selectedIngredient: null })}
+                      onClick={() =>
+                        onFilterChange({ ...filters, minRating: null })
+                      }
+                      className="hover:text-black cursor-pointer"
+                    >
+                      <X className="size-3" />
+                    </button>
+                  </span>
+                )}
+
+                {filters.onlyDeals && (
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FAF7F2] border border-[#B88A44]/30 text-[#8C6426] text-[11px]">
+                    <span>عروض فقط</span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        onFilterChange({ ...filters, onlyDeals: false })
+                      }
                       className="hover:text-black cursor-pointer"
                     >
                       <X className="size-3" />
@@ -251,10 +298,10 @@ export function ProductListPresenter({
                     onChange={(e) => onSortChange(e.target.value)}
                     className="appearance-none h-9 pr-3 pl-8 text-[12px] font-medium bg-[#FAF9F7] border border-[#E8E2DA] rounded-xl text-[#151211] focus:outline-none focus:border-[#B88A44] cursor-pointer"
                   >
-                    <option value="popularity">الأكثر طلباً وتفضيلاً</option>
-                    <option value="price-asc">السعر: من الأقل للأعلى</option>
-                    <option value="price-desc">السعر: من الأعلى للأقل</option>
+                    <option value="featured">الأكثر تفضيلاً</option>
                     <option value="newest">الأحدث وصولاً</option>
+                    <option value="price_asc">السعر: من الأقل للأعلى</option>
+                    <option value="price_desc">السعر: من الأعلى للأقل</option>
                   </select>
                   <ChevronDown className="absolute left-2.5 top-2.5 size-3.5 text-[#8C827A] pointer-events-none" />
                 </div>
@@ -299,6 +346,18 @@ export function ProductListPresenter({
                   />
                 ))}
               </div>
+            ) : isError ? (
+              <div className="rounded-3xl bg-white border border-[#EDE8E3] p-12 text-center space-y-4">
+                <div className="size-16 rounded-full bg-[#FAF7F2] text-[#B88A44] flex items-center justify-center mx-auto">
+                  <HelpCircle className="size-8" />
+                </div>
+                <h3 className="font-alexandria text-lg font-bold text-[#151211]">
+                  تعذر تحميل المنتجات
+                </h3>
+                <p className="text-[13px] text-[#78716C] max-w-sm mx-auto">
+                  حاولي تحديث الصفحة أو المحاولة مرة أخرى بعد قليل.
+                </p>
+              </div>
             ) : products.length === 0 ? (
               <div className="rounded-3xl bg-white border border-[#EDE8E3] p-12 text-center space-y-4">
                 <div className="size-16 rounded-full bg-[#FAF7F2] text-[#B88A44] flex items-center justify-center mx-auto">
@@ -337,45 +396,59 @@ export function ProductListPresenter({
             )}
 
             {/* 4. Pagination & Load More */}
-            {products.length > 0 && (
+            {products.length > 0 && totalPages > 1 && (
               <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#EDE8E3]">
-                {/* Page Numbers */}
                 <div className="flex items-center gap-1.5">
-                  {[1, 2, 3].map((page) => (
-                    <button
-                      key={page}
-                      type="button"
-                      onClick={() => onPageChange(page)}
-                      className={`size-9 rounded-xl text-[13px] font-bold transition-all cursor-pointer ${
-                        currentPage === page
-                          ? "bg-[#151211] text-white shadow-xs"
-                          : "bg-white border border-[#EDE8E3] text-[#554F49] hover:border-[#B88A44] hover:text-[#B88A44]"
-                      }`}
-                    >
-                      {page}
-                    </button>
-                  ))}
-                  <span className="px-2 text-[#A8A19B]">...</span>
                   <button
                     type="button"
-                    onClick={() => onPageChange(8)}
-                    className={`size-9 rounded-xl text-[13px] font-bold transition-all cursor-pointer ${
-                      currentPage === 8
-                        ? "bg-[#151211] text-white"
-                        : "bg-white border border-[#EDE8E3] text-[#554F49] hover:border-[#B88A44]"
-                    }`}
+                    onClick={() => onPageChange(currentPage - 1)}
+                    disabled={currentPage <= 1}
+                    className="size-9 rounded-xl text-[13px] font-bold transition-all cursor-pointer bg-white border border-[#EDE8E3] text-[#554F49] hover:border-[#B88A44] hover:text-[#B88A44] disabled:cursor-not-allowed disabled:opacity-40"
                   >
-                    8
+                    ‹
+                  </button>
+                  {Array.from({ length: totalPages }, (_, index) => index + 1)
+                    .filter(
+                      (page) =>
+                        page === 1 ||
+                        page === totalPages ||
+                        Math.abs(page - currentPage) <= 1,
+                    )
+                    .map((page, index, pages) => (
+                      <span key={page} className="flex items-center gap-1.5">
+                        {index > 0 && page - pages[index - 1] > 1 && (
+                          <span className="px-1 text-[#A8A19B]">...</span>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => onPageChange(page)}
+                          className={`size-9 rounded-xl text-[13px] font-bold transition-all cursor-pointer ${
+                            currentPage === page
+                              ? "bg-[#151211] text-white shadow-xs"
+                              : "bg-white border border-[#EDE8E3] text-[#554F49] hover:border-[#B88A44] hover:text-[#B88A44]"
+                          }`}
+                        >
+                          {page}
+                        </button>
+                      </span>
+                    ))}
+                  <button
+                    type="button"
+                    onClick={() => onPageChange(currentPage + 1)}
+                    disabled={currentPage >= totalPages}
+                    className="size-9 rounded-xl text-[13px] font-bold transition-all cursor-pointer bg-white border border-[#EDE8E3] text-[#554F49] hover:border-[#B88A44] hover:text-[#B88A44] disabled:cursor-not-allowed disabled:opacity-40"
+                  >
+                    ›
                   </button>
                 </div>
 
-                {/* Load More Button */}
                 <button
                   type="button"
                   onClick={() => onPageChange(currentPage + 1)}
-                  className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-white border border-[#B88A44]/50 text-[#8C6426] hover:bg-[#FAF7F2] font-semibold text-[13px] transition-all cursor-pointer shadow-xs"
+                  disabled={currentPage >= totalPages}
+                  className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-white border border-[#B88A44]/50 text-[#8C6426] hover:bg-[#FAF7F2] font-semibold text-[13px] transition-all cursor-pointer shadow-xs disabled:cursor-not-allowed disabled:opacity-40"
                 >
-                  <span>عرض المزيد من السيرومات</span>
+                  <span>عرض المزيد من المنتجات</span>
                   <ChevronDown className="size-4" />
                 </button>
               </div>

@@ -1,1 +1,5 @@
-export { useBrands, useBrand, useBrandBySlug } from "./useBrands";
+export {
+  useBrands,
+  useBrandBySlug,
+  useHomeBrands,
+} from "./useBrands";

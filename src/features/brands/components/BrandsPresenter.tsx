@@ -108,17 +108,25 @@ export function BrandsPresenter({ brands, isLoading, isError }: BrandsPresenterP
                   <span className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-[#B88A44] text-white text-[10px] font-bold">مميز</span>
                 )}
                 <div className="size-20 rounded-2xl bg-[#FAF9F7] border border-[#EDE8E3] p-3 flex items-center justify-center overflow-hidden mb-4 group-hover:border-[#B88A44]/20 group-hover:bg-white transition-colors">
-                  <img src={brand.image} alt={brand.name} className="max-h-full max-w-full object-contain" loading="lazy" />
+                  {brand.image ? (
+                    <img src={brand.image} alt={brand.name} className="max-h-full max-w-full object-contain" loading="lazy" />
+                  ) : (
+                    <span className="text-[11px] text-[#A8A19B]">
+                      {brand.name.slice(0, 1)}
+                    </span>
+                  )}
                 </div>
                 <h3 className="font-alexandria text-[15px] font-bold text-[#151211] group-hover:text-[#B88A44] transition-colors line-clamp-1">{brand.name}</h3>
-                <span className="text-[11px] text-[#8C827A] flex items-center gap-1 mt-1">
-                  <span>{brand.country}</span>
-                  <span>•</span>
-                  <span>{brand.founded}</span>
-                </span>
+                {brand.country || brand.founded ? (
+                  <span className="text-[11px] text-[#8C827A] flex items-center gap-1 mt-1">
+                    {[brand.country, brand.founded || null]
+                      .filter(Boolean)
+                      .join(" • ")}
+                  </span>
+                ) : null}
                 <p className="text-[12px] text-[#78716C] line-clamp-2 leading-relaxed mt-2">{brand.description}</p>
                 <span className="mt-4 inline-flex items-center gap-1 text-[12px] font-semibold text-[#B88A44] group-hover:gap-1.5 transition-all">
-                  <span>استكشف العطور</span>
+                  <span>استكشف المنتجات</span>
                   <ArrowLeft className="size-3.5" />
                 </span>
               </Link>

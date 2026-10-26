@@ -9,11 +9,10 @@ export function useCategories() {
   });
 }
 
-export function useCategory(id: string) {
+export function useHomeCategories() {
   return useQuery({
-    queryKey: queryKeys.categories.detail(id),
-    queryFn: () => categoriesApi.getCategoryById(id),
-    enabled: Boolean(id),
+    queryKey: queryKeys.categories.home(),
+    queryFn: categoriesApi.getHomeCategories,
   });
 }
 
@@ -21,7 +20,6 @@ export function useCategoryBySlug(slug: string) {
   return useQuery({
     queryKey: [...queryKeys.categories.all, "slug", slug] as const,
     queryFn: () => categoriesApi.getCategoryBySlug(slug),
-    select: (categories) => categories[0],
     enabled: Boolean(slug),
   });
 }

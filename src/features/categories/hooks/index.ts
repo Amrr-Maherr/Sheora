@@ -1,1 +1,5 @@
-export { useCategories, useCategory, useCategoryBySlug } from "./useCategories";
+export {
+  useCategories,
+  useCategoryBySlug,
+  useHomeCategories,
+} from "./useCategories";

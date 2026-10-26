@@ -1,29 +1,21 @@
 "use client";
 
+import { Suspense } from "react";
 import { useCategoryBySlug } from "@/features/categories";
-import { useProductsByCategory } from "../hooks";
-import { ProductListPresenter } from "./ProductListPresenter";
+import { ProductListContainer } from "./ProductListContainer";
 
 type CategoryProductsContainerProps = {
   slug: string;
-}
+};
 
 export function CategoryProductsContainer({
   slug,
 }: CategoryProductsContainerProps) {
-  const { data: categoryData, isLoading: categoryLoading } = useCategoryBySlug(slug);
-  const category = Array.isArray(categoryData) ? categoryData[0] : categoryData;
-  const categoryId = category?.id ?? "";
-
-  const {
-    data: products = [],
-    isLoading: productsLoading,
-    isError,
-  } = useProductsByCategory(categoryId);
+  const { data: category } = useCategoryBySlug(slug);
 
   const hero = category
     ? {
-        badge: `${category.productCount} منتج • ${category.slug}`,
+        badge: `${category.productCount} منتج`,
         title: category.name,
         description: category.description,
         breadcrumbLabel: category.name,
@@ -32,11 +24,18 @@ export function CategoryProductsContainer({
     : undefined;
 
   return (
-    <ProductListPresenter
-      products={products}
-      isLoading={categoryLoading || productsLoading}
-      isError={isError}
-      hero={hero}
-    />
+    <Suspense
+      fallback={
+        <div className="mx-auto max-w-[1280px] px-4 py-12">
+          <div className="h-64 rounded-3xl bg-gray-100 animate-pulse" />
+        </div>
+      }
+    >
+      <ProductListContainer
+        fixedCategorySlug={slug}
+        basePath={`/categories/${slug}`}
+        hero={hero}
+      />
+    </Suspense>
   );
 }

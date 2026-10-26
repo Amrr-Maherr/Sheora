@@ -69,7 +69,8 @@ src/
 | --- | --- |
 | `/` | Home |
 | `/products` | Products listing |
-| `/products/:id` | Product details |
+| `/products/:id` | Legacy product details (JSON Server) |
+| `/product/:slug` | Product details (Laravel home/catalog API) |
 | `/categories` | Categories listing |
 | `/categories/:slug` | Products filtered by category |
 | `/brands` | Brands listing |
@@ -167,17 +168,47 @@ npm run json-server
 npm run dev:all
 ```
 
-The API base URL defaults to `http://localhost:3001`. Override it with the env var:
+The legacy JSON API base URL defaults to `http://localhost:3001`. Override it with:
 
 ```env
 NEXT_PUBLIC_API_BASE_URL=http://localhost:3001
 ```
 
+The Laravel catalog API base URL defaults to `http://localhost:8000/api/v1`. Override it with:
+
+```env
+NEXT_PUBLIC_LARAVEL_API_BASE_URL=http://localhost:8000/api/v1
+```
+
+The home screen and `/product/:slug` use Laravel. Category, brand, legacy product and cart pages
+continue to use JSON Server.
+
+### Production environment
+
+Copy `.env.example` and set both required values:
+
+```env
+NEXT_PUBLIC_LARAVEL_API_BASE_URL=https://api.example.com/api/v1
+HOME_REVALIDATION_SECRET=replace-with-a-long-random-secret
+```
+
+Production builds fail fast when `NEXT_PUBLIC_LARAVEL_API_BASE_URL` is missing. After publishing
+homepage or catalog content, invalidate the storefront cache:
+
+```bash
+curl -X POST https://storefront.example.com/api/revalidate \
+  -H "Authorization: Bearer $HOME_REVALIDATION_SECRET"
+```
+
+The endpoint refreshes the `home` tag and `/`; it returns `401` for a bad secret and `503` when
+`HOME_REVALIDATION_SECRET` is not configured.
+
 ---
 
 ## API Layer
 
-All HTTP access goes through a centralized axios client in `src/services/api/client.ts`.
+All HTTP access goes through the axios clients in `src/services/api/`:
+`client.ts` for JSON Server and `laravelClient.ts` for the Laravel envelope API.
 
 Flow:
 

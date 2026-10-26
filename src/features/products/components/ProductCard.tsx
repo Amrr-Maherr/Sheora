@@ -1,56 +1,108 @@
-"use client";
+﻿"use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { Heart, ShoppingBag, Eye, Star } from "lucide-react";
 import type { Product } from "@/types";
+import { useCartDrawer } from "@/features/cart/context";
+import {
+  categoryBadgeTone,
+  categoryLabel,
+} from "@/features/cart/lib/cartCatalog";
 import { cn } from "@/lib/utils";
+
+function formatPrice(value: number) {
+  return value.toLocaleString("en-US", { maximumFractionDigits: 2 });
+}
 
 type ProductCardProps = {
   product: Product;
   className?: string;
   variant?: "home" | "catalog";
+  detailHref?: string | null;
 };
 
-const brandNames: Record<string, string> = {
-  "brand-1": "دار شِيورا (Dior)",
-  "brand-2": "دار شِيورا (Chanel)",
-  "brand-3": "توم فورد (Tom Ford)",
-  "brand-4": "جورجيو أرماني (Armani)",
-  "brand-5": "إيف سان لوران (YSL)",
-  "brand-6": "كارولينا هيريرا",
-  "brand-7": "باكو رابان",
-  "brand-8": "جان بول غوتييه",
-  "brand-9": "فرزاتشي",
-  "brand-10": "ميزون فرانسيس كوركدجيان",
+type DetailLinkProps = {
+  href: string | null;
+  className: string;
+  children: ReactNode;
+  ariaLabel?: string;
 };
+
+function DetailLink({ href, className, children, ariaLabel }: DetailLinkProps) {
+  if (href === null) {
+    return (
+      <div className={className} aria-label={ariaLabel}>
+        {children}
+      </div>
+    );
+  }
+
+  return (
+    <Link href={href} className={className} aria-label={ariaLabel}>
+      {children}
+    </Link>
+  );
+}
 
 export function ProductCard({
   product,
   className,
   variant = "catalog",
+  detailHref,
 }: ProductCardProps) {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
+  const { addLine } = useCartDrawer();
 
-  const name = product.name ?? product.title ?? "منتج فاخر";
-  const oldPrice = product.oldPrice ?? product.price;
-  const hasDiscount = oldPrice > product.price;
+  const name = product.name ?? product.title ?? "منتج";
+  const hasPrice =
+    product.priceFrom === undefined ? product.price > 0 : product.priceFrom !== null;
+  const displayPrice = product.priceFrom ?? product.price;
+  const compareAtPrice =
+    product.compareAtPriceFrom === undefined
+      ? product.oldPrice
+      : product.compareAtPriceFrom;
+  const hasDiscount =
+    hasPrice && compareAtPrice != null && compareAtPrice > displayPrice;
   const discountPercent = hasDiscount
-    ? Math.round(((oldPrice - product.price) / oldPrice) * 100)
-    : product.discount ?? 0;
-  const brandName = brandNames[product.brandId] ?? "دار شِيورا";
-  const rating = product.rating ?? 4.9;
-  const reviewsCount = product.reviewsCount ?? 120;
-  const size = product.size ?? "100ml";
+    ? Math.round(((compareAtPrice - displayPrice) / compareAtPrice) * 100)
+    : 0;
+  const brandName = product.brandName ?? "شِيورا";
+  const hasRating =
+    typeof product.rating === "number" && product.rating > 0 && product.reviewsCount > 0;
+  const size = product.size ?? product.variants?.[0]?.size ?? "";
+  const href =
+    detailHref === undefined ? `/products/${product.id}` : detailHref;
   const displayImage =
     product.images?.[0] && !product.images[0].includes("placehold.co")
       ? product.images[0]
-      : "/images/figma/prod_serum.png";
+      : null;
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+
+    if (!hasPrice) {
+      return;
+    }
+
+    addLine({
+      id: product.id,
+      productId: product.id,
+      name,
+      note:
+        [size, product.shortDescription].filter(Boolean).join(" • ") ||
+        product.description.slice(0, 80),
+      image: displayImage ?? "/images/figma/prod_bottle.png",
+      href: typeof href === "string" ? href : "/products",
+      badge: categoryLabel(product.categorySlug),
+      badgeTone: categoryBadgeTone(product.categorySlug),
+      unitPrice: displayPrice,
+      compareAtPrice: hasDiscount ? compareAtPrice ?? undefined : undefined,
+      swatch: product.categorySlug === "makeup" ? "#8A1A24" : undefined,
+    });
+
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 1500);
   };
@@ -69,9 +121,7 @@ export function ProductCard({
         className
       )}
     >
-      {/* Top Bar: Badges and Wishlist */}
       <div className="flex items-center justify-between z-10">
-        {/* Wishlist Button */}
         <button
           type="button"
           onClick={handleToggleWishlist}
@@ -88,7 +138,6 @@ export function ProductCard({
           />
         </button>
 
-        {/* Category or Discount Badge */}
         <div className="flex items-center gap-1.5">
           {hasDiscount && (
             <span className="px-2 py-0.5 rounded-full bg-[#B94727]/10 text-[#B94727] text-[10px] font-semibold tracking-wide">
@@ -100,99 +149,115 @@ export function ProductCard({
               الأكثر مبيعاً
             </span>
           )}
-          {!hasDiscount && !product.bestSeller && (
+          {!hasDiscount && !product.bestSeller && product.newArrival && (
             <span className="px-2.5 py-0.5 rounded-full bg-[#FAF7F2] text-[#8C6426] border border-[#B88A44]/20 text-[10px] font-medium">
-              إصدار حصري
+              جديد
             </span>
           )}
         </div>
       </div>
 
-      {/* Product Image Stage */}
-      <Link
-        href={`/products/${product.id}`}
+      <DetailLink
+        href={href}
         className="relative my-3 flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-[#FAF9F7] p-4 group-hover:bg-[#F7F4EE] transition-colors"
       >
-        <img
-          src={displayImage}
-          alt={name}
-          className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
-      </Link>
+        {displayImage ? (
+          <img
+            src={displayImage}
+            alt={name}
+            className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+        ) : (
+          <span className="text-[12px] text-[#A8A19B]">لا توجد صورة</span>
+        )}
+      </DetailLink>
 
-      {/* Product Details Content */}
       <div className="flex flex-col flex-1">
-        {/* Brand, Size, and Rating */}
         <div className="flex items-center justify-between text-[11px] text-[#8C827A] mb-1.5">
-          <div className="flex items-center gap-1 font-medium text-[#B88A44]">
-            <Star className="size-3 fill-[#B88A44] text-[#B88A44]" />
-            <span>{rating}</span>
-            <span className="text-[#A8A19B]">({reviewsCount})</span>
-          </div>
+          {hasRating ? (
+            <div className="flex items-center gap-1 font-medium text-[#B88A44]">
+              <Star className="size-3 fill-[#B88A44] text-[#B88A44]" />
+              <span>{product.rating}</span>
+              <span className="text-[#A8A19B]">({product.reviewsCount})</span>
+            </div>
+          ) : (
+            <span className="text-[#A8A19B]">لا توجد تقييمات بعد</span>
+          )}
           <span className="truncate max-w-[140px]">
-            {brandName} • {size}
+            {brandName}
+            {size ? ` • ${size}` : ""}
           </span>
         </div>
 
-        {/* Product Title */}
-        <Link
-          href={`/products/${product.id}`}
+        <DetailLink
+          href={href}
           className="font-alexandria text-[15px] font-bold text-[#151211] leading-snug hover:text-[#B88A44] transition-colors line-clamp-1 mb-1"
         >
           {name}
-        </Link>
+        </DetailLink>
 
-        {/* Short Description */}
         <p className="text-[12px] text-[#78716C] line-clamp-2 leading-relaxed mb-3 flex-1">
-          {product.shortDescription ?? product.description ?? "تركيبة فاخرة مستخلصة من أرقى المكونات الطبيعية النادرة."}
+          {product.shortDescription ?? product.description ?? ""}
         </p>
 
-        {/* Price and Actions */}
         <div className="pt-2 border-t border-[#F0EBE5] flex items-center justify-between gap-2">
-          {/* Price Container */}
           <div className="flex flex-col">
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-[17px] font-bold text-[#151211]">
-                {product.price}
-              </span>
-              <span className="text-[11px] font-medium text-[#8C6426]">
-                ج.م
-              </span>
-            </div>
-            {hasDiscount ? (
-              <span className="text-[11px] text-[#A8A19B] line-through">
-                {oldPrice} ج.م
-              </span>
+            {hasPrice ? (
+              <>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-[17px] font-bold text-[#151211]">
+                    {formatPrice(displayPrice)}
+                  </span>
+                  <span className="text-[11px] font-medium text-[#8C6426]">
+                    ج.م
+                  </span>
+                </div>
+                {hasDiscount ? (
+                  <span className="text-[11px] text-[#A8A19B] line-through">
+                    {formatPrice(compareAtPrice)} ج.م
+                  </span>
+                ) : (
+                  <span className="text-[10px] text-[#8C827A]">سعر موحد</span>
+                )}
+              </>
             ) : (
-              <span className="text-[10px] text-[#8C827A]">سعر موحد</span>
+              <span className="text-[12px] font-medium text-[#8C827A]">
+                السعر غير متوفر
+              </span>
             )}
           </div>
 
-          {/* Action Buttons */}
           <div className="flex items-center gap-1.5">
-            {/* Quick View Eye Button */}
-            <Link
-              href={`/products/${product.id}`}
-              aria-label="معاينة سريعة"
+            <DetailLink
+              href={href}
+              ariaLabel="معاينة سريعة"
               className="flex size-9 items-center justify-center rounded-xl border border-[#EDE8E3] bg-[#FAF9F7] text-[#554F49] hover:bg-[#B88A44] hover:text-white hover:border-[#B88A44] transition-all cursor-pointer"
             >
               <Eye className="size-4" />
-            </Link>
+            </DetailLink>
 
-            {/* Add to Cart Button */}
             <button
               type="button"
               onClick={handleAddToCart}
+              disabled={!hasPrice}
               className={cn(
-                "flex items-center gap-1.5 h-9 px-3.5 rounded-xl font-medium text-[12px] transition-all cursor-pointer",
-                isAdded
-                  ? "bg-[#2A7A4D] text-white"
-                  : "bg-[#151211] text-white hover:bg-[#B88A44]"
+                "flex items-center gap-1.5 h-9 px-3.5 rounded-xl font-medium text-[12px] transition-all",
+                !hasPrice
+                  ? "cursor-not-allowed bg-[#EDE8E3] text-[#8C827A]"
+                  : isAdded
+                    ? "cursor-pointer bg-[#2A7A4D] text-white"
+                    : "cursor-pointer bg-[#151211] text-white hover:bg-[#B88A44]"
               )}
             >
               <ShoppingBag className="size-3.5" />
-              <span>{isAdded ? "تمت الإضافة!" : "أضف للسلة"}</span>
+              <span>
+                {!hasPrice
+                  ? "السعر غير متوفر"
+                  : isAdded
+                    ? "تمت الإضافة!"
+                    : "أضف للسلة"}
+              </span>
             </button>
           </div>
         </div>
