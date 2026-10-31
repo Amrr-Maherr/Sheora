@@ -17,24 +17,40 @@ import {
 } from "lucide-react";
 import { useCartDrawer } from "@/features/cart/context";
 import { formatPrice } from "@/features/cart/lib/format";
+import {
+  DEFAULT_STOREFRONT_SETTINGS,
+  type HeaderNavigationItem,
+  type StorefrontSettings,
+} from "@/features/storefront";
+import { BrandLogoImage } from "@/components/layout/BrandLogoImage";
 
-const categories = [
-  { name: "العناية بالبشرة", href: "/products?category=skincare", active: true },
-  { name: "المكياج", href: "/products?category=makeup" },
-  { name: "العناية بالشعر", href: "/products?category=hair" },
-  { name: "العناية بالجسم", href: "/products?category=body" },
-  { name: "العطور", href: "/products?category=perfumes" },
-  { name: "أدوات التجميل", href: "/products?category=tools" },
-  { name: "العناية الرجالية", href: "/products?category=men" },
-  { name: "العروض الحصرية", href: "/products?deals=true", highlight: true },
-];
+interface HeaderProps {
+  settings?: StorefrontSettings;
+  navigation?: HeaderNavigationItem[];
+}
 
-export function Header() {
+export function Header({
+  settings = DEFAULT_STOREFRONT_SETTINGS,
+  navigation = [],
+}: HeaderProps) {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [promoCopied, setPromoCopied] = useState(false);
   const { totals, isOpen, openCart } = useCartDrawer();
+
+  const brand = settings.brand;
+  const announcement = settings.announcement;
+  const liveNavigation = navigation.filter((item) => item.label && item.url);
+  const highlightItem = settings.navigation.find(
+    (item) =>
+      item.highlight &&
+      !liveNavigation.some((liveItem) => liveItem.url === item.url),
+  );
+  const navItems =
+    liveNavigation.length > 0
+      ? [...liveNavigation, ...(highlightItem ? [highlightItem] : [])]
+      : settings.navigation;
 
   const handleOpenCart = () => {
     setMobileMenuOpen(false);
@@ -48,9 +64,7 @@ export function Header() {
     }
   };
 
-  const handleCopyPromoCode = async () => {
-    const code = "SHEORA25";
-
+  const handleCopyPromoCode = async (code: string) => {
     try {
       await navigator.clipboard.writeText(code);
     } catch {
@@ -69,40 +83,80 @@ export function Header() {
     window.setTimeout(() => setPromoCopied(false), 2000);
   };
 
+  /** Typography fallback shown when no logo image is configured or image fails */
+  const typographyLogo = (
+    <div className="flex flex-col">
+      <span className="font-playfair text-2xl font-bold tracking-[0.18em] text-foreground group-hover:text-gold transition-colors">
+        {brand.name}
+      </span>
+      {brand.slogan && (
+        <span className="text-[8px] font-medium tracking-[0.3em] text-gold -mt-1 uppercase">
+          {brand.slogan}
+        </span>
+      )}
+    </div>
+  );
+
   return (
     <header className="sticky top-0 z-50 w-full bg-white shadow-xs">
       {/* 1. Top Announcement Bar */}
-      <div className="bg-[#121110] text-[#E8B577] text-[11px] font-normal border-b border-[#262422]">
-        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-2">
-          <div className="flex items-center gap-2">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#B88A44] animate-pulse" />
-            <p className="text-[#f5f0eb] tracking-wide font-light">
-              استخدم الرمز الترويجي{" "}
-              <button
-                type="button"
-                onClick={handleCopyPromoCode}
-                title={promoCopied ? "تم نسخ الرمز" : "انقر لنسخ الرمز"}
-                aria-label={promoCopied ? "تم نسخ الرمز SHEORA25" : "نسخ الرمز الترويجي SHEORA25"}
-                className="inline-flex items-center rounded-sm border border-[#E8B577]/35 bg-[#B88A44]/20 px-2 py-0.5 font-semibold text-[#E8B577] transition-colors hover:border-[#E8B577]/55 hover:bg-[#B88A44]/30 hover:text-[#F5D99B] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B88A44] cursor-pointer"
-              >
-                {promoCopied ? "تم النسخ ✓" : "SHEORA25"}
-              </button>{" "}
-              للحصول على خصم 25% مع شحن مجاني لكافة الطلبات
-            </p>
-          </div>
-          <div className="hidden md:flex items-center gap-5 text-[#d5cfc9]">
-            <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer">
-              <MapPin className="size-3 text-[#B88A44]" />
-              <span>فروعنا في القاهرة والإسكندرية</span>
-            </span>
-            <span className="text-[#423D3A]">|</span>
-            <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer">
-              <PhoneCall className="size-3 text-[#B88A44]" />
-              <span>خدمة العملاء والاستشارات</span>
-            </span>
+      {announcement.isVisible && (
+        <div className="bg-obsidian text-gold-light text-[11px] font-normal border-b border-[#262422]">
+          <div className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-2">
+            <div className="flex items-center gap-2">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+              <p className="text-[#f5f0eb] tracking-wide font-light">
+                {announcement.promoCode ? (
+                  <>
+                    استخدم الرمز الترويجي{" "}
+                    <button
+                      type="button"
+                      onClick={() => handleCopyPromoCode(announcement.promoCode!)}
+                      title={promoCopied ? "تم نسخ الرمز" : "انقر لنسخ الرمز"}
+                      aria-label={
+                        promoCopied
+                          ? `تم نسخ الرمز ${announcement.promoCode}`
+                          : `نسخ الرمز الترويجي ${announcement.promoCode}`
+                      }
+                      className="inline-flex items-center rounded-sm border border-gold-light/35 bg-gold/20 px-2 py-0.5 font-semibold text-gold-light transition-colors hover:border-gold-light/55 hover:bg-gold/30 hover:text-[#F5D99B] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold cursor-pointer"
+                    >
+                      {promoCopied ? "تم النسخ ✓" : announcement.promoCode}
+                    </button>{" "}
+                  </>
+                ) : null}
+                {announcement.text}
+              </p>
+            </div>
+            <div className="hidden md:flex items-center gap-5 text-[#d5cfc9]">
+              {announcement.branches?.label && (
+                <Link
+                  href={announcement.branches.url || "/stores"}
+                  className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
+                >
+                  <MapPin className="size-3 text-gold" />
+                  <span>{announcement.branches.label}</span>
+                </Link>
+              )}
+              {announcement.branches?.label && announcement.contact?.label && (
+                <span className="text-[#423D3A]">|</span>
+              )}
+              {announcement.contact?.label && (
+                <a
+                  href={
+                    announcement.contact.phone
+                      ? `tel:${announcement.contact.phone}`
+                      : "#"
+                  }
+                  className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
+                >
+                  <PhoneCall className="size-3 text-gold" />
+                  <span>{announcement.contact.label}</span>
+                </a>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* 2. Main Navigation Bar */}
       <div className="bg-white border-b border-[#F0EBE5]">
@@ -111,16 +165,18 @@ export function Header() {
           <Link
             href="/"
             className="flex items-center gap-3 group shrink-0"
-            aria-label="دار شيورا للجمال والعطور الفاخرة"
+            aria-label={`${brand.name} - ${brand.slogan || "دار العطور والجمال الفاخرة"}`}
           >
-            <div className="flex flex-col">
-              <span className="font-playfair text-2xl font-bold tracking-[0.18em] text-[#151211] group-hover:text-[#B88A44] transition-colors">
-                SHEORA
-              </span>
-              <span className="text-[8px] font-medium tracking-[0.3em] text-[#B88A44] -mt-1 uppercase">
-                Create Your Aura
-              </span>
-            </div>
+            {brand.logoType === "image" && brand.logoUrl ? (
+              <BrandLogoImage
+                src={brand.logoUrl}
+                alt={brand.name}
+                className="h-10 w-auto object-contain"
+                fallback={typographyLogo}
+              />
+            ) : (
+              typographyLogo
+            )}
           </Link>
 
           {/* Center: Search Bar */}
@@ -138,7 +194,7 @@ export function Header() {
             <Search className="absolute right-4 size-4 text-[#8C827A] pointer-events-none" />
             <button
               type="submit"
-              className="absolute left-1.5 h-[34px] px-4 rounded-full bg-[#151211] text-white hover:bg-[#B88A44] text-[12px] font-medium transition-colors cursor-pointer"
+              className="absolute left-1.5 h-[34px] px-4 rounded-full bg-foreground text-white hover:bg-gold text-[12px] font-medium transition-colors cursor-pointer"
             >
               بحث
             </button>
@@ -149,16 +205,16 @@ export function Header() {
             {/* Custom Gift CTA */}
             <Link
               href="/products"
-              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#B88A44]/40 bg-[#FAF7F2] text-[#8C6426] hover:bg-[#B88A44] hover:text-white text-[12px] font-medium transition-all"
+              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gold/40 bg-[#FAF7F2] text-gold-dark hover:bg-gold hover:text-white text-[12px] font-medium transition-all"
             >
-              <Gift className="size-3.5 text-[#B88A44]" />
+              <Gift className="size-3.5 text-gold" />
               <span>صمم هديتك</span>
             </Link>
 
             {/* Account Link */}
             <Link
               href="/account"
-              className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-[#151211] hover:text-[#B88A44] hover:bg-[#FAF8F5] transition-colors"
+              className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-foreground hover:text-gold hover:bg-[#FAF8F5] transition-colors"
             >
               <User className="size-5" />
               <div className="hidden xl:flex flex-col text-right leading-tight">
@@ -170,7 +226,7 @@ export function Header() {
             {/* Wishlist Link */}
             <Link
               href="/wishlist"
-              className="relative p-2 rounded-lg text-[#151211] hover:text-[#B88A44] hover:bg-[#FAF8F5] transition-colors"
+              className="relative p-2 rounded-lg text-foreground hover:text-gold hover:bg-[#FAF8F5] transition-colors"
               aria-label="قائمة الرغبات"
             >
               <Heart className="size-5" />
@@ -183,12 +239,12 @@ export function Header() {
               aria-haspopup="dialog"
               aria-expanded={isOpen}
               aria-label={`فتح سلة المشتريات (${totals.itemCount} منتجات)`}
-              className="flex items-center gap-2.5 px-3 py-2 rounded-full bg-[#151211] text-white hover:bg-[#B88A44] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B88A44] focus-visible:ring-offset-2"
+              className="flex items-center gap-2.5 px-3 py-2 rounded-full bg-foreground text-white hover:bg-gold transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
             >
               <div className="relative">
                 <ShoppingBag className="size-4" />
                 {totals.itemCount > 0 && (
-                  <span className="absolute -top-1.5 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#B88A44] px-0.5 text-[9px] font-bold text-white">
+                  <span className="absolute -top-1.5 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-gold px-0.5 text-[9px] font-bold text-white">
                     {totals.itemCount}
                   </span>
                 )}
@@ -197,7 +253,7 @@ export function Header() {
                 سلة المشتريات
               </span>
               {totals.total > 0 && (
-                <span className="hidden md:inline text-[11px] text-[#D8A86C] border-r border-white/20 pr-2 mr-1">
+                <span className="hidden md:inline text-[11px] text-gold-light border-r border-white/20 pr-2 mr-1">
                   {formatPrice(totals.total)} ج.م
                 </span>
               )}
@@ -207,7 +263,7 @@ export function Header() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-[#151211] hover:text-[#B88A44]"
+              className="md:hidden p-2 text-foreground hover:text-gold"
               aria-label="القائمة"
             >
               {mobileMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
@@ -231,55 +287,57 @@ export function Header() {
       </div>
 
       {/* 3. Category Bar - Deep Obsidian with Golden Accents */}
-      <nav className="bg-[#121110] border-b border-[#211F1D] hidden md:block">
-        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 h-[46px]">
-          <ul className="flex items-center gap-7 text-[13px] font-medium">
-            {categories.map((cat) => (
-              <li key={cat.name}>
-                <Link
-                  href={cat.href}
-                  className={`flex items-center gap-1.5 transition-colors py-1 ${
-                    cat.highlight
-                      ? "text-[#E8B577] hover:text-white font-semibold"
-                      : cat.active
-                      ? "text-white border-b-2 border-[#B88A44] pb-1"
-                      : "text-[#D5CFC9] hover:text-[#E8B577]"
-                  }`}
-                >
-                  {cat.highlight && <Sparkles className="size-3 text-[#E8B577]" />}
-                  {cat.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <Link
-            href="/products"
-            className="text-[11px] text-[#B88A44] hover:text-[#E8B577] transition-colors"
-          >
-            عرض كافة الأقسام ←
-          </Link>
-        </div>
-      </nav>
+      {navItems.length > 0 && (
+        <nav className="bg-obsidian border-b border-[#211F1D] hidden md:block">
+          <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 h-[46px]">
+            <ul className="flex items-center gap-7 text-[13px] font-medium">
+              {navItems.map((cat, idx) => (
+                <li key={`${cat.label}-${idx}`}>
+                  <Link
+                    href={cat.url}
+                    className={`flex items-center gap-1.5 transition-colors py-1 ${
+                      cat.highlight
+                        ? "text-gold-light hover:text-white font-semibold"
+                        : idx === 0
+                        ? "text-white border-b-2 border-gold pb-1"
+                        : "text-[#D5CFC9] hover:text-gold-light"
+                    }`}
+                  >
+                    {cat.highlight && <Sparkles className="size-3 text-gold-light" />}
+                    {cat.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/products"
+              className="text-[11px] text-gold hover:text-gold-light transition-colors"
+            >
+              عرض كافة الأقسام ←
+            </Link>
+          </div>
+        </nav>
+      )}
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#121110] text-white border-t border-[#262422] py-4 px-6 space-y-3">
-          <p className="text-[11px] text-[#B88A44] font-semibold uppercase tracking-wider mb-2">
+        <div className="md:hidden bg-obsidian text-white border-t border-[#262422] py-4 px-6 space-y-3">
+          <p className="text-[11px] text-gold font-semibold uppercase tracking-wider mb-2">
             الأقسام الرئيسية
           </p>
           <div className="grid grid-cols-2 gap-2 text-[13px]">
-            {categories.map((cat) => (
+            {navItems.map((cat, idx) => (
               <Link
-                key={cat.name}
-                href={cat.href}
+                key={`${cat.label}-${idx}`}
+                href={cat.url}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`py-2 px-3 rounded-md transition-colors ${
                   cat.highlight
-                    ? "bg-[#B88A44]/20 text-[#E8B577] font-semibold"
+                    ? "bg-gold/20 text-gold-light font-semibold"
                     : "text-[#D5CFC9] hover:bg-white/5"
                 }`}
               >
-                {cat.name}
+                {cat.label}
               </Link>
             ))}
           </div>

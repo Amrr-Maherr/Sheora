@@ -5,11 +5,13 @@ type FieldErrors<T> = Partial<Record<keyof T, string>>;
 type UseAuthFormOptions<T extends object> = {
   initialValues: T;
   validate: (values: T) => FieldErrors<T>;
+  onSubmit?: (values: T) => Promise<void>;
 };
 
 export function useAuthForm<T extends object>({
   initialValues,
   validate,
+  onSubmit,
 }: UseAuthFormOptions<T>) {
   const [values, setValues] = useState<T>(initialValues);
   const [errors, setErrors] = useState<FieldErrors<T>>({});
@@ -31,9 +33,16 @@ export function useAuthForm<T extends object>({
     setErrors(nextErrors);
     if (Object.values(nextErrors).some(Boolean)) return;
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 300));
-    setIsSubmitting(false);
+    try {
+      if (onSubmit) {
+        await onSubmit(values);
+      } else {
+        await new Promise((resolve) => setTimeout(resolve, 300));
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  return { values, errors, isSubmitting, handleChange, handleSubmit };
+  return { values, errors, setErrors, isSubmitting, handleChange, handleSubmit };
 }

@@ -10,10 +10,17 @@ export function formatCurrency(value: number): string {
   return `${formatPrice(value)} ج.م`;
 }
 
-export function clampQuantity(quantity: number): number {
+export const DEFAULT_MAX_ITEM_QUANTITY = 10;
+export const DEFAULT_MAX_REQUEST_QUANTITY = 99;
+
+export function clampQuantity(
+  quantity: number,
+  maximum: number = DEFAULT_MAX_REQUEST_QUANTITY,
+): number {
   if (!Number.isFinite(quantity)) {
     return 1;
   }
 
-  return Math.min(99, Math.max(1, Math.round(quantity)));
+  const max = Math.max(1, Math.floor(maximum));
+  return Math.min(max, Math.max(1, Math.round(quantity)));
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import {
   Star,
@@ -10,6 +10,7 @@ import {
   CheckCircle2,
   Truck,
   Gift,
+  Package,
   Sparkles,
   ChevronDown,
   ChevronUp,
@@ -17,7 +18,18 @@ import {
   HelpCircle,
 } from "lucide-react";
 import type { Product } from "@/types";
+import { useCartDrawer } from "@/features/cart/context";
 import { ProductGallery } from "./ProductGallery";
+import {
+  findMatchingVariant,
+  getDefaultVariantSelection,
+  getVariantDimensions,
+  getVariantLabel,
+  getVariantOptionLabel,
+  isVariantOptionAvailable,
+  selectVariantOption,
+  type VariantSelection,
+} from "../lib/variantSelection";
 
 type ProductDetailPresenterProps = {
   product?: Product;
@@ -27,6 +39,8 @@ type ProductDetailPresenterProps = {
   isError: boolean;
 };
 
+const EMPTY_VARIANTS: Product["variants"] = [];
+
 export function ProductDetailPresenter({
   product,
   relatedProducts,
@@ -34,15 +48,36 @@ export function ProductDetailPresenter({
   isLoading,
   isError,
 }: ProductDetailPresenterProps) {
-  const [variantIndex, setVariantIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const { addLine, maxItemQuantity } = useCartDrawer();
   const [addedToCart, setAddedToCart] = useState(false);
+  const variants = product?.variants ?? EMPTY_VARIANTS;
+  const dimensions = useMemo(() => getVariantDimensions(variants), [variants]);
+  const [selectionState, setSelectionState] = useState<{
+    productId: string | undefined;
+    values: VariantSelection;
+  }>(() => ({
+    productId: product?.id,
+    values: getDefaultVariantSelection(variants, dimensions),
+  }));
+  const selection =
+    selectionState.productId === product?.id
+      ? selectionState.values
+      : getDefaultVariantSelection(variants, dimensions);
+  const selectedVariant = useMemo(
+    () =>
+      findMatchingVariant(variants, dimensions, selection) ??
+      variants[0] ??
+      null,
+    [dimensions, selection, variants],
+  );
 
   // Accordion open/close state
   const [openAccordions, setOpenAccordions] = useState<Record<string, boolean>>({
-    ingredients: true,
-    routine: false,
-    shipping: false,
+    details: true,
+    usage: false,
+    delivery: false,
+    packaging: false,
   });
 
   const toggleAccordion = (key: string) => {
@@ -86,13 +121,21 @@ export function ProductDetailPresenter({
     );
   }
 
-  const selectedVariant =
-    product.variants[variantIndex] ?? product.variants[0] ?? null;
+  const stockLimit = selectedVariant
+    ? selectedVariant.maxQuantity > 0
+      ? selectedVariant.maxQuantity
+      : Math.max(selectedVariant.stock, 0)
+    : maxItemQuantity;
+  const maxSelectableQuantity = Math.max(
+    1,
+    Math.min(maxItemQuantity, stockLimit > 0 ? stockLimit : maxItemQuantity),
+  );
+  const effectiveQuantity = Math.min(quantity, maxSelectableQuantity);
   const priceFrom = selectedVariant
     ? selectedVariant.price
     : product.priceFrom ?? product.price;
   const hasPrice = selectedVariant
-    ? selectedVariant.stock > 0 && selectedVariant.price > 0
+    ? selectedVariant.price > 0
     : product.priceFrom !== undefined && product.priceFrom !== null
       ? product.priceFrom > 0
       : product.price > 0;
@@ -118,11 +161,39 @@ export function ProductDetailPresenter({
         items.findIndex((candidate) => candidate.id === item.id) === index,
     )
     .slice(0, 4);
+  const selectedImage = selectedVariant?.imageUrl ?? null;
+  const galleryImages = selectedImage
+    ? [selectedImage, ...(product.images ?? []).filter((image) => image !== selectedImage)]
+    : product.images ?? [];
+  const selectedVariantLabel = selectedVariant
+    ? getVariantLabel(selectedVariant, dimensions)
+    : null;
+  const canAddToCart = Boolean(
+    selectedVariant && selectedVariant.stock > 0 && hasPrice,
+  );
 
   const handleAddToCart = () => {
-    if (!hasPrice) {
+    if (!canAddToCart || !selectedVariant) {
       return;
     }
+
+    const variantId = Number(selectedVariant.id);
+
+    addLine({
+      variantId,
+      id: String(variantId),
+      productId: product.id,
+      name: product.name,
+      variantName: selectedVariantLabel ?? selectedVariant.sku,
+      note: [selectedVariantLabel, product.shortDescription]
+        .filter(Boolean)
+        .join(" - ") || product.description.slice(0, 80),
+      image: selectedVariant.imageUrl || product.images?.[0] || '/images/figma/prod_bottle.png',
+      href: `/products/${product.id}`,
+      unitPrice: selectedVariant.price,
+      compareAtPrice: selectedVariant.oldPrice > selectedVariant.price ? selectedVariant.oldPrice : undefined,
+      quantity: effectiveQuantity,
+    });
 
     setAddedToCart(true);
     setTimeout(() => setAddedToCart(false), 2000);
@@ -164,7 +235,8 @@ export function ProductDetailPresenter({
           {/* Left Column in RTL: Hero Gallery (Span 6) */}
           <div className="min-w-0 w-full lg:col-span-6 lg:sticky lg:top-28 lg:self-start">
             <ProductGallery
-              images={product.images ?? []}
+              key={selectedImage ?? "product-gallery"}
+              images={galleryImages}
               productName={product.name}
               inStock={hasPrice}
             />
@@ -208,7 +280,10 @@ export function ProductDetailPresenter({
             {/* Pricing Section */}
             <div className="space-y-2 rounded-2xl border border-[#EDE8E3] bg-[#FAF7F2] p-4">
               <div className="flex flex-wrap items-baseline gap-2 sm:gap-3">
-                <span className="font-alexandria text-2xl font-extrabold text-[#151211] sm:text-3xl">
+                <span
+                  aria-live="polite"
+                  className="font-alexandria text-2xl font-extrabold text-[#151211] sm:text-3xl"
+                >
                   {hasPrice ? `${priceFrom} ج.م` : "السعر غير متاح"}
                 </span>
                 {hasDiscount ? (
@@ -223,6 +298,12 @@ export function ProductDetailPresenter({
                 ) : null}
               </div>
 
+              {selectedVariant ? (
+                <p className="text-[11px] font-medium text-[#8C827A]">
+                  OU,O3O1O� OU,U.O-O_O_: {selectedVariantLabel}
+                </p>
+              ) : null}
+
               <p className="flex items-start gap-1.5 text-[11px] text-[#8C6426] sm:items-center">
                 <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 sm:mt-0" />
                 <span>قد تختلف تكلفة الشحن عند إتمام الطلب</span>
@@ -236,29 +317,95 @@ export function ProductDetailPresenter({
                 "لا يوجد وصف متاح لهذا المنتج."}
             </p>
 
-            {product.variants.length > 0 && (
-              <div className="space-y-2 pt-2">
-                <span className="block text-[13px] font-bold text-[#151211]">
-                  اختاري الحجم:
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {product.variants.map((variant, index) => (
-                    <button
-                      key={variant.id}
-                      type="button"
-                      onClick={() => setVariantIndex(index)}
-                      disabled={variant.stock <= 0}
-                      className={`rounded-xl px-4 py-2.5 text-[12px] font-medium transition-all ${
-                        variantIndex === index
-                          ? "bg-[#151211] text-white shadow-xs"
-                          : "border border-[#EDE8E3] bg-white text-[#554F49] hover:border-[#B88A44]"
-                      } disabled:cursor-not-allowed disabled:opacity-50`}
-                    >
-                      {variant.size || variant.sku}
-                      {variant.stock <= 0 ? " — غير متوفر" : ""}
-                    </button>
-                  ))}
-                </div>
+            {dimensions.length > 0 && (
+              <div className="space-y-3 pt-2">
+                {dimensions.map((dimension) => {
+                  const selectedOption = selection[dimension.key];
+                  const selectedLabel = getVariantOptionLabel(
+                    dimension,
+                    selectedOption,
+                  );
+
+                  return (
+                    <div key={dimension.key} className="space-y-2">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-[13px] font-bold text-[#151211]">
+                          {dimension.label}
+                        </span>
+                        {selectedLabel ? (
+                          <span className="text-[11px] text-[#8C827A]">
+                            {selectedLabel}
+                          </span>
+                        ) : null}
+                      </div>
+
+                      <div className="flex flex-wrap items-center gap-2.5">
+                        {dimension.options.map((option) => {
+                          const isSelected = selectedOption === option.key;
+                          const isAvailable = isVariantOptionAvailable(
+                            variants,
+                            dimensions,
+                            selection,
+                            dimension.key,
+                            option.key,
+                          );
+                          const swatch = option.swatchHex;
+
+                          return (
+                            <button
+                              key={option.key}
+                              type="button"
+                              onClick={() =>
+                                setSelectionState({
+                                  productId: product.id,
+                                  values: selectVariantOption(
+                                    variants,
+                                    dimensions,
+                                    selection,
+                                    dimension.key,
+                                    option.key,
+                                  ),
+                                })
+                              }
+                              disabled={!isAvailable && !isSelected}
+                              aria-pressed={isSelected}
+                              aria-label={option.label}
+                              title={
+                                isAvailable
+                                  ? option.label
+                                  : `${option.label} - غير متوفر`
+                              }
+                              className={
+                                swatch
+                                  ? `size-8 rounded-full border-2 transition-all ${
+                                      isSelected
+                                        ? "border-[#151211] ring-2 ring-[#B88A44]/30 ring-offset-2"
+                                        : "border-[#E5DED6] shadow-sm hover:border-[#B88A44]"
+                                    } disabled:cursor-not-allowed disabled:opacity-40`
+                                  : `rounded-xl px-4 py-2.5 text-[12px] font-medium transition-all ${
+                                      isSelected
+                                        ? "bg-[#151211] text-white shadow-xs"
+                                        : "border border-[#EDE8E3] bg-white text-[#554F49] hover:border-[#B88A44]"
+                                    } disabled:cursor-not-allowed disabled:opacity-50`
+                              }
+                              style={
+                                swatch
+                                  ? { backgroundColor: swatch }
+                                  : undefined
+                              }
+                            >
+                              {swatch ? (
+                                <span className="sr-only">{option.label}</span>
+                              ) : (
+                                option.label
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             )}
 
@@ -268,19 +415,26 @@ export function ProductDetailPresenter({
               <div className="flex h-12 w-full shrink-0 items-center justify-between rounded-xl border border-[#EDE8E3] bg-white px-3 sm:w-auto sm:justify-start">
                 <button
                   type="button"
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  onClick={() =>
+                    setQuantity(
+                      Math.max(1, effectiveQuantity - 1),
+                    )
+                  }
                   className="cursor-pointer p-1 hover:text-[#B88A44]"
                   aria-label="تقليل الكمية"
                 >
                   <Minus className="size-4" />
                 </button>
                 <span className="w-10 text-center text-[14px] font-bold">
-                  {quantity}
+                  {effectiveQuantity}
                 </span>
                 <button
                   type="button"
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="cursor-pointer p-1 hover:text-[#B88A44]"
+                  onClick={() =>
+                    setQuantity(Math.min(maxSelectableQuantity, quantity + 1))
+                  }
+                  disabled={effectiveQuantity >= maxSelectableQuantity}
+                  className="cursor-pointer p-1 hover:text-[#B88A44] disabled:cursor-not-allowed disabled:opacity-40"
                   aria-label="زيادة الكمية"
                 >
                   <Plus className="size-4" />
@@ -291,16 +445,16 @@ export function ProductDetailPresenter({
               <button
                 type="button"
                 onClick={handleAddToCart}
-                disabled={!hasPrice}
+                disabled={!canAddToCart}
                 className="flex h-12 min-w-0 flex-1 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#B88A44] text-[13px] font-bold text-white shadow-md transition-all hover:bg-[#A57835] hover:shadow-lg disabled:cursor-not-allowed disabled:bg-[#A8A19B] disabled:shadow-none sm:text-[14px]"
               >
                 <ShoppingBag className="size-4 shrink-0" />
                 <span className="truncate">
-                  {!hasPrice
+                  {!canAddToCart
                     ? "غير متوفر للشراء حالياً"
                     : addedToCart
                       ? "تمت الإضافة للسلة!"
-                      : `أضف إلى السلة | ${priceFrom * quantity} ج.م`}
+                      : `أضف إلى السلة | ${priceFrom * effectiveQuantity} ج.م`}
                 </span>
               </button>
             </div>
@@ -323,80 +477,94 @@ export function ProductDetailPresenter({
 
             {/* Product Accordions */}
             <div className="space-y-2 pt-2">
-              {/* Accordion 1 */}
               <div className="rounded-xl border border-[#EDE8E3] bg-white overflow-hidden">
                 <button
                   type="button"
-                  onClick={() => toggleAccordion("ingredients")}
+                  onClick={() => toggleAccordion("details")}
                   className="w-full flex items-center justify-between p-4 text-[13px] font-bold text-[#151211] text-right cursor-pointer"
                 >
                   <span className="flex items-center gap-2">
                     <Sparkles className="size-4 text-[#B88A44]" />
                     <span>تفاصيل المنتج</span>
                   </span>
-                  {openAccordions.ingredients ? (
+                  {openAccordions.details ? (
                     <ChevronUp className="size-4 text-[#8C827A]" />
                   ) : (
                     <ChevronDown className="size-4 text-[#8C827A]" />
                   )}
                 </button>
-                {openAccordions.ingredients && (
-                  <div className="px-4 pb-4 text-[12px] text-[#78716C] leading-relaxed border-t border-[#F0EBE5] pt-3 space-y-1">
-                    {product.features.length > 0 ? (
-                      product.features.map((feature) => (
-                        <p key={feature}>• {feature}</p>
-                      ))
-                    ) : (
-                      <p>لا توجد تفاصيل إضافية متاحة لهذا المنتج.</p>
-                    )}
+                {openAccordions.details && (
+                  <div className="px-4 pb-4 text-[12px] text-[#78716C] leading-relaxed border-t border-[#F0EBE5] pt-3 whitespace-pre-line">
+                    {product.details || product.description || "لا توجد تفاصيل إضافية متاحة لهذا المنتج."}
                   </div>
                 )}
               </div>
 
-              {/* Accordion 2 */}
               <div className="rounded-xl border border-[#EDE8E3] bg-white overflow-hidden">
                 <button
                   type="button"
-                  onClick={() => toggleAccordion("routine")}
+                  onClick={() => toggleAccordion("usage")}
                   className="w-full flex items-center justify-between p-4 text-[13px] font-bold text-[#151211] text-right cursor-pointer"
                 >
                   <span className="flex items-center gap-2">
                     <CheckCircle2 className="size-4 text-[#B88A44]" />
                     <span>طريقة الاستخدام</span>
                   </span>
-                  {openAccordions.routine ? (
+                  {openAccordions.usage ? (
                     <ChevronUp className="size-4 text-[#8C827A]" />
                   ) : (
                     <ChevronDown className="size-4 text-[#8C827A]" />
                   )}
                 </button>
-                {openAccordions.routine && (
-                  <div className="px-4 pb-4 text-[12px] text-[#78716C] leading-relaxed border-t border-[#F0EBE5] pt-3">
-                    استخدمي المنتج حسب التعليمات المدونة على العبوة أو النشرة المرفقة.
+                {openAccordions.usage && (
+                  <div className="px-4 pb-4 text-[12px] text-[#78716C] leading-relaxed border-t border-[#F0EBE5] pt-3 whitespace-pre-line">
+                    {product.usageInstructions || "استخدمي المنتج حسب التعليمات المدونة على العبوة أو النشرة المرفقة."}
                   </div>
                 )}
               </div>
 
-              {/* Accordion 3 */}
               <div className="rounded-xl border border-[#EDE8E3] bg-white overflow-hidden">
                 <button
                   type="button"
-                  onClick={() => toggleAccordion("shipping")}
+                  onClick={() => toggleAccordion("delivery")}
                   className="w-full flex items-center justify-between p-4 text-[13px] font-bold text-[#151211] text-right cursor-pointer"
                 >
                   <span className="flex items-center gap-2">
-                    <Gift className="size-4 text-[#B88A44]" />
-                    <span>الشحن، الاسترجاع والتغليف الفاخر</span>
+                    <Truck className="size-4 text-[#B88A44]" />
+                    <span>الشحن والاسترجاع</span>
                   </span>
-                  {openAccordions.shipping ? (
+                  {openAccordions.delivery ? (
                     <ChevronUp className="size-4 text-[#8C827A]" />
                   ) : (
                     <ChevronDown className="size-4 text-[#8C827A]" />
                   )}
                 </button>
-                {openAccordions.shipping && (
-                  <div className="px-4 pb-4 text-[12px] text-[#78716C] leading-relaxed border-t border-[#F0EBE5] pt-3">
-                    يتم تسليم الطلبات داخل القاهرة والجيزة خلال 24-48 ساعة، وباقي المحافظات خلال 3 أيام عمل. استرجاع واستبدال مجاني خلال 14 يوماً من الاستلام.
+                {openAccordions.delivery && (
+                  <div className="px-4 pb-4 text-[12px] text-[#78716C] leading-relaxed border-t border-[#F0EBE5] pt-3 whitespace-pre-line">
+                    {product.deliveryReturns || "يتم تسليم الطلبات داخل القاهرة والجيزة خلال 24-48 ساعة، وباقي المحافظات خلال 3 أيام عمل. استرجاع واستبدال مجاني خلال 14 يوماً من الاستلام."}
+                  </div>
+                )}
+              </div>
+
+              <div className="rounded-xl border border-[#EDE8E3] bg-white overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => toggleAccordion("packaging")}
+                  className="w-full flex items-center justify-between p-4 text-[13px] font-bold text-[#151211] text-right cursor-pointer"
+                >
+                  <span className="flex items-center gap-2">
+                    <Package className="size-4 text-[#B88A44]" />
+                    <span>التغليف</span>
+                  </span>
+                  {openAccordions.packaging ? (
+                    <ChevronUp className="size-4 text-[#8C827A]" />
+                  ) : (
+                    <ChevronDown className="size-4 text-[#8C827A]" />
+                  )}
+                </button>
+                {openAccordions.packaging && (
+                  <div className="px-4 pb-4 text-[12px] text-[#78716C] leading-relaxed border-t border-[#F0EBE5] pt-3 whitespace-pre-line">
+                    {product.packagingDetails || "يصل منتجك في تغليف فاخر مناسب للإهداء، مع إمكانية إضافة بطاقة إهداء."}
                   </div>
                 )}
               </div>

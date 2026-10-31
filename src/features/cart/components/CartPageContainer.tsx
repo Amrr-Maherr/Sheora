@@ -8,6 +8,13 @@ export function CartPageContainer() {
     lines,
     totals,
     coupon,
+    governorateSlug,
+    maxItemQuantity,
+    setGovernorate,
+    isLoading,
+    isUpdating,
+    error,
+    warnings,
     updateQuantity,
     removeLine,
     addUpsell,
@@ -20,6 +27,13 @@ export function CartPageContainer() {
       lines={lines}
       totals={totals}
       coupon={coupon}
+      governorateSlug={governorateSlug}
+      maxItemQuantity={maxItemQuantity}
+      onSelectGovernorate={setGovernorate}
+      isLoading={isLoading}
+      isUpdating={isUpdating}
+      error={error}
+      warnings={warnings}
       onUpdateQuantity={updateQuantity}
       onRemoveLine={removeLine}
       onAddUpsell={addUpsell}

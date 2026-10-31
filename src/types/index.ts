@@ -1,4 +1,10 @@
-export type { Product, ProductVariant, ProductFragrance, ProductNotes } from "./product";
+export type {
+  Product,
+  ProductVariant,
+  ProductVariantAttribute,
+  ProductFragrance,
+  ProductNotes,
+} from "./product";
 export type { Category } from "./category";
 export type { Brand } from "./brand";
 export type { User } from "./user";

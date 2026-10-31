@@ -8,6 +8,7 @@ import type { CartLine } from "../types";
 
 type CartLineItemProps = {
   line: CartLine;
+  maxItemQuantity: number;
   onQuantityChange: (id: string, quantity: number) => void;
   onRemove: (id: string) => void;
 };
@@ -20,11 +21,17 @@ const badgeToneStyles: Record<NonNullable<CartLine["badgeTone"]>, string> = {
 
 export function CartLineItem({
   line,
+  maxItemQuantity,
   onQuantityChange,
   onRemove,
 }: CartLineItemProps) {
   const hasComparePrice =
     line.compareAtPrice !== undefined && line.compareAtPrice > line.unitPrice;
+  const stockLimit =
+    line.stockAvailable && line.stockAvailable > 0
+      ? line.stockAvailable
+      : maxItemQuantity;
+  const lineMaximum = Math.max(1, Math.min(maxItemQuantity, stockLimit));
 
   return (
     <li className="flex gap-3 rounded-xl bg-[#FCFAF7] p-3">
@@ -110,7 +117,12 @@ export function CartLineItem({
           <div className="flex h-8 items-center overflow-hidden rounded-md border border-[#E4E0D8] bg-white">
             <button
               type="button"
-              onClick={() => onQuantityChange(line.id, line.quantity - 1)}
+              onClick={() =>
+                onQuantityChange(
+                  line.id,
+                  Math.max(1, Math.min(line.quantity, lineMaximum) - 1),
+                )
+              }
               disabled={line.quantity <= 1}
               aria-label={`تقليل كمية ${line.name}`}
               className="flex h-full w-7 items-center justify-center text-[#57534E] transition-colors hover:bg-[#F5F1EB] disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#B88A44]"
@@ -125,8 +137,13 @@ export function CartLineItem({
             </span>
             <button
               type="button"
-              onClick={() => onQuantityChange(line.id, line.quantity + 1)}
-              disabled={line.quantity >= 99}
+              onClick={() =>
+                onQuantityChange(
+                  line.id,
+                  Math.min(lineMaximum, line.quantity + 1),
+                )
+              }
+              disabled={line.quantity >= lineMaximum}
               aria-label={`زيادة كمية ${line.name}`}
               className="flex h-full w-7 items-center justify-center text-[#57534E] transition-colors hover:bg-[#F5F1EB] disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#B88A44]"
             >

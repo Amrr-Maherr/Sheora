@@ -38,11 +38,12 @@ export async function POST(request: NextRequest) {
   }
 
   revalidateTag("home", "max");
+  revalidateTag("storefront-settings", "max");
   revalidatePath("/");
 
   return NextResponse.json({
     revalidated: true,
-    tag: "home",
+    tags: ["home", "storefront-settings"],
     path: "/",
     now: Date.now(),
   });

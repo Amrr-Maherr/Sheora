@@ -1,11 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { queryKeys } from "@/constants";
-import { cartApi } from "../api";
+import { cartApi } from "../api/cartApi";
 
-export function useCart(userId: string) {
+export function useCart() {
   return useQuery({
-    queryKey: queryKeys.cart.detail(userId),
-    queryFn: () => cartApi.getCart(userId),
-    enabled: Boolean(userId),
+    queryKey: queryKeys.cart.all,
+    queryFn: () => cartApi.getCart(),
   });
 }

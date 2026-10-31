@@ -1,21 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2, X } from "lucide-react";
+import { CheckCircle2, Loader2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { AppliedCoupon, CouponResult } from "../types";
 
 type CouponFieldProps = {
   coupon: AppliedCoupon | null;
-  onApply: (code: string) => CouponResult;
+  onApply: (code: string) => Promise<CouponResult> | CouponResult;
   onRemove: () => void;
 };
 
 export function CouponField({ coupon, onApply, onRemove }: CouponFieldProps) {
-  const [code, setCode] = useState(coupon?.code ?? "SHEORA10");
+  const [code, setCode] = useState(coupon?.code ?? "");
   const [feedback, setFeedback] = useState<CouponResult | null>(null);
+  const [isApplying, setIsApplying] = useState(false);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!code.trim()) {
@@ -23,7 +24,16 @@ export function CouponField({ coupon, onApply, onRemove }: CouponFieldProps) {
       return;
     }
 
-    setFeedback(onApply(code));
+    setIsApplying(true);
+    try {
+      const result = await onApply(code);
+      setFeedback(result);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "كود الخصم غير صالح";
+      setFeedback({ ok: false, message: msg });
+    } finally {
+      setIsApplying(false);
+    }
   };
 
   return (
@@ -48,9 +58,14 @@ export function CouponField({ coupon, onApply, onRemove }: CouponFieldProps) {
 
         <button
           type="submit"
-          className="flex h-9 shrink-0 items-center justify-center rounded-lg bg-[#1C1A18] px-4 text-[12px] font-medium text-white transition-colors hover:bg-[#B88A44] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B88A44] focus-visible:ring-offset-2"
+          disabled={isApplying}
+          className="flex h-9 shrink-0 items-center justify-center gap-1.5 rounded-lg bg-[#1C1A18] px-4 text-[12px] font-medium text-white transition-colors hover:bg-[#B88A44] disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B88A44] focus-visible:ring-offset-2"
         >
-          تطبيق
+          {isApplying ? (
+            <Loader2 className="size-3.5 animate-spin" />
+          ) : (
+            "تطبيق"
+          )}
         </button>
       </form>
 

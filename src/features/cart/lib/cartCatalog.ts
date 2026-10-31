@@ -1,53 +1,35 @@
+import {
+  DEFAULT_MAX_ITEM_QUANTITY,
+  DEFAULT_MAX_REQUEST_QUANTITY,
+} from "./format";
 import type {
   AppliedCoupon,
+  BackendCartData,
   CartBadgeTone,
   CartLine,
   CartTotals,
   CartUpsell,
 } from "../types";
 
-export const FREE_SHIPPING_THRESHOLD = 1500;
-export const SHIPPING_FEE = 60;
 export const GIFT_WRAP_FEE = 0;
 
-export const CART_COUPONS: AppliedCoupon[] = [
-  { code: "SHEORA10", percent: 10, label: "خصم 10% إضافي" },
-  { code: "SHEORA25", percent: 25, label: "خصم 25% إضافي" },
-];
-
-export const DEMO_CART_LINES: CartLine[] = [
-  {
-    id: "demo-oud-nawa",
-    productId: "demo-oud-nawa",
-    name: "عطر أو دو بارفان نوار فاخر",
-    note: "100ml Eau de Parfum Noir • مركز يدوم طويلاً",
-    image: "/images/figma/prod_perfume.png",
-    href: "/products",
-    badge: "عطور",
-    badgeTone: "perfume",
-    unitPrice: 1299,
-    compareAtPrice: 1599,
-    quantity: 1,
-    customization: "مخصص: حفر ليزر بالاسم «Dr. Yasmine»",
-  },
-  {
-    id: "demo-velvet-lipstick",
-    productId: "demo-velvet-lipstick",
-    name: "أحمر الشفاه المخملي الفاخر",
-    note: "Rouge Velours Matte #07 • ثبات 16 ساعة",
-    image: "/images/figma/prod_lipstick.png",
-    href: "/products",
-    badge: "مكياج",
-    badgeTone: "makeup",
-    unitPrice: 360,
-    quantity: 1,
-    swatch: "#8A1A24",
-    swatchLabel: "الدرجة الفرنسية الساتان المخملي",
-  },
-];
+export const EMPTY_TOTALS: CartTotals = {
+  itemCount: 0,
+  subtotal: 0,
+  discount: 0,
+  subtotalAfterDiscount: 0,
+  shipping: 0,
+  freeShippingThreshold: null,
+  isFreeShipping: false,
+  shippingStatus: "pending",
+  shippingMessage: null,
+  governorate: null,
+  giftWrap: 0,
+  total: 0,
+};
 
 export const CART_UPSELL: CartUpsell = {
-  id: "demo-eclat-serum",
+  id: "eclat-serum",
   name: "سيروم النضارة L'Éclat (30 مل)",
   description: "حمض الهيالورونيك وخلايا النضارة",
   price: 320,
@@ -72,7 +54,6 @@ export function categoryLabel(slug?: string): string | undefined {
   if (!slug) {
     return undefined;
   }
-
   return CATEGORY_LABELS[slug];
 }
 
@@ -80,59 +61,107 @@ export function categoryBadgeTone(slug?: string): CartBadgeTone {
   if (slug === "makeup") {
     return "makeup";
   }
-
   if (slug === "perfumes" || slug === "perfume") {
     return "perfume";
   }
-
   return "default";
 }
 
-export function upsellToLine(upsell: CartUpsell): CartLine {
-  return {
-    id: upsell.id,
-    productId: upsell.id,
-    name: upsell.name,
-    note: upsell.description,
-    image: upsell.image,
-    href: upsell.href,
-    badge: "عناية",
-    badgeTone: "default",
-    unitPrice: upsell.price,
-    compareAtPrice: upsell.compareAtPrice,
-    quantity: 1,
+export function transformBackendCart(data: BackendCartData): {
+  lines: CartLine[];
+  totals: CartTotals;
+  coupon: AppliedCoupon | null;
+  maxItemQuantity: number;
+  maxRequestQuantity: number;
+} {
+  const lines: CartLine[] = (data.items ?? []).map((item) => {
+    const unitPrice = Number(item.unit_price) || 0;
+    const compareAtPrice = item.compare_at_price
+      ? Number(item.compare_at_price)
+      : undefined;
+
+    const note =
+      item.variant_name ||
+      [
+        item.size_ml ? `${item.size_ml} مل` : "",
+        item.concentration ? item.concentration.toUpperCase() : "",
+      ]
+        .filter(Boolean)
+        .join(" • ");
+
+    return {
+      id: String(item.variant_id),
+      variantId: item.variant_id,
+      productId: String(item.product_id),
+      productSlug: item.product_slug,
+      name: item.name,
+      variantName: item.variant_name ?? undefined,
+      note,
+      image: item.image_url || "/images/figma/prod_bottle.png",
+      href: `/products/${item.product_id}`,
+      badge: categoryLabel(item.category_slug ?? undefined),
+      badgeTone: categoryBadgeTone(item.category_slug ?? undefined),
+      unitPrice,
+      compareAtPrice,
+      quantity: item.quantity,
+      stockAvailable: item.stock_available,
+      isAvailable: item.is_available,
+    };
+  });
+
+  const coupon: AppliedCoupon | null = data.coupon
+    ? {
+        code: data.coupon.code,
+        description: data.coupon.description ?? undefined,
+        discountType: data.coupon.discount_type,
+        discountValue: Number(data.coupon.discount_value) || 0,
+        discountAmount: Number(data.coupon.discount_amount) || 0,
+        label:
+          data.coupon.discount_type === "percentage"
+            ? `خصم ${Number(data.coupon.discount_value)}%`
+            : `خصم ${Number(data.coupon.discount_value)} ج.م`,
+        percent:
+          data.coupon.discount_type === "percentage"
+            ? Number(data.coupon.discount_value)
+            : 0,
+      }
+    : null;
+
+  const totals: CartTotals = {
+    itemCount: data.item_count,
+    subtotal: Number(data.subtotal) || 0,
+    discount: Number(data.discount_amount) || 0,
+    subtotalAfterDiscount: Number(data.subtotal_after_discount) || 0,
+    shipping: Number(data.shipping.shipping_fee) || 0,
+    freeShippingThreshold: data.shipping.free_shipping_threshold
+      ? Number(data.shipping.free_shipping_threshold)
+      : null,
+    isFreeShipping: data.shipping.is_free_shipping,
+    shippingStatus: data.shipping.status,
+    shippingMessage: data.shipping.message,
+    governorate: data.shipping.governorate
+      ? {
+          slug: data.shipping.governorate.slug,
+          nameAr: data.shipping.governorate.name_ar,
+          nameEn: data.shipping.governorate.name_en,
+        }
+      : null,
+    giftWrap: GIFT_WRAP_FEE,
+    total: Number(data.total) || 0,
   };
-}
-
-export function findCoupon(code: string): AppliedCoupon | undefined {
-  const normalized = code.trim().toUpperCase();
-
-  return CART_COUPONS.find((coupon) => coupon.code === normalized);
-}
-
-export function calculateTotals(
-  lines: CartLine[],
-  coupon: AppliedCoupon | null,
-): CartTotals {
-  const subtotal = lines.reduce(
-    (sum, line) => sum + line.unitPrice * line.quantity,
-    0,
-  );
-  const itemCount = lines.reduce((sum, line) => sum + line.quantity, 0);
-  const discount = coupon
-    ? Math.round((subtotal * coupon.percent) / 100)
-    : 0;
-  const shipping =
-    subtotal === 0 || subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
-  const giftWrap = subtotal > 0 ? GIFT_WRAP_FEE : 0;
-  const total = Math.max(0, subtotal - discount + shipping + giftWrap);
 
   return {
-    itemCount,
-    subtotal,
-    discount,
-    shipping,
-    giftWrap,
-    total,
+    lines,
+    totals,
+    coupon,
+    maxItemQuantity: Math.max(
+      1,
+      data.quantity_policy?.max_item_quantity ?? DEFAULT_MAX_ITEM_QUANTITY,
+    ),
+    maxRequestQuantity: Math.max(
+      1,
+      data.quantity_policy?.max_request_quantity ??
+        DEFAULT_MAX_REQUEST_QUANTITY,
+    ),
   };
 }

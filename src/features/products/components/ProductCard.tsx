@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
@@ -53,14 +53,25 @@ export function ProductCard({
 }: ProductCardProps) {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
+  const [variantIndex, setVariantIndex] = useState(() => {
+    const firstAvailable = product.variants?.findIndex((item) => item.stock > 0);
+
+    return firstAvailable !== undefined && firstAvailable >= 0 ? firstAvailable : 0;
+  });
   const { addLine } = useCartDrawer();
 
-  const name = product.name ?? product.title ?? "منتج";
+  const name = product.name ?? product.title ?? "U.U+O�O�";
+  const selectedVariant =
+    product.variants?.[variantIndex] ?? product.variants?.[0] ?? null;
   const hasPrice =
     product.priceFrom === undefined ? product.price > 0 : product.priceFrom !== null;
-  const displayPrice = product.priceFrom ?? product.price;
-  const compareAtPrice =
-    product.compareAtPriceFrom === undefined
+  const displayPrice =
+    selectedVariant?.price ?? product.priceFrom ?? product.price;
+  const compareAtPrice = selectedVariant
+    ? selectedVariant.oldPrice > selectedVariant.price
+      ? selectedVariant.oldPrice
+      : null
+    : product.compareAtPriceFrom === undefined
       ? product.oldPrice
       : product.compareAtPriceFrom;
   const hasDiscount =
@@ -68,39 +79,56 @@ export function ProductCard({
   const discountPercent = hasDiscount
     ? Math.round(((compareAtPrice - displayPrice) / compareAtPrice) * 100)
     : 0;
-  const brandName = product.brandName ?? "شِيورا";
+  const canAddToCart = Boolean(
+    selectedVariant && selectedVariant.stock > 0 && selectedVariant.price > 0,
+  );
+  const brandName = product.brandName ?? "O'U?USU^O�O";
   const hasRating =
     typeof product.rating === "number" && product.rating > 0 && product.reviewsCount > 0;
-  const size = product.size ?? product.variants?.[0]?.size ?? "";
+  const size = selectedVariant?.size ?? product.size ?? "";
   const href =
     detailHref === undefined ? `/products/${product.id}` : detailHref;
   const displayImage =
-    product.images?.[0] && !product.images[0].includes("placehold.co")
+    selectedVariant?.imageUrl ??
+    (product.images?.[0] && !product.images[0].includes("placehold.co")
       ? product.images[0]
-      : null;
+      : null);
+  const colorVariants = (product.variants ?? [])
+    .map((variant, index) => ({ variant, index }))
+    .filter(({ variant }) => Boolean(variant.colorHex));
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (!hasPrice) {
+    if (!canAddToCart || !selectedVariant) {
       return;
     }
 
+    const variantId = Number(selectedVariant.id);
+
     addLine({
-      id: product.id,
+      variantId,
+      id: String(variantId),
       productId: product.id,
       name,
+      variantName:
+        [selectedVariant.colorName, selectedVariant.size]
+          .filter(Boolean)
+          .join(" - ") || selectedVariant.sku,
       note:
-        [size, product.shortDescription].filter(Boolean).join(" • ") ||
+        [size, product.shortDescription].filter(Boolean).join(" - ") ||
         product.description.slice(0, 80),
       image: displayImage ?? "/images/figma/prod_bottle.png",
       href: typeof href === "string" ? href : "/products",
       badge: categoryLabel(product.categorySlug),
       badgeTone: categoryBadgeTone(product.categorySlug),
-      unitPrice: displayPrice,
-      compareAtPrice: hasDiscount ? compareAtPrice ?? undefined : undefined,
-      swatch: product.categorySlug === "makeup" ? "#8A1A24" : undefined,
+      unitPrice: selectedVariant.price,
+      compareAtPrice:
+        selectedVariant.oldPrice > selectedVariant.price
+          ? selectedVariant.oldPrice
+          : undefined,
+      swatch: selectedVariant.colorHex ?? undefined,
     });
 
     setIsAdded(true);
@@ -173,6 +201,38 @@ export function ProductCard({
         )}
       </DetailLink>
 
+      {colorVariants.length > 0 && (
+        <div className="mb-2 flex flex-wrap items-center justify-center gap-1.5">
+          {colorVariants.map(({ variant, index }) => (
+            <button
+              key={variant.id}
+              type="button"
+              onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                setVariantIndex(index);
+              }}
+              disabled={variant.stock <= 0}
+              aria-label={variant.colorName ?? variant.sku}
+              aria-pressed={variantIndex === index}
+              title={
+                variant.stock <= 0
+                  ? `${variant.colorName ?? variant.sku} - غير متوفر`
+                  : variant.colorName ?? variant.sku
+              }
+              className={cn(
+                "size-4 rounded-full border transition-all",
+                variantIndex === index
+                  ? "border-[#151211] ring-2 ring-[#B88A44]/25 ring-offset-1"
+                  : "border-white shadow-sm hover:border-[#B88A44]",
+                variant.stock <= 0 && "cursor-not-allowed opacity-40",
+              )}
+              style={{ backgroundColor: variant.colorHex ?? undefined }}
+            />
+          ))}
+        </div>
+      )}
+
       <div className="flex flex-col flex-1">
         <div className="flex items-center justify-between text-[11px] text-[#8C827A] mb-1.5">
           {hasRating ? (
@@ -240,10 +300,10 @@ export function ProductCard({
             <button
               type="button"
               onClick={handleAddToCart}
-              disabled={!hasPrice}
+              disabled={!canAddToCart}
               className={cn(
                 "flex items-center gap-1.5 h-9 px-3.5 rounded-xl font-medium text-[12px] transition-all",
-                !hasPrice
+                !canAddToCart
                   ? "cursor-not-allowed bg-[#EDE8E3] text-[#8C827A]"
                   : isAdded
                     ? "cursor-pointer bg-[#2A7A4D] text-white"
@@ -252,7 +312,7 @@ export function ProductCard({
             >
               <ShoppingBag className="size-3.5" />
               <span>
-                {!hasPrice
+                {!canAddToCart
                   ? "السعر غير متوفر"
                   : isAdded
                     ? "تمت الإضافة!"

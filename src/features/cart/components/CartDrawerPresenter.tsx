@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Lock, ShoppingBag, X } from "lucide-react";
+import { AlertTriangle, Loader2, Lock, ShoppingBag, X } from "lucide-react";
 import {
   Sheet,
   SheetClose,
@@ -25,13 +25,20 @@ type CartDrawerPresenterProps = {
   lines: CartLine[];
   totals: CartTotals;
   coupon: AppliedCoupon | null;
+  governorateSlug?: string | null;
+  maxItemQuantity?: number;
   isOpen: boolean;
+  isLoading?: boolean;
+  isUpdating?: boolean;
+  error?: string | null;
+  warnings?: string[];
+  onSelectGovernorate?: (slug: string | null) => void;
   onOpenChange: (open: boolean) => void;
   onClose: () => void;
   onUpdateQuantity: (id: string, quantity: number) => void;
   onRemoveLine: (id: string) => void;
   onAddUpsell: () => void;
-  onApplyCoupon: (code: string) => CouponResult;
+  onApplyCoupon: (code: string) => Promise<CouponResult> | CouponResult;
   onRemoveCoupon: () => void;
 };
 
@@ -39,7 +46,14 @@ export function CartDrawerPresenter({
   lines,
   totals,
   coupon,
+  governorateSlug,
+  maxItemQuantity = 10,
   isOpen,
+  isLoading = false,
+  isUpdating = false,
+  error = null,
+  warnings = [],
+  onSelectGovernorate,
   onOpenChange,
   onClose,
   onUpdateQuantity,
@@ -67,7 +81,11 @@ export function CartDrawerPresenter({
               aria-hidden="true"
               className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#FAF5EE] text-[#8C672B]"
             >
-              <Lock className="size-3.5" />
+              {isUpdating || isLoading ? (
+                <Loader2 className="size-3.5 animate-spin text-[#8C672B]" />
+              ) : (
+                <Lock className="size-3.5" />
+              )}
             </div>
 
             <div className="flex min-w-0 items-center gap-2.5">
@@ -93,8 +111,34 @@ export function CartDrawerPresenter({
           </div>
 
           <div className="mt-3">
-            <FreeShippingBanner subtotal={totals.subtotal} />
+            <FreeShippingBanner
+              subtotal={totals.subtotal}
+              threshold={totals.freeShippingThreshold}
+              isFreeShipping={totals.isFreeShipping}
+              shippingFee={totals.shipping}
+              governorateName={totals.governorate?.nameAr}
+            />
           </div>
+
+          {warnings.length > 0 && (
+            <div className="mt-2.5 rounded-lg border border-amber-200 bg-amber-50 p-2.5 text-[11px] text-amber-800">
+              <div className="flex items-center gap-1.5 font-bold mb-1">
+                <AlertTriangle className="size-3.5 text-amber-600 shrink-0" />
+                <span>تنبيهات السلة</span>
+              </div>
+              <ul className="list-inside list-disc space-y-0.5 text-[10px] text-amber-700">
+                {warnings.map((w, idx) => (
+                  <li key={idx}>{w}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {error && (
+            <div className="mt-2.5 rounded-lg border border-red-200 bg-red-50 p-2.5 text-[11px] font-medium text-red-700">
+              {error}
+            </div>
+          )}
         </div>
 
         <div className="flex-1 px-5 py-4">
@@ -126,6 +170,7 @@ export function CartDrawerPresenter({
                   <CartLineItem
                     key={line.id}
                     line={line}
+                    maxItemQuantity={maxItemQuantity}
                     onQuantityChange={onUpdateQuantity}
                     onRemove={onRemoveLine}
                   />
@@ -152,6 +197,8 @@ export function CartDrawerPresenter({
             <CartTotalsPanel
               totals={totals}
               coupon={coupon}
+              governorateSlug={governorateSlug}
+              onSelectGovernorate={onSelectGovernorate}
               onNavigate={onClose}
             />
           </div>

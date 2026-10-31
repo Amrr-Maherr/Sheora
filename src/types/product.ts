@@ -1,10 +1,25 @@
+export type ProductVariantAttribute = {
+  attributeId: number;
+  code: string;
+  name: string;
+  optionId: number;
+  label: string;
+  value: string;
+  swatchHex: string | null;
+};
+
 export type ProductVariant = {
   id: string;
   size: string;
   price: number;
   oldPrice: number;
   stock: number;
+  maxQuantity: number;
   sku: string;
+  colorName: string | null;
+  colorHex: string | null;
+  imageUrl: string | null;
+  attributes: ProductVariantAttribute[];
 };
 
 export type ProductFragrance = {
@@ -29,6 +44,10 @@ export type Product = {
   slug: string;
   description: string;
   shortDescription: string;
+  details: string;
+  usageInstructions: string;
+  deliveryReturns: string;
+  packagingDetails: string;
   price: number;
   oldPrice: number;
   priceFrom?: number | null;

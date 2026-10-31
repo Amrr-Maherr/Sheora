@@ -11,15 +11,31 @@ export type LaravelProductImage = {
   is_primary?: boolean;
 };
 
+export type LaravelProductVariantAttribute = {
+  attribute_id: number;
+  attribute_code: string;
+  attribute_name: string;
+  option_id: number;
+  label: string;
+  value: string;
+  swatch_hex?: string | null;
+};
+
 export type LaravelProductVariant = {
   id: number;
   sku: string;
   name?: string | null;
   size_ml?: number | null;
   concentration?: string | null;
+  color_name?: string | null;
+  color_hex?: string | null;
+  image_url?: string | null;
   price: string;
   compare_at_price?: string | null;
+  stock_quantity?: number;
+  effective_max_quantity?: number;
   is_available: boolean;
+  attributes?: LaravelProductVariantAttribute[];
   sort_order?: number;
 };
 
@@ -40,6 +56,10 @@ export type LaravelProduct = {
   slug: string;
   description: string;
   short_description?: string | null;
+  details?: string | null;
+  usage_instructions?: string | null;
+  delivery_returns?: string | null;
+  packaging_details?: string | null;
   brand_name?: string | null;
   brand_slug?: string | null;
   price_from: string | null;
@@ -82,14 +102,53 @@ function toConcentration(value?: string | null): Product["concentration"] {
 function mapVariant(variant: LaravelProductVariant): ProductVariant {
   const price = toNumber(variant.price) ?? 0;
   const compareAt = toNumber(variant.compare_at_price);
+  const attributes = (variant.attributes ?? []).map((attribute) => ({
+    attributeId: attribute.attribute_id,
+    code: attribute.attribute_code,
+    name: attribute.attribute_name,
+    optionId: attribute.option_id,
+    label: attribute.label,
+    value: attribute.value,
+    swatchHex: attribute.swatch_hex?.trim() || null,
+  }));
+  const sizeAttribute = attributes.find(
+    (attribute) =>
+      attribute.code.toLowerCase().includes("size") ||
+      attribute.name.toLowerCase() === "size",
+  );
+  const colorAttribute = attributes.find(
+    (attribute) =>
+      attribute.code.toLowerCase().includes("color") ||
+      attribute.name.toLowerCase() === "color",
+  );
+  const stock = variant.is_available
+    ? Math.max(0, Math.floor(variant.stock_quantity ?? 0))
+    : 0;
+  const maxQuantity =
+    variant.effective_max_quantity !== undefined
+      ? Math.max(0, Math.floor(variant.effective_max_quantity))
+      : stock;
 
   return {
     id: String(variant.id),
-    size: variant.size_ml ? `${variant.size_ml}ml` : variant.name ?? "",
+    size:
+      sizeAttribute?.label ||
+      (variant.size_ml ? `${variant.size_ml}ml` : variant.name ?? ""),
     price,
     oldPrice: compareAt ?? price,
-    stock: variant.is_available ? 1 : 0,
+    stock,
+    maxQuantity,
     sku: variant.sku,
+    colorName:
+      variant.color_name?.trim() ||
+      colorAttribute?.label ||
+      null,
+    colorHex:
+      variant.color_hex?.trim() ||
+      colorAttribute?.swatchHex ||
+      null,
+    imageUrl: variant.image_url?.trim() || null,
+    attributes,
   };
 }
 
@@ -100,6 +159,7 @@ export function mapLaravelProduct(product: LaravelProduct): Product {
   const imageUrls = [
     product.primary_image?.image_url,
     ...(product.images ?? []).map((image) => image.image_url),
+    ...variants.map((variant) => variant.imageUrl),
   ].filter((value): value is string => Boolean(value));
   const images = [...new Set(imageUrls)];
   const firstVariant = variants[0];
@@ -116,6 +176,10 @@ export function mapLaravelProduct(product: LaravelProduct): Product {
     slug: product.slug,
     description: product.description,
     shortDescription: product.short_description ?? "",
+    details: product.details ?? "",
+    usageInstructions: product.usage_instructions ?? "",
+    deliveryReturns: product.delivery_returns ?? "",
+    packagingDetails: product.packaging_details ?? "",
     price: price ?? 0,
     oldPrice: compareAtPrice ?? price ?? 0,
     priceFrom: price,

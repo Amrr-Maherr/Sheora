@@ -8,7 +8,14 @@ export function CartDrawerContainer() {
     lines,
     totals,
     coupon,
+    governorateSlug,
+    maxItemQuantity,
+    setGovernorate,
     isOpen,
+    isLoading,
+    isUpdating,
+    error,
+    warnings,
     setCartOpen,
     closeCart,
     updateQuantity,
@@ -23,7 +30,14 @@ export function CartDrawerContainer() {
       lines={lines}
       totals={totals}
       coupon={coupon}
+      governorateSlug={governorateSlug}
+      maxItemQuantity={maxItemQuantity}
+      onSelectGovernorate={setGovernorate}
       isOpen={isOpen}
+      isLoading={isLoading}
+      isUpdating={isUpdating}
+      error={error}
+      warnings={warnings}
       onOpenChange={setCartOpen}
       onClose={closeCart}
       onUpdateQuantity={updateQuantity}

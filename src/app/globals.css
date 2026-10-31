@@ -54,7 +54,9 @@
   --color-gold-hover: var(--gold-hover);
   --color-gold-light: var(--gold-light);
   --color-gold-pale: var(--gold-pale);
+  --color-gold-dark: var(--gold-dark);
   --color-obsidian: var(--obsidian);
+  --color-obsidian-surface: var(--obsidian-surface);
 }
 
 @layer base {

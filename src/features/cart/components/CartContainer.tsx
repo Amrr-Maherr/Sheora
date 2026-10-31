@@ -1,17 +1,13 @@
 "use client";
 
+import type { Cart } from "@/types";
 import { useCart } from "../hooks";
 import { CartPresenter } from "./CartPresenter";
 
-type CartContainerProps = {
-  userId: string;
-}
-
-export function CartContainer({ userId }: CartContainerProps) {
-  const { data: carts = [], isLoading, isError } = useCart(userId);
-  const cart = carts[0];
+export function CartContainer() {
+  const { data: cartData, isLoading, isError } = useCart();
 
   return (
-    <CartPresenter cart={cart} isLoading={isLoading} isError={isError} />
+    <CartPresenter cart={cartData as unknown as Cart} isLoading={isLoading} isError={isError} />
   );
 }

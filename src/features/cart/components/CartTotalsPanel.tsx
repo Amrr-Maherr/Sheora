@@ -1,13 +1,17 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Lock, ShoppingBag } from "lucide-react";
+import { Lock, MapPin, ShoppingBag } from "lucide-react";
 import { formatCurrency } from "../lib/format";
-import type { AppliedCoupon, CartTotals } from "../types";
+import { cartApi } from "../api/cartApi";
+import type { AppliedCoupon, BackendGovernorate, CartTotals } from "../types";
 
 type CartTotalsPanelProps = {
   totals: CartTotals;
   coupon: AppliedCoupon | null;
+  governorateSlug?: string | null;
+  onSelectGovernorate?: (slug: string | null) => void;
   onNavigate?: () => void;
   showViewCartLink?: boolean;
 };
@@ -39,11 +43,69 @@ function SummaryRow({
 export function CartTotalsPanel({
   totals,
   coupon,
+  governorateSlug,
+  onSelectGovernorate,
   onNavigate,
   showViewCartLink = true,
 }: CartTotalsPanelProps) {
+  const [governorates, setGovernorates] = useState<BackendGovernorate[]>([]);
+
+  useEffect(() => {
+    let mounted = true;
+    cartApi
+      .getGovernorates()
+      .then((data) => {
+        if (mounted && Array.isArray(data)) {
+          setGovernorates(data);
+        }
+      })
+      .catch(() => {
+        // ignore error
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const shippingDisplay = (() => {
+    if (totals.shippingStatus === "pending") {
+      return { text: "يُحدد حسب المحافظة", tone: "muted" as const };
+    }
+    if (totals.shippingStatus === "unsupported") {
+      return { text: "غير متوفر للتوصيل", tone: "muted" as const };
+    }
+    if (totals.isFreeShipping || totals.shipping === 0) {
+      return { text: "مجاني", tone: "gold" as const };
+    }
+    return { text: formatCurrency(totals.shipping), tone: "gold" as const };
+  })();
+
+  const activeSlug = governorateSlug ?? totals.governorate?.slug ?? "";
+
   return (
     <div className="space-y-3">
+      {/* Governorate Selector */}
+      {onSelectGovernorate && governorates.length > 0 && (
+        <div className="flex items-center gap-2 rounded-lg border border-[#EAE4DB] bg-[#FAF9F6] p-2 text-[11px]">
+          <MapPin className="size-3.5 shrink-0 text-[#8C672B]" />
+          <span className="shrink-0 text-[#78716C]">التوصيل إلى:</span>
+          <select
+            value={activeSlug}
+            onChange={(e) => onSelectGovernorate(e.target.value || null)}
+            aria-label="اختر المحافظة لحساب الشحن"
+            className="w-full bg-transparent font-medium text-[#1C1917] outline-none cursor-pointer"
+          >
+            <option value="">-- اختاري المحافظة --</option>
+            {governorates.map((gov) => (
+              <option key={gov.slug} value={gov.slug}>
+                {gov.name_ar} ({gov.name_en})
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
       <div className="space-y-1">
         <SummaryRow
           label="مجموع المنتجات:"
@@ -57,17 +119,11 @@ export function CartTotalsPanel({
           />
         )}
         <SummaryRow
-          label="مصاريف الشحن السريع:"
-          value={
-            totals.shipping === 0 ? "مجاني" : formatCurrency(totals.shipping)
-          }
-          tone="gold"
+          label="مصاريف الشحن:"
+          value={shippingDisplay.text}
+          tone={shippingDisplay.tone}
         />
-        <SummaryRow
-          label="تغليف الهدايا الملكي مع كارت:"
-          value="مجاناً مع الطلب"
-          tone="gold"
-        />
+
       </div>
 
       <div className="border-t border-[#ECE5DA] pt-2.5">
@@ -77,7 +133,9 @@ export function CartTotalsPanel({
               الإجمالي النهائي:
             </p>
             <p className="mt-0.5 text-[9px] leading-4 text-[#A8A29E]">
-              شامل ضريبة القيمة المضافة والشحن
+              {totals.shippingStatus === "pending"
+                ? "شامل الضريبة (بدون مصاريف الشحن حتى الآن)"
+                : "شامل ضريبة القيمة المضافة والشحن"}
             </p>
           </div>
           <p className="font-alexandria text-[18px] font-bold leading-none text-[#141414]">
