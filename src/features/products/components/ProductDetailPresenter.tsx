@@ -300,7 +300,7 @@ export function ProductDetailPresenter({
 
               {selectedVariant ? (
                 <p className="text-[11px] font-medium text-[#8C827A]">
-                  OU,O3O1O� OU,U.O-O_O_: {selectedVariantLabel}
+                  السعر المحدد: {selectedVariantLabel}
                 </p>
               ) : null}
 

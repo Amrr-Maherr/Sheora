@@ -12,6 +12,20 @@ export type LaravelCategory = {
   product_count: number;
 };
 
+export type CategoryBrand = {
+  id: string;
+  name: string;
+  slug: string;
+};
+
+type LaravelCategoryFilters = {
+  brands?: Array<{
+    id: number;
+    name: string;
+    slug: string;
+  }>;
+};
+
 export function mapCategory(category: LaravelCategory): Category {
   return {
     id: String(category.id),
@@ -44,5 +58,17 @@ export const categoriesApi = {
     );
 
     return mapCategory(category);
+  },
+
+  getCategoryBrands: async (slug: string): Promise<CategoryBrand[]> => {
+    const filters = await laravelApiClient.get<LaravelCategoryFilters>(
+      `/categories/${encodeURIComponent(slug)}/filters`,
+    );
+
+    return (filters.brands ?? []).map((brand) => ({
+      id: String(brand.id),
+      name: brand.name,
+      slug: brand.slug,
+    }));
   },
 };

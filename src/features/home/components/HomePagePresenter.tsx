@@ -367,7 +367,7 @@ export function HomePagePresenter({ home, hasError }: HomePagePresenterProps) {
         <section
           className="overflow-hidden border-b border-[#EDE7DF] bg-[#FAF7F2] py-2.5"
           style={sectionStyle("announcements")}
-          aria-label="O1O�U^O O'U?USU^O�O OU,O-OU,USOc"
+          aria-label="شريط إعلانات المتجر"
         >
           <div className="flex w-full overflow-hidden" dir="ltr">
             <div className="animate-sheora-marquee flex items-center whitespace-nowrap px-4 text-[12px] font-medium text-[#8C6426] md:text-[13px]">

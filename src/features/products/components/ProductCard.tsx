@@ -60,7 +60,7 @@ export function ProductCard({
   });
   const { addLine } = useCartDrawer();
 
-  const name = product.name ?? product.title ?? "U.U+O�O�";
+  const name = product.name ?? product.title ?? "منتج";
   const selectedVariant =
     product.variants?.[variantIndex] ?? product.variants?.[0] ?? null;
   const hasPrice =
@@ -82,7 +82,7 @@ export function ProductCard({
   const canAddToCart = Boolean(
     selectedVariant && selectedVariant.stock > 0 && selectedVariant.price > 0,
   );
-  const brandName = product.brandName ?? "O'U?USU^O�O";
+  const brandName = product.brandName ?? "غير محدد";
   const hasRating =
     typeof product.rating === "number" && product.rating > 0 && product.reviewsCount > 0;
   const size = selectedVariant?.size ?? product.size ?? "";

@@ -26,6 +26,9 @@ export const EMPTY_TOTALS: CartTotals = {
   governorate: null,
   giftWrap: 0,
   total: 0,
+  depositRequired: false,
+  depositAmount: 0,
+  remainingAmount: 0,
 };
 
 export const CART_UPSELL: CartUpsell = {
@@ -148,6 +151,11 @@ export function transformBackendCart(data: BackendCartData): {
       : null,
     giftWrap: GIFT_WRAP_FEE,
     total: Number(data.total) || 0,
+    depositRequired: data.deposit_estimate?.deposit_required ?? false,
+    depositAmount: Number(data.deposit_estimate?.estimated_deposit_amount) || 0,
+    remainingAmount:
+      Number(data.deposit_estimate?.remaining_due_at_delivery) ||
+      Math.max(0, Number(data.total) || 0),
   };
 
   return {

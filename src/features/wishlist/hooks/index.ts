@@ -1,1 +1,5 @@
-export { useWishlist } from "./useWishlist";
+export {
+  useWishlist,
+  useWishlistProducts,
+  useRemoveWishlistProduct,
+} from "./useWishlist";

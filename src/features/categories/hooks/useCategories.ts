@@ -23,3 +23,11 @@ export function useCategoryBySlug(slug: string) {
     enabled: Boolean(slug),
   });
 }
+
+export function useCategoryBrands(slug: string | null | undefined) {
+  return useQuery({
+    queryKey: queryKeys.categories.brands(slug ?? ""),
+    queryFn: () => categoriesApi.getCategoryBrands(slug as string),
+    enabled: Boolean(slug),
+  });
+}

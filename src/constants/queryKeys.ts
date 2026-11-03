@@ -30,6 +30,8 @@ export const queryKeys = {
     home: () => [...queryKeys.categories.all, "home"] as const,
     details: () => [...queryKeys.categories.all, "detail"] as const,
     detail: (id: string) => [...queryKeys.categories.details(), id] as const,
+    brands: (slug: string) =>
+      [...queryKeys.categories.all, "brands", slug] as const,
   },
   brands: {
     all: ["brands"] as const,
@@ -46,6 +48,8 @@ export const queryKeys = {
   wishlist: {
     all: ["wishlist"] as const,
     detail: (userId: string) => [...queryKeys.wishlist.all, userId] as const,
+    products: (productIds: string[]) =>
+      [...queryKeys.wishlist.all, "products", [...productIds].sort()] as const,
   },
   orders: {
     all: ["orders"] as const,

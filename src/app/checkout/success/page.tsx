@@ -1,3 +1,10 @@
+import { Suspense } from "react";
+import { CheckoutSuccessContainer } from "@/features/checkout";
+
 export default function CheckoutSuccessPage() {
-  return <div>Checkout Success Page</div>;
+  return (
+    <Suspense fallback={null}>
+      <CheckoutSuccessContainer />
+    </Suspense>
+  );
 }

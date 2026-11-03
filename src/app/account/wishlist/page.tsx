@@ -1,11 +1,6 @@
-import { WishlistContainer } from "@/features/wishlist";
 import { DEMO_USER_ID } from "@/constants";
+import { WishlistContainer } from "@/features/wishlist";
 
 export default function AccountWishlistPage() {
-  return (
-    <div>
-      <h1>Account Wishlist Page</h1>
-      <WishlistContainer userId={DEMO_USER_ID} />
-    </div>
-  );
+  return <WishlistContainer userId={DEMO_USER_ID} />;
 }

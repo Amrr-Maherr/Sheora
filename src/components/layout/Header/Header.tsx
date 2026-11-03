@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import {
   Search,
   ShoppingBag,
@@ -14,9 +13,12 @@ import {
   Sparkles,
   PhoneCall,
   MapPin,
+  ChevronDown,
 } from "lucide-react";
 import { useCartDrawer } from "@/features/cart/context";
 import { formatPrice } from "@/features/cart/lib/format";
+import { CategoryMegaMenuContainer } from "@/features/categories";
+import { SearchOverlayContainer } from "@/features/search";
 import {
   DEFAULT_STOREFRONT_SETTINGS,
   type HeaderNavigationItem,
@@ -33,8 +35,9 @@ export function Header({
   settings = DEFAULT_STOREFRONT_SETTINGS,
   navigation = [],
 }: HeaderProps) {
-  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [megaMenuLabel, setMegaMenuLabel] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [promoCopied, setPromoCopied] = useState(false);
   const { totals, isOpen, openCart } = useCartDrawer();
@@ -51,6 +54,15 @@ export function Header({
     liveNavigation.length > 0
       ? [...liveNavigation, ...(highlightItem ? [highlightItem] : [])]
       : settings.navigation;
+  const activeNavItem = megaMenuLabel
+    ? navItems.find((item) => item.label === megaMenuLabel)
+    : null;
+  const activeCategorySlug = activeNavItem
+    ? extractCategorySlug(activeNavItem.url)
+    : null;
+
+  const closeSearch = useCallback(() => setSearchOpen(false), []);
+  const closeMegaMenu = useCallback(() => setMegaMenuLabel(null), []);
 
   const handleOpenCart = () => {
     setMobileMenuOpen(false);
@@ -59,9 +71,7 @@ export function Header({
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/products?q=${encodeURIComponent(searchQuery.trim())}`);
-    }
+    setSearchOpen(true);
   };
 
   const handleCopyPromoCode = async (code: string) => {
@@ -182,12 +192,15 @@ export function Header({
           {/* Center: Search Bar */}
           <form
             onSubmit={handleSearch}
+            data-search-trigger
             className="hidden md:flex flex-1 max-w-[560px] mx-6 relative items-center"
           >
             <input
               type="search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setSearchOpen(true)}
+              onClick={() => setSearchOpen(true)}
               placeholder="ابحث عما تريد... سيروم، إكسير، عطور عناية فاخرة..."
               className="w-full h-[44px] pr-11 pl-24 text-[13px] bg-[#FAF8F5] border border-[#E8E2DA] rounded-full text-[#151211] placeholder:text-[#8C827A] focus:outline-none focus:border-[#B88A44] focus:bg-white focus:ring-2 focus:ring-[#B88A44]/15 transition-all"
             />
@@ -273,11 +286,17 @@ export function Header({
 
         {/* Mobile Search Bar */}
         <div className="md:hidden px-4 pb-3">
-          <form onSubmit={handleSearch} className="relative flex items-center">
+          <form
+            onSubmit={handleSearch}
+            data-search-trigger
+            className="relative flex items-center"
+          >
             <input
               type="search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setSearchOpen(true)}
+              onClick={() => setSearchOpen(true)}
               placeholder="ابحث عن عطور، سيروم، مكياج..."
               className="w-full h-[40px] pr-10 pl-4 text-[13px] bg-[#FAF8F5] border border-[#E8E2DA] rounded-full text-[#151211] placeholder:text-[#8C827A] focus:outline-none focus:border-[#B88A44]"
             />
@@ -288,35 +307,69 @@ export function Header({
 
       {/* 3. Category Bar - Deep Obsidian with Golden Accents */}
       {navItems.length > 0 && (
-        <nav className="bg-obsidian border-b border-[#211F1D] hidden md:block">
-          <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 h-[46px]">
-            <ul className="flex items-center gap-7 text-[13px] font-medium">
-              {navItems.map((cat, idx) => (
-                <li key={`${cat.label}-${idx}`}>
-                  <Link
-                    href={cat.url}
-                    className={`flex items-center gap-1.5 transition-colors py-1 ${
-                      cat.highlight
-                        ? "text-gold-light hover:text-white font-semibold"
-                        : idx === 0
-                        ? "text-white border-b-2 border-gold pb-1"
-                        : "text-[#D5CFC9] hover:text-gold-light"
-                    }`}
+        <div
+          className="relative hidden md:block"
+          onMouseLeave={closeMegaMenu}
+        >
+          <nav className="bg-obsidian border-b border-[#211F1D]">
+            <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 h-[46px]">
+              <ul className="flex items-center gap-7 text-[13px] font-medium">
+                {navItems.map((cat, idx) => (
+                  <li
+                    key={`${cat.label}-${idx}`}
+                    onMouseEnter={() =>
+                      setMegaMenuLabel(cat.highlight ? null : cat.label)
+                    }
                   >
-                    {cat.highlight && <Sparkles className="size-3 text-gold-light" />}
-                    {cat.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <Link
-              href="/products"
-              className="text-[11px] text-gold hover:text-gold-light transition-colors"
-            >
-              عرض كافة الأقسام ←
-            </Link>
-          </div>
-        </nav>
+                    {cat.highlight ? (
+                      <Link
+                        href={cat.url}
+                        className="flex items-center gap-1.5 transition-colors py-1 text-gold-light hover:text-white font-semibold"
+                      >
+                        <Sparkles className="size-3 text-gold-light" />
+                        {cat.label}
+                      </Link>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setMegaMenuLabel(cat.label)}
+                        onFocus={() => setMegaMenuLabel(cat.label)}
+                        aria-haspopup="true"
+                        aria-expanded={megaMenuLabel === cat.label}
+                        className={`flex cursor-pointer items-center gap-1.5 transition-colors py-1 ${
+                          idx === 0
+                            ? "text-white border-b-2 border-gold pb-1"
+                            : "text-[#D5CFC9] hover:text-gold-light"
+                        }`}
+                      >
+                        {cat.label}
+                        <ChevronDown
+                          className={`size-3 transition-transform ${
+                            megaMenuLabel === cat.label ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+                    )}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/brands"
+                className="text-[11px] text-gold hover:text-gold-light transition-colors"
+              >
+                عرض كافة الماركات ←
+              </Link>
+            </div>
+          </nav>
+
+          {megaMenuLabel && (
+            <CategoryMegaMenuContainer
+              activeLabel={megaMenuLabel}
+              categorySlug={activeCategorySlug}
+              onClose={closeMegaMenu}
+            />
+          )}
+        </div>
       )}
 
       {/* Mobile Drawer Menu */}
@@ -350,6 +403,38 @@ export function Header({
           </div>
         </div>
       )}
+
+      {searchOpen && (
+        <div className="absolute inset-x-0 top-full z-[90]">
+          <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6">
+            <div className="overflow-hidden rounded-2xl border border-[#EDE8E3] bg-white shadow-[0_30px_60px_rgba(20,20,20,0.14)]">
+              <SearchOverlayContainer
+                onClose={closeSearch}
+                initialQuery={searchQuery}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
+}
+
+function extractCategorySlug(url: string): string | null {
+  try {
+    const parsed = new URL(url, "https://sheora.local");
+    const querySlug =
+      parsed.searchParams.get("category") ??
+      parsed.searchParams.get("category_slug");
+
+    if (querySlug) {
+      return querySlug;
+    }
+
+    const match = parsed.pathname.match(/^\/categories\/([^/]+)/);
+
+    return match ? decodeURIComponent(match[1]) : null;
+  } catch {
+    return null;
+  }
 }

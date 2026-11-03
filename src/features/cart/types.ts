@@ -77,6 +77,9 @@ export type CartTotals = {
   governorate?: { slug: string; nameAr: string; nameEn: string } | null;
   giftWrap: number;
   total: number;
+  depositRequired: boolean;
+  depositAmount: number;
+  remainingAmount: number;
 };
 
 export type CouponResult = {
